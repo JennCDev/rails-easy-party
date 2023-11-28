@@ -4,5 +4,9 @@
   <%= f.input :start_at, label: 'Date de début', as: :date %>
   <%= f.input :end_at, label: 'Date de fin', as: :date %>
   <%= f.input :place, label: 'Lieu', as: :string %>
+
+  <!--<%= simple_fields_for :other do |o| %>
+    <%= o.input :change_password, label: 'I want to change my password' %>
+  <% end %>-->
   <%= f.submit 'Crée ton évènement' %>
 <% end %>
