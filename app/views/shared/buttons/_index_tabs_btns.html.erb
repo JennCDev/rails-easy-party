@@ -1,2 +1,2 @@
-<%= link_to "Evènements passés", action: "", method: :post, class: "passed-events-btn" data-controller= "button" data-action="click->button#toggleStyle" data-button-target="button" %>
-<%= link_to "Prochains évènements passés", action: "", method: :post, class: "attended-events-btn" data-controller= "button" data-action="click->button#toggleStyle" data-button-target="button" %>
+<%= button_to "Evènements passés", root_path, method: :post, class: "passed-events-btn", data: { controller: "button", action: "click->button#toggleStyle", button_target: "button" } %>
+<%= button_to "Prochains évènements passés", root_path, method: :post, class: "attended-events-btn", data: { controller: "button", action: "click->button#toggleStyle", button_target: "button" } %>

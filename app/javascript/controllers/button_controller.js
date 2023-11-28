@@ -1,8 +1,11 @@
 import { Controller } from "stimulus";
 
 export default class extends Controller {
-  static targets = ["button"];
+  static targets = ["buttonTarget"];
 
+  connect() {
+    console.log("youre in")
+  }
   toggleStyle(event) {
     event.preventDefault();
     this.buttonTarget.classList.toggle("active-events-btn");

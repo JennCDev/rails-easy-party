@@ -14,7 +14,6 @@ class ApplicationPolicy
 
   def show?
     false
-    # passer à true ? cf. 24/11
   end
 
   def create?
