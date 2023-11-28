@@ -20,6 +20,7 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_102102) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["survey_id"], name: "index_answers_on_survey_id"
+  end
 
   create_table "chatrooms", force: :cascade do |t|
     t.bigint "event_id", null: false
@@ -38,26 +39,6 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_102102) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "surveys", force: :cascade do |t|
-    t.string "question"
-    t.date "deadline"
-    t.string "category"
-    t.string "result"
-    t.bigint "user_id", null: false
-    t.bigint "event_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_surveys_on_event_id"
-    t.index ["user_id"], name: "index_surveys_on_user_id"
-  end
-
-  create_table "user_answers", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "answer_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["answer_id"], name: "index_user_answers_on_answer_id"
-    t.index ["user_id"], name: "index_user_answers_on_user_id"
   create_table "items", force: :cascade do |t|
     t.string "content"
     t.bigint "todo_list_id", null: false
@@ -76,10 +57,32 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_102102) do
     t.index ["user_id"], name: "index_messages_on_user_id"
   end
 
+  create_table "surveys", force: :cascade do |t|
+    t.string "question"
+    t.date "deadline"
+    t.string "category"
+    t.string "result"
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["event_id"], name: "index_surveys_on_event_id"
+    t.index ["user_id"], name: "index_surveys_on_user_id"
+  end
+
   create_table "todo_lists", force: :cascade do |t|
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "user_answers", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "answer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_user_answers_on_answer_id"
+    t.index ["user_id"], name: "index_user_answers_on_user_id"
   end
 
   create_table "user_events", force: :cascade do |t|
@@ -117,14 +120,14 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_102102) do
   end
 
   add_foreign_key "answers", "surveys"
-  add_foreign_key "surveys", "events"
-  add_foreign_key "surveys", "users"
-  add_foreign_key "user_answers", "answers"
-  add_foreign_key "user_answers", "users"
   add_foreign_key "chatrooms", "events"
   add_foreign_key "items", "todo_lists"
   add_foreign_key "messages", "chatrooms"
   add_foreign_key "messages", "users"
+  add_foreign_key "surveys", "events"
+  add_foreign_key "surveys", "users"
+  add_foreign_key "user_answers", "answers"
+  add_foreign_key "user_answers", "users"
   add_foreign_key "user_events", "events"
   add_foreign_key "user_events", "users"
   add_foreign_key "user_items", "items"
