@@ -7,5 +7,10 @@
     <%= f.input :end_at, label: 'Date de fin', as: :string, input_html: { data: { dates_pickr_target:"endDate"}}, as: :hidden, label: false %>
   </div>
   <%= f.input :place, label: 'Lieu', as: :string %>
+
+  <!--<%= simple_fields_for :other do |o| %>
+    <%= o.input :change_password, label: 'I want to change my password' %>
+  <% end %>-->
+  <%= f.input :photos, as: :file, input_html: { multiple: true }, class: "form-field" %>
   <%= f.submit 'Crée ton évènement' %>
 <% end %>

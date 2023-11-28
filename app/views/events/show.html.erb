@@ -1,1 +1,24 @@
+<<<<<<< HEAD
 <h1>Ceci est la show</h1>
+=======
+<!-- app/views/events/show.html.erb -->
+
+<h1><%= @event.title %></h1>
+
+<p><strong>Description:</strong> <%= @event.description %></p>
+<p><strong>Date de début:</strong> <%= @event.start_at %></p>
+<p><strong>Date de fin:</strong> <%= @event.end_at %></p>
+<p><strong>Lieu:</strong> <%= @event.place %></p>
+<% if @event.photos.attached? %>
+  <div class="photos">
+    <% @event.photos.each do |photo| %>
+      <%= cl_image_tag(photo.key, width: 300, height: 200, crop: :fill) %>
+    <% end %>
+  </div>
+<% else %>
+  <p>Aucune image disponible pour cet evenement</p>
+<% end %>
+
+
+<%= link_to 'Retour à la liste des évènements', events_path %>
+>>>>>>> 03a184869831f7a5a815cdd3fa0e3fbf58084492

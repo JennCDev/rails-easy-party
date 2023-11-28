@@ -1,6 +1,14 @@
 class SurveysController < ApplicationController
+  def new
+    @survey = Survey.new
+    @event = Event.find(params[:event_id])
+  end
+
   def create
     @survey = Survey.new(survey_params)
+    @event = Event.find(params[:event_id])
+    @survey.user = current_user
+    @survey.event = @event
 
     if @survey.save
       redirect_to @survey
@@ -12,6 +20,6 @@ class SurveysController < ApplicationController
   private
 
   def survey_params
-    params.require(:survey).permit(:question, :deadline, :category, :result, :user_id, :event_id)
+    params.require(:survey).permit(:question, :deadline, :category)
   end
 end
