@@ -1,0 +1,14 @@
+<h1>Mes évènements</h1>
+
+<h2>Prochains évènements</h2>
+<% @next_events_without_date.each do |next_events_without_date| %>
+  <p><%= next_events_without_date.title %></p>
+<% end %>
+<% @next_events.each do |next_events| %>
+  <p><%= next_events.title %></p>
+<% end %>
+
+<h2>Précédents évènements</h2>
+<% @previous_events.each do |previous_events| %>
+  <p><%= previous_events.title %></p>
+<% end %>
