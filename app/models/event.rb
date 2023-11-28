@@ -5,4 +5,5 @@ class Event < ApplicationRecord
   has_many :user_events
   validates :title, presence: true
   validates :description, presence: true
+  has_many_attached :photos
 end

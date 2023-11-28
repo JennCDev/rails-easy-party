@@ -2,7 +2,7 @@ class EventsController < ApplicationController
   def index
     @next_events = Event.where("start_at >= ?", Date.today).order(:start_at)
     @next_events_without_date = Event.where("start_at is null")
-    @previous_events = Event.where("start_at < ?", Date.today).order(start_at: :desc)# a checker les filtres pour les dates nulles
+    @previous_events = Event.where("start_at < ?", Date.today).order(start_at: :desc)
   end
 
   def new
@@ -18,9 +18,17 @@ class EventsController < ApplicationController
     end
   end
 
+  def show
+    @event = Event.find(params[:id])
+  end
+
+
+
   private
 
   def event_params
+
     params.require(:event).permit(:title, :description, :start_at, :end_at, :place)
+
   end
 end
