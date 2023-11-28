@@ -16,6 +16,19 @@ User.destroy_all
 Event.destroy_all
 Survey.destroy_all
 
+photo_marion =
+URI.open("https://avatars.githubusercontent.com/u/137996776?v=4")
+
+photo_jf =
+URI.open("https://avatars.githubusercontent.com/u/109537083?v=4")
+
+photo_nicolas =
+URI.open("https://avatars.githubusercontent.com/u/147147521?v=4")
+
+
+marion.avatar.attach(io: photo_marion, filename: "marion.jpg", content_type: "image/jpg")
+jennifer.avatar.attach(io: photo_jf, filename: "jf.jpg", content_type: "image/jpg")
+nicolas.avatar.attach(io: photo_nicolas, filename: "nicolas.jpg", content_type: "image/jpg")
 
 
 puts "User en création ! "
