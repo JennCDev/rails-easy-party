@@ -23,6 +23,12 @@ class EventsController < ApplicationController
     @user_events = UserEvent.where(event_id: @event.id)
   end
 
+  def search
+    @users = User.where("first_name LIKE ?", "%#{params[:query]}%")
+    respond_to do |format|
+      format.json { render json: @users }
+    end
+  end
 
 
   private

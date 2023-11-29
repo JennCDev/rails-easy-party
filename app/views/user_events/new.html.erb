@@ -1,16 +1,11 @@
-<!-- app/views/user_events/new.html.erb -->
-
 <div class="container mt-5">
   <h1 class="mb-4">Ajouter des utilisateurs à l'événement <%= @event.title %></h1>
 
   <%= form_for @user_event, url: { action: :create } do |f| %>
-    <div class="mb-3">
+    <div class="mb-3" data-controller="autocomplete">
       <%= f.label :user_id, "Utilisateurs", class: "form-label" %>
-      <% if @users.present? %>
-        <%= f.collection_select :user_id, @users, :id, :first_name, { }, class: "form-select" %>
-      <% else %>
-        <p>Aucun utilisateur disponible</p>
-      <% end %>
+      <%= f.text_field :user_id, data: { autocomplete_target: "input" }, class: "form-control", placeholder: "Rechercher des utilisateurs..." %>
+      <ul class="autocomplete-list" data-autocomplete-target="list"></ul>
     </div>
 
     <div class="mb-3">

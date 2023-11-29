@@ -13,5 +13,9 @@ Rails.application.routes.draw do
   resources :events, only: ["show", "new", "create"] do
     resources :surveys, only: ["new", "create"]
     resources :user_events
+
+  end
+  resources :users do
+    get 'search', on: :collection
   end
 end
