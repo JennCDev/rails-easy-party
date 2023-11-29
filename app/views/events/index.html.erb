@@ -1,21 +1,32 @@
 <h1>Mes évènements</h1>
 
 <%= render "shared/buttons/index_tabs_btns" %>
-
-<% if @next_events_without_date.present? %>
-  <% @next_events_without_date.each do |next_events_without_date| %>
-    <p><%= link_to next_events_without_date.title, event_path(next_events_without_date) %></p>
+<% if params[:type] == "next" %>
+  <% if @next_events_without_date.present? %>
+    <% @next_events_without_date.each do |next_events_without_date| %>
+      <p><%= link_to next_events_without_date.title, event_path(next_events_without_date) %></p>
+    <% end %>
   <% end %>
-<% end %>
-
-<% if @next_events.present? %>
-  <% @next_events.each do |next_events| %>
-    <p><%= link_to next_events.title, event_path(next_events) %></p>
+  <% if @next_events.present? %>
+    <% @next_events.each do |next_events| %>
+      <p><%= link_to next_events.title, event_path(next_events) %></p>
+    <% end %>
   <% end %>
-<% end %>
-
-<% if @previous_events.present? %>
-  <% @previous_events.each do |previous_event| %>
-    <p><%= link_to previous_event.title, event_path(previous_event) %></p>
+  <% elsif params[:type] == "previous" %>
+  <% if @previous_events.present? %>
+    <% @previous_events.each do |previous_event| %>
+      <p><%= link_to previous_event.title, event_path(previous_event) %></p>
+    <% end %>
+    <% else %>
+    <% if @next_events_without_date.present? %>
+    <% @next_events_without_date.each do |next_events_without_date| %>
+      <p><%= link_to next_events_without_date.title, event_path(next_events_without_date) %></p>
+    <% end %>
+  <% end %>
+  <% if @next_events.present? %>
+    <% @next_events.each do |next_events| %>
+      <p><%= link_to next_events.title, event_path(next_events) %></p>
+    <% end %>
+  <% end %>
   <% end %>
 <% end %>
