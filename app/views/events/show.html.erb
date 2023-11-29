@@ -1,12 +1,6 @@
-
 <!-- app/views/events/show.html.erb -->
+<%= link_to 'Retour à la liste des évènements', root_path %>
 
-<h1><%= @event.title %></h1>
-
-<p><strong>Description:</strong> <%= @event.description %></p>
-<p><strong>Date de début:</strong> <%= @event.start_at %></p>
-<p><strong>Date de fin:</strong> <%= @event.end_at %></p>
-<p><strong>Lieu:</strong> <%= @event.place %></p>
 <% if @event.photos.attached? %>
   <div class="photos">
     <% @event.photos.each do |photo| %>
@@ -17,6 +11,17 @@
   <p>Aucune image disponible pour cet evenement</p>
 <% end %>
 
+<h1><%= @event.title %></h1>
+
+<p><strong>Date de début:</strong> <%= @event.start_at %></p>
+<p><strong>Date de fin:</strong> <%= @event.end_at %></p>
+
+<%= link_to 'Ajouter des utilisateurs à cet évènement', new_event_user_event_path(event_id: @event.id) %>
+
+<p><strong>Lieu:</strong> <%= @event.place %></p>
+<p><strong>Description:</strong><br>
+<%= @event.description %></p>
+
 <ul>
   <% @user_events.each do |user_event| %>
     <li>
@@ -26,8 +31,3 @@
     </li>
   <% end %>
 </ul>
-
-
-<%= link_to 'Retour à la liste des évènements', root_path %>
-
-<%= link_to 'Ajouter des utilisateurs à cet évènement', new_event_user_event_path(event_id: @event.id) %>

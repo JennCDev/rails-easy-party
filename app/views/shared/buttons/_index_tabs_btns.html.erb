@@ -2,16 +2,16 @@
   <%= link_to "Evènements passés", root_path(type: "next"),
     method: :post,
     class: "passed-events-btn",
-    data: {
-      action: "click->button#toggle",
-      button_target: "button.button"
-    } %>
+      data: {
+        action: "click->button#toggle",
+        button_target: "passed-button"
+      } %>
 
   <%= link_to "Prochains évènements", root_path(type: "previous"),
     method: :post,
     class: "attended-events-btn",
     data: {
       action: "click->button#toggle",
-      button_target: "button.button"
+      button_target: "attended-button"
     } %>
 </div>
