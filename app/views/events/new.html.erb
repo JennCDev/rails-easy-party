@@ -1,8 +1,11 @@
 <%= simple_form_for @event do |f| %>
   <%= f.input :title, label: 'Titre', as: :string %>
   <%= f.input :description, label: 'Description', as: :string %>
-  <%= f.input :start_at, label: 'Date de début', as: :date %>
-  <%= f.input :end_at, label: 'Date de fin', as: :date %>
+  <div class="dates" data-controller="dates-pickr">
+  <input type="text" data-dates-pickr-target="dateInput" data-action="change->dates-pickr#setDates">
+    <%= f.input :start_at, label: 'Date de début', as: :string, input_html: { data: {dates_pickr_target:"startDate"}}, as: :hidden, label: false %>
+    <%= f.input :end_at, label: 'Date de fin', as: :string, input_html: { data: { dates_pickr_target:"endDate"}}, as: :hidden, label: false %>
+  </div>
   <%= f.input :place, label: 'Lieu', as: :string %>
 
   <!--<%= simple_fields_for :other do |o| %>

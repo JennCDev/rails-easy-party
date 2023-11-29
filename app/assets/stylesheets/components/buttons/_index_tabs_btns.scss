@@ -1,0 +1,25 @@
+.active-events-btn{
+  color: $main-color;
+  font-weight: bold;
+  background-color: $main-color-light 0.3s ease;
+  font-size: 14px;
+  padding: 8 10 8 10;
+  border-radius: 8px;
+  text-decoration: none;
+  &:hover{
+    background-color: lighten($main-color, 10%) ;
+  }
+}
+
+
+.inactive-events-btn{
+  color: grey;
+  background-color: $inactive-color 0.3s ease;
+  font-size: 14px;
+  padding: 8 10 8 10;
+  border-radius: 8px;
+  text-decoration: none;
+  &:hover{
+    background-color: lighten($main-color, 10%) ;
+  }
+}

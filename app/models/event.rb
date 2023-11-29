@@ -1,4 +1,5 @@
 class Event < ApplicationRecord
+
   has_many :chatrooms
   has_many :surveys
   has_many :user_events

@@ -1,0 +1,21 @@
+@media only screen and (max-width: 768px) {
+  .validate-btn{
+    color: white;
+    background-color: $main-color;
+    font-size: 14px;
+    padding: 8px 10px 8px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+
+    }
+
+  .validate-btn-small{
+    color: white;
+    background-color: $main-color-light;
+    font-size: 14px;
+    padding: 8px 10px 8px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    }
+
+}
