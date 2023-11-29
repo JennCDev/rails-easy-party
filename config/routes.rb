@@ -15,4 +15,9 @@ Rails.application.routes.draw do
     resources :user_events
   end
   resources :surveys, only: ["show"]
+
+  resources :answers, only: [] do
+    resources :user_answers, only: ["create"]
+  end
+  resources :user_answers, only: ["destroy"]
 end

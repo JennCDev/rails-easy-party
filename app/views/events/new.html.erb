@@ -1,8 +1,11 @@
+<h2 class="mt-4 mb-5 text-center">NOUVEL EVENEMENT</h2>
+
 <%= simple_form_for @event do |f| %>
   <%= f.input :title, label: 'Titre', as: :string %>
   <%= f.input :description, label: 'Description', as: :string %>
   <div class="dates" data-controller="dates-pickr">
-  <input type="text" data-dates-pickr-target="dateInput" data-action="change->dates-pickr#setDates">
+  <%= f.label :dates, "Dates", class: "form-label" %>
+  <input type="text" id="dates" data-dates-pickr-target="dateInput" data-action="change->dates-pickr#setDates" class="form-control">
     <%= f.input :start_at,
       label: 'Date de début',
       as: :string,
@@ -23,12 +26,10 @@
          label: false %>
   </div>
   <%= f.input :place, label: 'Lieu', as: :string %>
-
-  <!--<%= simple_fields_for :other do |o| %>
-    <%= o.input :change_password, label: 'I want to change my password' %>
-  <% end %>-->
   <%= f.input :photos, as: :file, input_html: { multiple: true }, class: "form-field" %>
-  <%= f.submit 'Crée ton évènement' %>
+  <div class="d-flex justify-content-center">
+    <%= f.submit 'Valider', class: "mt-5 validate-btn w-75" %>
+  </div>
 <% end %>
 
-<%= render "shared/buttons/validate_btn" %>
+<!--<%= render "shared/buttons/validate_btn" %>-->
