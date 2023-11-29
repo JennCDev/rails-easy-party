@@ -16,5 +16,19 @@
   <p>Aucune image disponible pour cet evenement</p>
 <% end %>
 
+<ul>
+  <% @user_events.each do |user_event| %>
+    <li>
+      <strong>Nom :</strong> <%= user_event.user.first_name %>,
+      <strong>Planner :</strong> <%= user_event.planner ? 'Oui' : 'Non' %>,
+      <strong>Status :</strong> <%= user_event.status %>
+    </li>
+  <% end %>
+</ul>
 
-<%= link_to 'Retour à la liste des évènements', events_path %>
+
+
+
+<%= link_to 'Retour à la liste des évènements', root_path %>
+
+<%= link_to 'Ajouter des utilisateurs à cet évènement', new_event_user_event_path(event_id: @event.id) %>
