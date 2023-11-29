@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2023_11_28_205454) do
+ActiveRecord::Schema[7.1].define(version: 2023_11_29_153208) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -103,6 +103,10 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_205454) do
     t.string "title"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id", null: false
+    t.bigint "event_id", null: false
+    t.index ["event_id"], name: "index_todo_lists_on_event_id"
+    t.index ["user_id"], name: "index_todo_lists_on_user_id"
   end
 
   create_table "user_answers", force: :cascade do |t|
@@ -159,6 +163,8 @@ ActiveRecord::Schema[7.1].define(version: 2023_11_28_205454) do
   add_foreign_key "messages", "users"
   add_foreign_key "surveys", "events"
   add_foreign_key "surveys", "users"
+  add_foreign_key "todo_lists", "events"
+  add_foreign_key "todo_lists", "users"
   add_foreign_key "user_answers", "answers"
   add_foreign_key "user_answers", "users"
   add_foreign_key "user_events", "events"
