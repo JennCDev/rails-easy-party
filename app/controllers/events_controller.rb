@@ -23,19 +23,10 @@ class EventsController < ApplicationController
     @user_events = UserEvent.where(event_id: @event.id)
   end
 
-  def search
-    @users = User.where("first_name LIKE ?", "%#{params[:query]}%")
-    respond_to do |format|
-      format.json { render json: @users }
-    end
-  end
-
 
   private
 
   def event_params
-
-    params.require(:event).permit(:title, :description, :start_at, :end_at, :place)
-
+    params.require(:event).permit(:title, :description, :start_date, :end_date, :place, photos: [])
   end
 end
