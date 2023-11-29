@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   root to: "events#index"
   resources :events, only: ["show", "new", "create"] do
     resources :surveys, only: ["new", "create"]
+    resources :user_events
   end
 end
