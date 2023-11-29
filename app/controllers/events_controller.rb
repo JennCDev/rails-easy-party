@@ -3,16 +3,6 @@ class EventsController < ApplicationController
     @next_events = Event.where("start_at >= ?", Date.today).order(:start_at)
     @next_events_without_date = Event.where("start_at is null")
     @previous_events = Event.where("start_at < ?", Date.today).order(start_at: :desc)
-
-    if params[:type] == "next"
-      @next_events_without_date = Event.where("start_at is null")
-      @next_events = Event.where("start_at >= ?", Date.today).order(:start_at)
-    elsif params[:type] == "previous"
-      @previous_events = Event.where("start_at < ?", Date.today).order(start_at: :desc)
-    elsif
-      @next_events_without_date = Event.where("start_at is null")
-      @next_events = Event.where("start_at >= ?", Date.today).order(:start_at)
-    end
   end
 
   def new

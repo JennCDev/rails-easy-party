@@ -8,6 +8,7 @@
   text-decoration: none;
   &:hover{
     background-color: lighten($main-color, 10%) ;
+    transition: 0.3s ease;
   }
 }
 
@@ -21,5 +22,6 @@
   text-decoration: none;
   &:hover{
     background-color: lighten($main-color, 10%) ;
+    transition: 0.3s ease;
   }
 }
