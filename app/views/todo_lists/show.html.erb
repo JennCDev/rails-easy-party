@@ -1,0 +1,8 @@
+<%= @todo_list.title %><br>
+<% @todo_list.items.each do |item| %>
+  <%= link_to item.content %><br>
+
+<% end %>
+
+<%#
+  <%= link_to "Je m'occupe de #{item.content}", mark_as_done_todo_list_item_path(@todo_list, item), method: :patch %>

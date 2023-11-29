@@ -4,7 +4,7 @@ import flatpickr from "flatpickr";
 // Connects to data-controller="datepicker-simple"
 export default class extends Controller {
   connect() {
-    console.log("Hello");
+    // console.log("Hello");
     flatpickr(this.element);
   }
 }
