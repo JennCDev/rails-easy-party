@@ -1,0 +1,18 @@
+<h1>Nouveau sondage</h1>
+
+<%= simple_form_for [@event, @survey] do |f| %>
+  <%= f.input :question, label: 'Question', as: :string %>
+  <%= f.input :deadline, label: 'Date limite', as: :date %>
+  <div id="answers" data-controller="insert-in-answers" data-insert-in-answers-target="answers">
+    <%= simple_fields_for :other do |o| %>
+    <%= o.input :text, label: 'I want to change my password' %>
+    <%= o.input :text, label: 'I want to change my password2' %>
+  <% end %>
+
+    <%= f.fields_for :answers do |a| %>
+      <%= a.input :answer, label: false, placeholder: "Option", as: :string %>
+      <%= a.submit 'Valider' %>
+    <% end %>
+  </div>
+  <%= f.submit 'Crée ton évènement' %>
+<% end %>
