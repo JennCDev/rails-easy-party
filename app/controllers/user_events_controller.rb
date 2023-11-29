@@ -5,7 +5,6 @@ class UserEventsController < ApplicationController
     @user_event = UserEvent.new
     @event = Event.find(params[:event_id])
     @users = User.all
-
   end
 
   def create
@@ -35,4 +34,5 @@ class UserEventsController < ApplicationController
   def user_event_params
     params.require(:user_event).permit(:user_id, :planner, :status)
   end
+
 end

@@ -18,10 +18,12 @@
 
     <%= f.hidden_field :event_id, value: @event.id %>
 
-    <div class="mb-3">
+    <div class="mb-3 text-center">
       <%= f.submit "Ajouter Utilisateurs à l'Événement", class: "btn btn-primary" %>
     </div>
   <% end %>
 
-  <%= link_to 'Retour aux détails de l\'événement', event_path(@event), class: "btn btn-secondary" %>
+  <div class="mb-3 text-center">
+    <%= link_to 'Retour aux détails de l\'événement', event_path(@event), class: "btn btn-secondary" %>
+  </div>
 </div>

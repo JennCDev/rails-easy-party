@@ -41,10 +41,9 @@ class EventsController < ApplicationController
     @user_events = UserEvent.where(event_id: @event.id)
   end
 
-
-
   private
 
   def event_params
     params.require(:event).permit(:title, :description, :start_date, :end_date, :place, photos: [])
   end
+end
