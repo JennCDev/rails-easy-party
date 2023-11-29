@@ -5,6 +5,7 @@ class SurveysController < ApplicationController
   end
 
   def create
+    raise
     @survey = Survey.new(survey_params)
     @event = Event.find(params[:event_id])
     @survey.user = current_user

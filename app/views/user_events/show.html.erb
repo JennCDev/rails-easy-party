@@ -1,0 +1,32 @@
+<!-- app/views/user_events/show.html.erb -->
+
+<div class="container mt-5">
+  <h1 class="mb-4">Détails de l'Invitation à l'Événement</h1>
+
+  <dl>
+    <dt>Événement :</dt>
+    <dd><%= @user_event.event.title %></dd>
+
+    <dt>Utilisateur :</dt>
+    <dd><%= @user_event.user.full_name %></dd>
+
+    <dt>Planner :</dt>
+    <dd><%= @user_event.planner ? 'Oui' : 'Non' %></dd>
+
+    <dt>Status :</dt>
+    <dd><%= @user_event.status %></dd>
+  </dl>
+
+  <h2>Utilisateurs liés à l'événement :</h2>
+  <% @user_event.event.users.each do |user| %>
+    <dl>
+      <dt>Nom :</dt>
+      <dd><%= user.full_name %></dd>
+
+      <!-- Ajoutez d'autres détails de l'utilisateur selon vos besoins -->
+
+    </dl>
+  <% end %>
+
+  <%= link_to 'Retour aux détails de l\'événement', events_path(@user_event.event), class: "btn btn-secondary" %>
+</div>
