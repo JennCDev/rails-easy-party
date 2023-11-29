@@ -14,4 +14,5 @@ Rails.application.routes.draw do
     resources :surveys, only: ["new", "create"]
     resources :user_events
   end
+  resources :surveys, only: ["show"]
 end
