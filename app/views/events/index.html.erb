@@ -1,6 +1,7 @@
 <h1>Mes évènements</h1>
 
 <h2>Prochains évènements</h2>
+<%= render "shared/buttons/index_tabs_btns" %>
 <% @next_events_without_date.each do |next_events_without_date| %>
   <p><%= next_events_without_date.title %></p>
 <% end %>
@@ -12,3 +13,5 @@
 <% @previous_events.each do |previous_events| %>
   <p><%= previous_events.title %></p>
 <% end %>
+
+<%= render "shared/buttons/validate_btn" %>
