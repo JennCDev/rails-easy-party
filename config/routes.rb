@@ -15,6 +15,8 @@ Rails.application.routes.draw do
     resources :todo_lists, only: ["new", "create"]
     resources :user_events
   end
+  resources :users, only: ["index"]
+
   resources :surveys, only: ["show"]
   resources :todo_lists, only: ["show"]
 end
