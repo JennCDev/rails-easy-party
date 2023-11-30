@@ -19,6 +19,22 @@
 <%= link_to 'Ajouter des utilisateurs à cet évènement', new_event_user_event_path(event_id: @event.id) %>
 
 <p><strong>Lieu:</strong> <%= @event.place %></p>
+
+<%= link_to 'Créer un sondage', new_event_survey_path(event_id: @event.id) %>
+<%= link_to 'Créer une liste', new_event_todo_list_path(@event) %>
+
+<% @event.surveys.each do |survey| %>
+  <p><%= survey.question %> (sondage de <%= survey.user.first_name %>)</p>
+  <p>Réponse attendue avant le <%= survey.deadline %></p>
+<% end %>
+
+<% @event.todo_lists.each do |todo| %>
+    <%= link_to "#{todo.title} (sondage de #{todo.user.first_name})", todo_list_path(todo) %><br>
+<% end %>
+
+
+
+
 <p><strong>Description:</strong><br>
 <%= @event.description %></p>
 
