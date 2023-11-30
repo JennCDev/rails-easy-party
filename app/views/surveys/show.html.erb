@@ -1,0 +1,5 @@
+<h1><%= @survey.question %></h1>
+
+<% @survey.answers.each do |answer| %>
+  <p><%= answer.content %></p>
+<% end %>

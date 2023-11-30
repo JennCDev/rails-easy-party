@@ -3,8 +3,24 @@
   <%= f.input :description, label: 'Description', as: :string %>
   <div class="dates" data-controller="dates-pickr">
   <input type="text" data-dates-pickr-target="dateInput" data-action="change->dates-pickr#setDates">
-    <%= f.input :start_at, label: 'Date de début', as: :string, input_html: { data: {dates_pickr_target:"startDate"}}, as: :hidden, label: false %>
-    <%= f.input :end_at, label: 'Date de fin', as: :string, input_html: { data: { dates_pickr_target:"endDate"}}, as: :hidden, label: false %>
+    <%= f.input :start_at,
+      label: 'Date de début',
+      as: :string,
+      input_html: {
+         data: {
+          dates_pickr_target:"startDate"
+          }},
+      as: :hidden,
+      label: false %>
+    <%= f.input :end_at,
+    label: 'Date de fin',
+    as: :string,
+    input_html:
+      { data: {
+         dates_pickr_target:"endDate"
+         }},
+         as: :hidden,
+         label: false %>
   </div>
   <%= f.input :place, label: 'Lieu', as: :string %>
 
@@ -14,3 +30,5 @@
   <%= f.input :photos, as: :file, input_html: { multiple: true }, class: "form-field" %>
   <%= f.submit 'Crée ton évènement' %>
 <% end %>
+
+<%= render "shared/buttons/validate_btn" %>
