@@ -11,10 +11,14 @@
 
 
 <!-- Formulaire d'ajout d'utilisateur à un événement -->
-  <%= form_for UserEvent.new, url: event_user_events_path(@event) do |f| %>
+  <%= simple_form_for [@event, @user_event] do |f| %>
   <%= f.hidden_field :user_id, value: '4', id: 'selected_user_id', data: {user_search_target: "hidden"} %>
 
     <%= f.hidden_field :event_id, value: @event.id %>
     <%= f.submit 'Ajouter l\'utilisateur à l\'événement', class: "btn btn-secondary" %>
+    <div class="mb-3">
+      <%= f.label :planner, "Planner", class: "form-label" %>
+      <%= f.check_box :planner, class: "form-check-input" %>
+    </div>
   <% end %>
 </div>

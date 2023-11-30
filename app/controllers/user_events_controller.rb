@@ -2,28 +2,25 @@ class UserEventsController < ApplicationController
   before_action :set_event, only: [:new, :create]
 
   def new
+    @event = Event.find(params[:event_id])
     @user_event = UserEvent.new
-    # @event est déjà défini dans le before_action :set_event
     @users = User.all
   end
 
   def create
     user_id = user_event_params[:user_id]
-
-    # Vérifier si l'utilisateur est déjà lié à l'événement
     if @event.user_events.exists?(user_id: user_id)
       redirect_to event_path(@event), notice: "L'utilisateur est déjà ajouté à l'événement."
     else
-      # Créer un nouvel UserEvent
-      @user_event = @event.user_events.new(user_event_params)
+      @user_event = @event.user_events.new(user_event_params.merge(status: "pending"))
       @user_event.user_id = user_id
+      @user_event.planner = user_event_params[:planner].present?
+
       if @user_event.save
         redirect_to event_path(@event), notice: "Utilisateur ajouté à l'événement avec succès!"
-
       else
-        # Gérer les erreurs de sauvegarde
         flash.now[:alert] = "Impossible d'ajouter l'utilisateur à l'événement."
-        render :new
+        render :new, status: 422
       end
     end
   end

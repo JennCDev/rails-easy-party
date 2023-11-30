@@ -1,0 +1,52 @@
+// Styles généraux pour le conteneur
+div[data-controller="user-search"] {
+  background-color: #f8f9fa; // Couleur de fond claire
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+  label {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+  }
+
+  input[type="text"] {
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    padding: 10px 15px;
+    font-size: 14px;
+    width: 100%;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #80bdff;
+      outline: none;
+      box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+  }
+
+  .form-check-input {
+    margin-top: 0.3rem;
+    margin-left: 0.3rem;
+  }
+
+  .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    font-size: 14px;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #5a6268;
+    }
+  }
+
+  // Styles pour les résultats de recherche
+  #search-results {
+    margin-top: 20px;
+  }
+}
