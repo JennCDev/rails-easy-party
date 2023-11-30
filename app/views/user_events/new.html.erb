@@ -3,12 +3,15 @@
 <div class="mb-3" data-controller="user-search">
   <label for="user_search">Rechercher un utilisateur</label>
   <input type="text" id="user_search" name="user_search" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
-  <%=  link_to "", users_path,  class:"d-none", data: {user_search_target: "link"}%>
-
+  <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
 </div>
+
 <div id="search-results" data-target="user-search.searchInput"></div>
 
-<%= link_to 'Ajout user', event_path(@event), class: "btn btn-secondary" %>
-</div>
-<%= console %>
-<%= @users.first.first_name %>
+<!-- Formulaire d'ajout d'utilisateur à un événement -->
+<%= form_for UserEvent.new, url: event_user_events_path(@event) do |f| %>
+<%= f.hidden_field :user_id, value: '4', id: 'selected_user_id' %>
+
+  <%= f.hidden_field :event_id, value: @event.id %>
+  <%= f.submit 'Ajouter l\'utilisateur à l\'événement', class: "btn btn-secondary" %>
+<% end %>

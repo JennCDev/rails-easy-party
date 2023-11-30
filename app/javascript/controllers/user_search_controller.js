@@ -17,7 +17,7 @@ export default class extends Controller {
       .then(response => response.json())
       .then(users => {
         console.log(users)
-        // this.displaySearchResults(users);
+        this.displaySearchResults(users);
       })
       .catch(error => {
         console.error('Error during search:', error);
@@ -31,7 +31,7 @@ export default class extends Controller {
 
     users.forEach(user => {
       const userElement = document.createElement('div');
-      userElement.textContent = user.name;
+      userElement.textContent = `${user.first_name} ${user.last_name}`;
       searchResultsContainer.appendChild(userElement);
     });
   }
