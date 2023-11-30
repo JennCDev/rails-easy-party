@@ -66,7 +66,7 @@ event1 = Event.create!(
   description: "Méga soirée à base de vin rouge !",
   start_at: Date.today + 1.week,
   end_at: Date.today + 1.week + 2.days,
-  place: "Chez Marion",
+  place: "Chez Marion"
 )
 
 event2 = Event.create!(
@@ -94,15 +94,15 @@ event4 = Event.create!(
 
 #adding photos to events
 
-photo1 = Photo.create!(image: File.open(Rails.root.join('app', 'assets', 'seed_images', 'pétanque.jpg')))
-photo2 = Photo.create!(image: File.open(Rails.root.join('app', 'assets', 'seed_images', 'vin.jpg')))
-photo3 = Photo.create!(image: File.open(Rails.root.join('app', 'assets', 'seed_images', 'laser.jpg')))
-photo4 = Photo.create!(image: File.open(Rails.root.join('app', 'assets', 'seed_images', 'belote.jpg')))
+photo1 = URI.open("https://www.toutelanutrition.com/media/cache/terravita_blog_article_thumbnail_medium/blog/wikifit-sante-conseil-vin-rouge-les-bienfaits-du-resveratrol.jpg")
+photo2 = URI.open("https://www.bandoltourisme.fr/wp-content/uploads/2021/03/Petanque-boules.jpg")
+photo3 = URI.open("https://cdn.sortiraparis.com/images/80/66131/907451-laser-game-notre-selection-des-spots-ou-pratiquer-a-paris-et-en-ile-de-france.jpg")
+photo4 = URI.open("https://fac.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Ffac.2F2023.2F09.2F05.2F53fc7fd8-8c1f-489e-8416-f5ce7b35e4b1.2Ejpeg/970x485/quality/80/crop-from/center/belote-les-meilleurs-sites-et-applis-pour-jouer-gratuitement-en-ligne.jpeg")
 
-event1.photos << photo1
-event2.photos << photo2
-event3.photos << photo3
-event4.photos << photo4
+event1.photos.attach(io: photo1, filename: "vin.jpg", content_type: "image/jpg")
+event2.photos.attach(io: photo2, filename: "pétanque.jpg", content_type: "image/jpg")
+event3.photos.attach(io: photo3, filename: "pétanque.jpg", content_type: "image/jpg")
+event4.photos.attach(io: photo4, filename: "belote.jpeg", content_type: "image/jpg")
 
 
 puts "Evenement créer sans problème"
