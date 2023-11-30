@@ -1,49 +1,99 @@
 <!-- app/views/events/show.html.erb -->
-<%= link_to 'Retour à la liste des évènements', root_path %>
-
-<% if @event.photos.attached? %>
-  <div class="photos">
-    <% @event.photos.each do |photo| %>
-      <%= cl_image_tag(photo.key, width: 300, height: 200, crop: :fill) %>
-    <% end %>
-  </div>
+<% if @event.photo_banner.attached? %>
+  <%= cl_image_tag @event.photo_banner.key, class: "card-image img-fluid mt-2", crop: :fill %>
 <% else %>
-  <p>Aucune image disponible pour cet evenement</p>
+  <div class="card-image d-flex justify-content-center align-items-center mt-2"><span>Pas d'image disponible</span></div>
 <% end %>
 
-<h2><%= @event.title %></h2>
+<h2 class="mt-3"><%= @event.title %></h2>
 
-<p><strong>Date de début:</strong> <%= @event.start_at %></p>
-<p><strong>Date de fin:</strong> <%= @event.end_at %></p>
+<p class="text-center">
+  <% if @event.start_at && @event.end_at && @event.start_at != @event.end_at %>
+    <span class="title-bold">DU <%= @event.start_at.strftime('%d/%m/%Y') %> AU <%= @event.end_at.strftime('%d/%m/%Y') %></span>
+  <% elsif @event.start_at && @event.end_at  %>
+    <span class="title-bold">LE <%= @event.start_at.strftime('%d/%m/%Y') %></span>
+  <% else %>
+    <span class="title-bold">DATE A DEFINIR</span>
+  <% end %>
+</p>
 
-<%= link_to 'Ajouter des utilisateurs à cet évènement', new_event_user_event_path(event_id: @event.id) %>
+<% if @event.user_events.where(planner: false) %>
+<!-- Boutons de participation -->
+<% end %>
 
-<p><strong>Lieu:</strong> <%= @event.place %></p>
+<div class="text-center mb-4">
+  <%= link_to new_event_user_event_path(event_id: @event.id), class: "link" do %>
+    <%= "#{@event.user_events.where(status: 'going').count} participants - #{@event.user_events.where(status: 'maybe').count} intéressés" %>
+    <i class="fa-solid fa-user-plus"></i>
+  <% end %>
+</div>
 
-<%= link_to 'Créer un sondage', new_event_survey_path(event_id: @event.id) %>
-<%= link_to 'Créer une liste', new_event_todo_list_path(@event) %>
+<p class="mb-2"><i class="fa-solid fa-user"></i> Organisé par
+  <% @event.user_events.each do |user_event| %>
+    <% if user_event == @event.user_events.last %>
+      <%= "#{user_event.user.first_name}" %>
+    <% else %>
+      <%= "#{user_event.user.first_name}," %></p>
+    <% end %>
+  <% end %>
+</p>
+
+<p class="mb-2">
+  <i class="fa-solid fa-location-dot"></i>
+  <% if @event.place.present? %>
+    <%= @event.place %>
+  <% else %>
+    Lieu à définir
+  <% end %>
+</p>
+
+<!-- Partager l evenement -->
+
+<div class="mb-2">
+  <%= link_to new_event_survey_path(@event), class: "link" do %>
+    <i class="fa-solid fa-circle-plus"></i> Créer un nouveau sondage
+  <% end %>
+</div>
+
+<% if @event.user_events.where(planner: true) %>
+  <div class="mb-2">
+    <%= link_to new_event_todo_list_path(@event), class: "link" do %>
+      <i class="fa-solid fa-circle-plus"></i> Créer une to-do list
+    <% end %>
+  </div>
+<% end %>
 
 <% @event.surveys.each do |survey| %>
-  <p><%= survey.question %> (sondage de <%= survey.user.first_name %>)</p>
-  <p>Réponse attendue avant le <%= survey.deadline %></p>
+  <% if !survey.answers %>
+    <% if @event.user_events.where(planner: true) == current_user or survey.user == current_user %>
+      <div class="mb-2">
+        <%= link_to survey_path(survey), class: "link" do %>
+          <span><%= survey.question %></span>
+          <span class="text-danger">Sondage à compléter</span>
+        <% end %>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="mb-2">
+      <%= link_to survey_path(survey), class: "link" do %>
+        <span><%= survey.question %></span>
+        <% if survey.deadline > Date.today %>
+          <span>Sondage terminé</span>
+        <% elsif survey.deadline < Date.today %>
+          <span>Fin du sondage dans <%= pluralize((Date.today - survey.deadline).to_i, "jour") %></span>
+        <% else %>
+          <span>Fin du sondage aujourd'hui</span>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
 
 <% @event.todo_lists.each do |todo| %>
-    <%= link_to "#{todo.title} (sondage de #{todo.user.first_name})", todo_list_path(todo) %><br>
+  <div class="mb-2">
+    <%= link_to "#{todo.title}", todo_list_path(todo), class: "link" %>
+  </div>
 <% end %>
 
-
-
-
-<p><strong>Description:</strong><br>
-<%= @event.description %></p>
-
-<ul>
-  <% @user_events.each do |user_event| %>
-    <li>
-      <strong>Nom :</strong> <%= user_event.user.first_name %>,
-      <strong>Planner :</strong> <%= user_event.planner ? 'Oui' : 'Non' %>,
-      <strong>Status :</strong> <%= user_event.status %>
-    </li>
-  <% end %>
-</ul>
+<h3 class="mt-4">Description</h3>
+<p><%= @event.description %></p>
