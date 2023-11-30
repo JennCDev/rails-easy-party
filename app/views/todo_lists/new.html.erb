@@ -1,4 +1,4 @@
-<h1>Nouvelle liste</h1>
+<h2>Nouvelle liste</h2>
 
 <%= simple_form_for [@event, @todo_list] do |f| %>
   <%= f.input :title, label: 'Titre' %>
@@ -6,17 +6,22 @@
     <div data-option-target="optionsList">
     </div>
     <%= f.fields_for :options do |a| %>
-      <div class="d-flex btn-group">
-        <%= a.input :option,
-          label: false,
-          placeholder: "Option",
-          as: :string,
-          input_html: { data: {target: "option.options"} }  %>
-        <%= link_to "Valider", "",
-        class: "validate-btn",
-        data: { action: "click->option#insertOptions" } %>
+      <div class="d-flex align-items-start">
+        <div class="d-flex btn-group">
+          <%= a.input :option,
+            label: false,
+            placeholder: "Option",
+            as: :string,
+            input_html: { data: {target: "option.options"} },
+            class: "custom-input-for-option"  %>
+          <%= link_to "Valider", "",
+          class: "validate-btn-small",
+          data: { action: "click->option#insertOptions" } %>
+        </div>
       </div>
     <% end %>
   </div>
-  <%= f.submit 'Créer ta liste' %>
+<div class="d-flex justify-content-center">
+  <%= f.submit 'Valider', class: "validate-btn" %>
+</div>
 <% end %>

@@ -51,7 +51,7 @@ nicolas.avatar.attach(io: photo_nicolas, filename: "nicolas.jpg", content_type: 
 
 # Add more users as needed
 
-puts "Users créer sans problème !"
+puts "Users créés sans problème !"
 
 
 # db/seeds.rb
@@ -59,13 +59,14 @@ puts "Users créer sans problème !"
 # Clear existing data
 
 puts "Evenement en création ! "
+
 # Create events
 event1 = Event.create!(
   title: "Anniversaire de Marion",
   description: "Méga soirée à base de vin rouge !",
   start_at: Date.today + 1.week,
   end_at: Date.today + 1.week + 2.days,
-  place: "Chez Marion"
+  place: "Chez Marion",
 )
 
 event2 = Event.create!(
@@ -91,7 +92,18 @@ event4 = Event.create!(
   place: "Liévin"
 )
 
-# Add more events as needed
+#adding photos to events
+
+photo1 = Photo.create!(image: File.open(Rails.root.join('app', 'assets', 'seed_images', 'pétanque.jpg')))
+photo2 = Photo.create!(image: File.open(Rails.root.join('app', 'assets', 'seed_images', 'vin.jpg')))
+photo3 = Photo.create!(image: File.open(Rails.root.join('app', 'assets', 'seed_images', 'laser.jpg')))
+photo4 = Photo.create!(image: File.open(Rails.root.join('app', 'assets', 'seed_images', 'belote.jpg')))
+
+event1.photos << photo1
+event2.photos << photo2
+event3.photos << photo3
+event4.photos << photo4
+
 
 puts "Evenement créer sans problème"
 

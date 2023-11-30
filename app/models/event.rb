@@ -1,5 +1,4 @@
 class Event < ApplicationRecord
-
   has_many :chatrooms
   has_many :surveys
   has_many :todo_lists
