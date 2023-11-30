@@ -18,3 +18,9 @@ h2{
 .input-spacing {
   margin-bottom: 15px;
 }
+
+.form-control:focus {
+  border-color: none;
+  box-shadow: none;
+
+}
