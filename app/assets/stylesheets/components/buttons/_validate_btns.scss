@@ -6,16 +6,26 @@
     padding: 8px 10px 8px 10px;
     border-radius: 8px;
     text-decoration: none;
-
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 20px;
+    border: none;
     }
 
   .validate-btn-small{
-    color: white;
+    color: $main-color;
     background-color: $main-color-light;
     font-size: 14px;
     padding: 8px 10px 8px 10px;
     border-radius: 8px;
     text-decoration: none;
+    height: 40px;
+    border: none;
+
     }
 
 // }

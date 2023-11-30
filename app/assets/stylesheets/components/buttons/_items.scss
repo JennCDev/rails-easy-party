@@ -1,0 +1,21 @@
+.items{
+  background-color: white;
+  width: 70%;
+  font-size: 14px;
+  border-radius: 8px;
+  text-decoration: none !important;
+  color: black;
+}
+
+
+a{
+  text-decoration: none, !important;
+  color: black;
+}
+
+.items-list{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: flex-start;
+}
