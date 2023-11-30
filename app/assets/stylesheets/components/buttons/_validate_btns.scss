@@ -21,10 +21,11 @@
     background-color: $main-color-light;
     font-size: 14px;
     padding: 8px 10px 8px 10px;
-    border-radius: 8px;
     text-decoration: none;
     height: 40px;
     border: none;
+    border-top-right-radius: 8px; /* Arrondi du coin supérieur droit */
+    border-bottom-right-radius: 8px; /* Arrondi du coin inférieur droit */
 
     }
 
