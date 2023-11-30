@@ -1,4 +1,9 @@
 <div class="card-event mt-4">
+  <% if event.photo_banner.attached? %>
+    <%= cl_image_tag event.photo_banner.key, class: "card-image img-fluid", crop: :fill %>
+  <% else %>
+    <div class="card-image d-flex justify-content-center align-items-center"><span>Pas d'image disponible</span></div>
+  <% end %>
   <div class="card-event-infos">
     <h2 class="text-start"><%= event.title %></h2>
     <p>📅
