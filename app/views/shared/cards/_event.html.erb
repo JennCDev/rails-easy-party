@@ -1,6 +1,6 @@
 <div class="card-event mt-4">
   <div class="card-event-infos">
-    <h2><%= event.title %></h2>
+    <h2 class="text-start"><%= event.title %></h2>
     <p>📅
       <% if event.start_at && event.end_at && event.start_at != event.end_at %>
         <span class="title-bold">Date : </span>du <%= event.start_at.strftime('%d/%m/%Y') %> au <%= event.end_at.strftime('%d/%m/%Y') %>
