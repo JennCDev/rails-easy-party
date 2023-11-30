@@ -1,5 +1,7 @@
 @import "variables";
 
+
+
 .navbar {
   position: fixed;
   background-color: $main-color-light;
@@ -11,4 +13,8 @@
 
 .navbar-brand > a {
   color: black;
+}
+
+.yield {
+  min-height: calc(100vh - 100px);
 }
