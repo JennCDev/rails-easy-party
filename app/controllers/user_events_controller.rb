@@ -3,28 +3,30 @@ class UserEventsController < ApplicationController
 
   def new
     @user_event = UserEvent.new
-    @event = Event.find(params[:event_id])
+    # @event est déjà défini dans le before_action :set_event
     @users = User.all
-
   end
 
   def create
-    @event = Event.find(params[:event_id])
     user_id = user_event_params[:user_id]
-    @current_event_user = UserEvent.find_by(user_id: user_id, event_id: @event.id)
-    @user_event = UserEvent.new(user_event_params.merge(event_id: @event.id))
 
-    if @current_event_user.nil?
+    # Vérifier si l'utilisateur est déjà lié à l'événement
+    if @event.user_events.exists?(user_id: user_id)
+      redirect_to event_path(@event), notice: "L'utilisateur est déjà ajouté à l'événement."
+    else
+      # Créer un nouvel UserEvent
+      @user_event = @event.user_events.new(user_event_params)
+      @user_event.user_id = user_id
       if @user_event.save
         redirect_to event_path(@event), notice: "Utilisateur ajouté à l'événement avec succès!"
+
       else
+        # Gérer les erreurs de sauvegarde
+        flash.now[:alert] = "Impossible d'ajouter l'utilisateur à l'événement."
         render :new
       end
-    else
-      redirect_to event_path(@event), notice: "L'utilisateur est déjà ajouté à l'événement."
     end
   end
-
 
   private
 

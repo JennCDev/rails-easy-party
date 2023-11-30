@@ -1,20 +1,27 @@
 import { Controller } from "@hotwired/stimulus"
-import { Autocomplete } from "stimulus-autocomplete";
+
 // Connects to data-controller="button"
 export default class extends Controller {
-  static targets = ["passedButton", "attendedButton"];
+  static targets = ["buttonNext", "buttonPrevious", "next", "previous"];
 
   connect() {
-    console.log("youre in")
   }
-  toggle(event) {
-    event.preventDefault();
-    console.log("youre in")
-    const buttonTarget = event.target.closest("[data-target='button.passedButton'], [data-target='button.attendedButton']");
-    if (buttonTarget) {
-      buttonTarget.classList.toggle("active-events-btn");
-      buttonTarget.classList.toggle("inactive-events-btn");
-    }
+
+  next() {
+    this.buttonNextTarget.classList.remove("inactive-events-btn");
+    this.buttonNextTarget.classList.add("active-events-btn");
+    this.buttonPreviousTarget.classList.remove("active-events-btn");
+    this.buttonPreviousTarget.classList.add("inactive-events-btn");
+    this.nextTarget.classList.remove("d-none");
+    this.previousTarget.classList.add("d-none");
+  }
+
+  previous() {
+    this.buttonNextTarget.classList.remove("active-events-btn");
+    this.buttonNextTarget.classList.add("inactive-events-btn");
+    this.buttonPreviousTarget.classList.remove("inactive-events-btn");
+    this.buttonPreviousTarget.classList.add("active-events-btn");
+    this.previousTarget.classList.remove("d-none");
+    this.nextTarget.classList.add("d-none");
   }
 }
-

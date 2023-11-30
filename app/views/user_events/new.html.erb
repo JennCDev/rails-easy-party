@@ -1,29 +1,20 @@
-<!-- app/views/user_events/new.html.erb -->
+<!-- app/views/users/index.html.erb -->
+<div data-controller="user-search">
 
-<div class="container mt-5">
-  <h1 class="mb-4">Ajouter des utilisateurs à l'événement <%= @event.title %></h1>
+  <div class="mb-3" >
+    <label for="user_search">Rechercher un utilisateur</label>
+    <input type="text" id="user_search" name="user_search" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
+    <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
+  </div>
 
-  <%= form_for @user_event, url: { action: :create } do |f| %>
-    <div class="mb-3">
-      <%= f.label :user_id, "Utilisateurs", class: "form-label" %>
-      <% if @users.present? %>
-        <%= f.collection_select :user_id, @users, :id, :first_name, { }, class: "form-select" %>
-      <% else %>
-        <p>Aucun utilisateur disponible</p>
-      <% end %>
-    </div>
+  <div id="search-results" data-target="user-search.searchInput"></div>
 
-    <div class="mb-3">
-      <%= f.label :planner, "Planner", class: "form-label" %>
-      <%= f.check_box :planner, class: "form-check-input" %>
-    </div>
+
+<!-- Formulaire d'ajout d'utilisateur à un événement -->
+  <%= form_for UserEvent.new, url: event_user_events_path(@event) do |f| %>
+  <%= f.hidden_field :user_id, value: '4', id: 'selected_user_id', data: {user_search_target: "hidden"} %>
 
     <%= f.hidden_field :event_id, value: @event.id %>
-
-    <div class="mb-3">
-      <%= f.submit "Ajouter Utilisateurs à l'Événement", class: "btn btn-primary" %>
-    </div>
+    <%= f.submit 'Ajouter l\'utilisateur à l\'événement', class: "btn btn-secondary" %>
   <% end %>
-
-  <%= link_to 'Retour aux détails de l\'événement', event_path(@event), class: "btn btn-secondary" %>
 </div>

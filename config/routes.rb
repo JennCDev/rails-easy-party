@@ -15,6 +15,15 @@ Rails.application.routes.draw do
     resources :todo_lists, only: ["new", "create"]
     resources :user_events
   end
+  resources :users, only: [:index] do
+    get 'search', on: :collection
+  end
+
   resources :surveys, only: ["show"]
+
+  resources :answers, only: [] do
+    resources :user_answers, only: ["create"]
+  end
+  resources :user_answers, only: ["destroy"]
   resources :todo_lists, only: ["show"]
 end

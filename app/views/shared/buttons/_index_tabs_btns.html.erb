@@ -1,4 +1,4 @@
-<div class="tabs-btns" data-controller="button">
+<!--<div class="tabs-btns" data-controller="button">
   <%= link_to "Evènements passés", root_path(type: "next"),
     method: :post,
     class: "passed-events-btn",
@@ -14,4 +14,9 @@
       action: "click->button#toggle",
       button_target: "attended-button"
     } %>
+</div>-->
+
+<div class="d-flex">
+  <button class="active-events-btn" data-action="click->button#next" data-button-target="buttonNext">Prochains évènements</button>
+  <button class="inactive-events-btn" data-action="click->button#previous"  data-button-target="buttonPrevious">Evènements passés</button>
 </div>
