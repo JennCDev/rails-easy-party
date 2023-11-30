@@ -1,28 +1,24 @@
 <h2>Nouveau sondage</h2>
 
-  <%= simple_form_for [@event, @survey] do |f| %>
-    <%= f.input :category, label: 'Sujet du sondage', collection: Survey::CATEGORIES %>
-    <%= f.input :question, label: 'Question', as: :string %>
-    <%= f.input :deadline, label: 'Date limite de réponse', as: :string, input_html: { data: { controller: "datepicker-simple" } } %>
+<%= simple_form_for [@event, @survey] do |f| %>
+  <%= f.input :category, label: 'Sujet du sondage', collection: Survey::CATEGORIES %>
+  <%= f.input :question, label: 'Question', as: :string %>
+  <%= f.input :deadline, label: 'Date limite de réponse', as: :string, input_html: { data: { controller: "datepicker-simple" } } %>
 
-    <div id="answers" data-controller="insert-in-answers">
-      <div data-insert-in-answers-target="answers">
-    </div>
-    <%= f.fields_for :answers do |a| %>
-        <div class="d-flex input-spacing align-items-start">
-          <div class="d-flex btn-group">
-            <%= a.input :answer,
-              label: false,
-              placeholder: "Option",
-              as: :string,
-              input_html: { data: {insert_in_answers_target: "input"} },
-              class: "custom-input-for-option input-spacing" %>
-            <%= link_to "Valider", "", class: "validate-btn-small", data: { action: "click->insert-in-answers#insertAnswers" } %>
-          </div>
-        </div>
-      <div id="answers" data-insert-in-answers-target="answers">
+  <div id="answers" data-controller="insert-in-answers">
+    <div data-insert-in-answers-target="answers">
+  </div>
+  <%= f.fields_for :answers do |a| %>
+    <div class="d-flex input-spacing align-items-start">
+      <div class="d-flex btn-group w-100">
+        <%= a.input :answer,
+            label: false,
+            placeholder: "Option",
+            as: :string,
+            input_html: { data: {insert_in_answers_target: "input"} },
+            class: "custom-input-for-option input-spacing" %>
+        <%= link_to "Valider", "", class: "validate-btn-small", data: { action: "click->insert-in-answers#insertAnswers" } %>
       </div>
-
     </div>
     <div class="d-flex justify-content-center">
       <%= f.submit 'Valider', class: "mt-5 validate-btn w-75" %>

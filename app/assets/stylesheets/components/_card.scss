@@ -12,10 +12,17 @@
   margin: 0 auto;
 }
 
-.card-event > img {
-  height: 200px;
+.card-event .card-image {
+  margin: 0;
+  height: 100px;
   width: 100%;
   object-fit: cover;
+  background-color: rgb(191, 188, 188);
+}
+
+.card-image span {
+  font-size: 12px;
+  color: gray;
 }
 
 .card-event p {
@@ -36,4 +43,8 @@
 
 .card-event .title-bold {
   font-weight: 900;
+}
+
+.card-event p i {
+  padding: 0 3px;
 }
