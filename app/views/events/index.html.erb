@@ -1,24 +1,38 @@
-<h1>Easy Party</h1>
+<h1 class="mt-4 mb-4 text-center">EASY PARTY</h1>
 
 <div data-controller="button">
-  <%= render "shared/buttons/index_tabs_btns" %>
+  <div class="d-flex justify-content-center">
+    <%= render "shared/buttons/index_tabs_btns"%>
+  </div>
   <div data-button-target="next">
-    <% if @next_events_without_date.present? %>
-      <% @next_events_without_date.each do |next_event_without_date| %>
-        <p><%= link_to next_event_without_date.title, event_path(next_event_without_date) %></p>
+    <% if @next_events_without_date.present? || @next_events.present? %>
+      <% if @next_events_without_date.present? %>
+        <% @next_events_without_date.each do |next_event_without_date| %>
+          <%= link_to event_path(next_event_without_date), class:"link-card" do %>
+            <%= render "shared/cards/event", event: next_event_without_date %>
+          <% end %>
+        <% end %>
       <% end %>
-    <% end %>
-    <% if @next_events.present? %>
-      <% @next_events.each do |next_event| %>
-        <p><%= link_to next_event.title, event_path(next_event) %></p>
+      <% if @next_events.present? %>
+        <% @next_events.each do |next_event| %>
+          <%= link_to event_path(next_event), class:"link-card" do %>
+            <%= render "shared/cards/event", event: next_event %>
+          <% end %>
+        <% end %>
       <% end %>
+    <% else %>
+      <p>Pas d'évènement à venir ☹️</p>
     <% end %>
   </div>
   <div data-button-target="previous" class="d-none">
     <% if @previous_events.present? %>
       <% @previous_events.each do |previous_events| %>
-        <p><%= link_to previous_events.title, event_path(previous_events) %></p>
+        <%= link_to event_path(previous_events), class:"link-card" do %>
+          <%= render "shared/cards/event", event: previous_events %>
+        <% end %>
       <% end %>
+    <% else %>
+      <p>Pas d'évènement passés ☹️</p>
     <% end %>
   </div>
 </div>

@@ -1,0 +1,18 @@
+<div class="card-event mt-4">
+  <div class="card-event-infos">
+    <h2 class="text-start"><%= event.title %></h2>
+    <p>📅
+      <% if event.start_at && event.end_at && event.start_at != event.end_at %>
+        <span class="title-bold">Date : </span>du <%= event.start_at.strftime('%d/%m/%Y') %> au <%= event.end_at.strftime('%d/%m/%Y') %>
+      <% elsif event.start_at && event.end_at  %>
+        <span class="title-bold">Date : </span>le <%= event.start_at.strftime('%d/%m/%Y') %>
+      <% else %>
+        <span class="title-bold">Date : </span>A vos votes 📩
+      <% end %>
+    </p>
+    <p>
+      📍 <span class="title-bold">Lieu : </span><%= event.place.present? ? event.place : "A vos votes 📩" %>
+    </p>
+    <p>🙋 <%= event.user_events.where(status: "going").count %> participants - <%= event.user_events.where(status: "maybe").count %> intéressés</p>
+  </div>
+</div>
