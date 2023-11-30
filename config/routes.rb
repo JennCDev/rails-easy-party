@@ -24,6 +24,12 @@ Rails.application.routes.draw do
   resources :answers, only: [] do
     resources :user_answers, only: ["create"]
   end
+
+  resources :items, only: [] do
+    resources :user_items, only: ["create"]
+  end
+
   resources :user_answers, only: ["destroy"]
   resources :todo_lists, only: ["show"]
+
 end

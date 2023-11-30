@@ -10,9 +10,8 @@
     width: 200px;
     text-align: center;
     display: flex;
-    justify-content: center;
+    justify-content: center !important;
     align-content: center;
-    margin-top: 20px;
     border: none;
     }
 
@@ -22,7 +21,7 @@
     font-size: 14px;
     padding: 8px 10px 8px 10px;
     text-decoration: none;
-    height: 40px;
+    height: 37px;
     border: none;
     border-top-right-radius: 8px; /* Arrondi du coin supérieur droit */
     border-bottom-right-radius: 8px; /* Arrondi du coin inférieur droit */

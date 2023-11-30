@@ -16,11 +16,18 @@ h2{
 }
 
 .input-spacing {
-  margin-bottom: 15px;
+  margin-bottom: 15px !important;
 }
 
 .form-control:focus {
   border-color: none;
   box-shadow: none;
 
+}
+
+.fa-xmark{
+  position: absolute !important;
+  top: -34px !important;
+  left: 326px;
+  font-size: 20px;
 }

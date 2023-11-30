@@ -1,5 +1,11 @@
-<h1><%= @survey.question %></h1>
+<%= link_to event_path(@event) do %>
+  <i class="fa-solid fa-circle-chevron-left"></i>
+<% end %>
+
+<h2><%= @survey.question %></h2>
 
 <% @survey.answers.each do |answer| %>
   <p><%= answer.content %></p>
 <% end %>
+
+<%= render "shared/buttons/validate_btn" %>
