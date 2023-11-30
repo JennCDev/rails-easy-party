@@ -1,3 +1,8 @@
+<%= link_to event_path(@event) do %>
+  <i class="fa-solid fa-circle-chevron-left"></i>
+<% end %>
+
+
 <h2>Nouvelle liste</h2>
 
 <%= simple_form_for [@event, @todo_list] do |f| %>
@@ -6,16 +11,16 @@
     <div data-option-target="optionsList">
     </div>
     <%= f.fields_for :options do |a| %>
-      <div class="d-flex align-items-start">
-        <div class="d-flex btn-group">
+      <div class="d-flex align-items-start input-spacing">
+        <div class="d-flex btn-group input-spacing">
           <%= a.input :option,
             label: false,
             placeholder: "Option",
             as: :string,
             input_html: { data: {target: "option.options"} },
-            class: "custom-input-for-option"  %>
+            class: "custom-input-for-option input-spacing"  %>
           <%= link_to "Valider", "",
-          class: "validate-btn-small",
+          class: "validate-btn-small input-spacing",
           data: { action: "click->option#insertOptions" } %>
         </div>
       </div>

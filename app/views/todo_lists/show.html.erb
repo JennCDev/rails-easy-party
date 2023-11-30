@@ -1,12 +1,18 @@
 
-<div class="ccontainer">
+
+<div class="container" data-controller="item">
 <h2><%= @todo_list.title %></h2><br>
 <div class="items-list">
   <% @todo_list.items.each do |item| %>
-    <%= link_to item.content, class:"items" %><br>
+      <%= link_to item.content, item_user_items_path(item), class:"items", data: { action: "click->item#markAsDone", item_target: "option", turbo_method: "POST"}  %><br>
   <% end %>
+
+<%# si le user clique, alors 1/changement de couleur 2/affichage de la photo %>
+<%# s'il reclique, 1/revient à blanc 2/retire la photo %>
+
 </div>
-<%#
-  <%= link_to "Je m'occupe de #{item.content}", mark_as_done_todo_list_item_path(@todo_list, item), method: :patch %>
-<%= render "shared/buttons/validate_btn" %>
+<div class="validate-btn">
+  <%= render "shared/buttons/validate_btn" %>
 </div>
+</div>
+
