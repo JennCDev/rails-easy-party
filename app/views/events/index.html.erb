@@ -4,7 +4,7 @@
   <div class="d-flex justify-content-center">
     <%= render "shared/buttons/index_tabs_btns"%>
   </div>
-  <div data-button-target="next">
+  <div data-button-target="next" class="resize">
     <% if @next_events_without_date.present? || @next_events.present? %>
       <% if @next_events_without_date.present? %>
         <% @next_events_without_date.each do |next_event_without_date| %>
