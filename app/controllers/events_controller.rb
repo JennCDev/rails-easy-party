@@ -30,6 +30,11 @@ class EventsController < ApplicationController
         @survey_place.deadline = Date.today + 1.week
         @survey_place.save
       end
+      user_event = UserEvent.new
+      user_event.user = current_user
+      user_event.event = @event
+      user_event.planner = true
+      user_event.save
       redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity
