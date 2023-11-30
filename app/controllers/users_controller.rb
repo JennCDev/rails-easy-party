@@ -10,8 +10,8 @@ class UsersController < ApplicationController
   end
 
   def search
-    query = params[:query]
-    @users = User.where("first_name LIKE :query OR last_name LIKE :query", query: "%#{query}%")
+    query = params[:q]
+    @users = User.where("first_name ILIKE :query OR last_name ILIKE :query", query: "%#{query}%")
     render json: @users, only: [:id, :first_name, :last_name, :email]
   end
 

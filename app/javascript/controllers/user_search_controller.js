@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["searchInput", "link"];
+  static targets = ["searchInput", "link", "hidden"];
 
   connect() {
     console.log(this.linkTarget.href);
@@ -11,7 +11,14 @@ export default class extends Controller {
   search() {
     const query = this.searchInputTarget.value;
 
-    fetch(this.linkTarget.href, {
+    if (query.length === 0) {
+      document.getElementById('search-results').innerHTML = '';
+      return;
+    }
+
+    const url = `${this.linkTarget.href}/?q=${query}`
+    console.log(url)
+    fetch(url, {
       headers: { "Accept": "application/json" }
     })
       .then(response => response.json())
@@ -24,6 +31,11 @@ export default class extends Controller {
       });
   }
 
+  fill() {
+    this.searchInputTarget.value = event.currentTarget.innerText
+    this.hiddenTarget.value = event.currentTarget.dataset.id
+  }
+
   displaySearchResults(users) {
     const searchResultsContainer = document.getElementById('search-results');
 
@@ -31,8 +43,14 @@ export default class extends Controller {
 
     users.forEach(user => {
       const userElement = document.createElement('div');
+      userElement.dataset.id = user.id
+      userElement.dataset.action = "click->user-search#fill"
       userElement.textContent = `${user.first_name} ${user.last_name}`;
       searchResultsContainer.appendChild(userElement);
+
     });
   }
+
+
+
 }
