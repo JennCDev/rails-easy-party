@@ -6,24 +6,20 @@
   </div>
 
   <!-- Formulaire de modification (initiallement caché) -->
-<form class="edit-description-form d-none" action="<%= event_path(@event) %>" method="post" data-remote="true">
+<%= form_for @event, url: event_path(@event), method: :patch, html: { class: "edit-description-form d-none", data: { remote: true } } do |f| %>
   <div class="field">
-    <!-- Utilisation des balises ERB pour générer le champ de texte -->
-    <textarea id="event_description" name="event[description]" rows="4" class="edit-description-form display:none"><%= @event.description %></textarea>
+    <%= f.text_area :description, rows: 4, class: "edit-description-form display:none" %>
   </div>
-
   <div class="update-btn d-flex justify-content-center">
-    <!-- Utilisation des balises ERB pour générer le bouton de soumission -->
-    <button type="submit-description" class="validate-btn">Mettre à jour la description</button>
+    <%= f.submit "Mettre à jour la description", class: "validate-btn", data: { turbo_method: :patch } %>
   </div>
-</form>
-
+<% end %>
 
   <div>
     <p class="description"><%= @event.description %></p>
   </div>
 <% else %>
-  <!-- L'user n'est pas planner -->*
+  <!-- L'user n'est pas planner -->
   <h3 class="mt-5 mb-2 description">Description </h3>
    <p><%= @event.description %></p>
 <% end %>
