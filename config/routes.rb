@@ -24,18 +24,19 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  resources :surveys, only: ["show"]
+  resources :surveys, only: ["show"] do
+    resources :answers, only: ["create"]
+  end
 
   resources :answers, only: [] do
     resources :user_answers, only: ["create"]
   end
 
   resources :items, only: [] do
-    resources :user_items, only: ["create"]
+    resources :user_items, only: ["create", "destroy"]
   end
 
   resources :user_answers, only: ["destroy"]
   resources :todo_lists, only: ["show"]
-  resource :profiles, only: [:show]
-
+  resource :profiles, only: ["show"]
 end

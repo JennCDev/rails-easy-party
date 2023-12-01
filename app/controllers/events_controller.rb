@@ -1,8 +1,20 @@
 class EventsController < ApplicationController
   def index
-    @next_events = Event.where("start_at >= ?", Date.today).order(:start_at)
-    @next_events_without_date = Event.where("start_at is null")
-    @previous_events = Event.where("start_at < ?", Date.today).order(start_at: :desc)
+    # @next_events = Event.where("start_at >= ?", Date.today).order(:start_at)
+    # @next_events_without_date = Event.where("start_at is null")
+    # @previous_events = Event.where("start_at < ?", Date.today).order(start_at: :desc)
+
+    @next_events = Event.joins(:user_events)
+                        .where("start_at >= ? AND user_events.user_id = ?", Date.today, current_user.id)
+                        .order(:start_at)
+                        .distinct
+    @next_events_without_date = Event.joins(:user_events)
+                                     .where("start_at is null AND user_events.user_id = ?",  current_user.id)
+                                     .distinct
+    @previous_events = Event.joins(:user_events)
+                            .where("start_at < ? AND user_events.user_id = ?", Date.today, current_user.id)
+                            .order(start_at: :desc)
+                            .distinct
   end
 
   def new
@@ -16,7 +28,7 @@ class EventsController < ApplicationController
       user_event.save
       unless @event.start_at && @event.end_at
         @survey_date = Survey.new
-        @survey_date.question = "Quelles sont vos disponibilités?"
+        @survey_date.question = "Vos dispos?"
         @survey_date.category = "Date"
         @survey_date.user = current_user
         @survey_date.event = @event
@@ -25,7 +37,7 @@ class EventsController < ApplicationController
       end
       unless @event.place != ""
         @survey_place = Survey.new
-        @survey_place.question = "Où voulez-vous aller?"
+        @survey_place.question = "Où va-t-on?"
         @survey_place.category = "Lieu"
         @survey_place.user = current_user
         @survey_place.event = @event
@@ -49,7 +61,7 @@ class EventsController < ApplicationController
   end
 
   def set_interested
-    update_status('interested')
+    update_status('maybe')
   end
 
   def set_going
@@ -57,7 +69,7 @@ class EventsController < ApplicationController
   end
 
   def set_not_going
-    update_status('not_going')
+    update_status("can't go")
   end
 
   private

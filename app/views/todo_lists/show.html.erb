@@ -3,16 +3,29 @@
 <div class="container" data-controller="item">
 <h2><%= @todo_list.title %></h2><br>
 <div class="items-list">
-  <% @todo_list.items.each do |item| %>
-      <%= link_to item.content, item_user_items_path(item), class:"items", data: { action: "click->item#markAsDone", item_target: "option", turbo_method: "POST"}  %><br>
+<% @todo_list.items.reverse.each do |item| %>
+<div class="item-avatar d-flex">
+  <% if current_user.user_items.exists?(item_id: item.id) %>
+    <%= link_to item.content, item_user_item_path(item), class: "items done", data: {turbo_method: :delete} %>
+    <% if current_user.avatar.attached? %>
+      <%= image_tag url_for(current_user.avatar), class: "avatar" %>
+    <% end %>
+  <% else %>
+    <%= link_to item.content, item_user_items_path(item), class: "items", data: {turbo_method: :post} %>
   <% end %>
+  </div>
+<% end %>
+
+
 
 <%# si le user clique, alors 1/changement de couleur 2/affichage de la photo %>
 <%# s'il reclique, 1/revient à blanc 2/retire la photo %>
 
+
+
+
 </div>
-<div class="validate-btn">
+<div class="validate-btn d-flex justify-content-center">
   <%= render "shared/buttons/validate_btn" %>
 </div>
 </div>
-
