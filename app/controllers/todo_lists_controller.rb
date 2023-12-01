@@ -19,7 +19,7 @@ class TodoListsController < ApplicationController
         new_item = Item.new(content: item, todo_list: @todo_list)
         new_item.save if new_item.valid?
       end
-      redirect_to todo_list_path(@event)
+      redirect_to todo_list_path(@todo_list)
     else
       render :new, status: :unprocessable_entity
     end
