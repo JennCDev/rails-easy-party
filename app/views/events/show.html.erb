@@ -49,12 +49,8 @@
 
   <% planners = @event.user_events.where(planner: true) %>
   <p class="mb-3"><i class="fa-solid fa-user"></i> Organisé par
-    <% planners.each do |planner| %>
-      <% if planner == planners.last %>
-        <%= "#{planner.user.first_name}" %>
-      <% else %>
-        <%= "#{planner.user.first_name}," %></p>
-      <% end %>
+    <% planners.each_with_index do |planner, index| %>
+      <%= "#{planner.user.first_name}" %><%= index == planners.size - 1 ? '' : ',' %>
     <% end %>
   </p>
 
