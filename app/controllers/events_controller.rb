@@ -21,7 +21,7 @@ class EventsController < ApplicationController
         @survey_date.deadline = Date.today + 1.week
         @survey_date.save
       end
-      unless @event.place
+      unless @event.place != ""
         @survey_place = Survey.new
         @survey_place.question = "Où voulez-vous aller?"
         @survey_place.category = "Lieu"
