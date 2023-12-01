@@ -1,0 +1,32 @@
+.event-infos {
+  font-size: 12px;
+}
+
+.event-infos h2 {
+  margin: 5px;
+}
+
+.event-infos h3 {
+  font-size: 14px;
+}
+
+.event-infos .survey-infos {
+  font-size: 10px;
+  color: gray;
+}
+
+.event-infos .survey-card {
+  background-color: $light-gray;
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.survey-card p {
+  margin: 0;
+  padding: 4px;
+}
+
+.survey-card .chevron {
+  margin: 0;
+  padding: 12px;
+}
