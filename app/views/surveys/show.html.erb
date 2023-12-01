@@ -1,11 +1,40 @@
-<%= link_to event_path(@event) do %>
+<% event = @survey.event %>
+<%= link_to event_path(event) do %>
   <i class="fa-solid fa-circle-chevron-left"></i>
 <% end %>
 
-<h2><%= @survey.question %></h2>
+<h2 class="mb-5"><%= @survey.question %></h2>
 
-<% @survey.answers.each do |answer| %>
-  <p><%= answer.content %></p>
+<div class="survey-content mb-4">
+  <span class="title-bold">Date limite : </span>
+  <span><%= @survey.deadline.strftime('%d/%m/%Y') %></span>
+</div>
+
+<% if @survey.deadline >= Date.today %>
+  <h3 class="mb-3">A vos votes 📩</h3>
+<% else %>
+  <p  class="mb-3 title-bold">Sondage terminé <i class="fa-solid fa-check text-success"></i></p>
 <% end %>
 
-<%= render "shared/buttons/validate_btn" %>
+<% @survey.answers.each do |answer| %>
+  <div class="survey-answer mb-3"><%= answer.content %></div>
+<% end %>
+
+<% if @survey.deadline >= Date.today %>
+  <%= simple_form_for [@survey, @answer] do |f| %>
+    <div class="d-flex input-spacing align-items-start">
+      <div class="d-flex btn-group w-100">
+        <%= f.input :content,
+            label: false,
+            placeholder: "Option",
+            as: :string,
+            class: "custom-input-for-option input-spacing" %>
+        <%= f.submit 'Valider', class: "validate-btn-small" %>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="d-flex justify-content-center">
+    <%= render "shared/buttons/validate_btn" %>
+  </div>
+<% end %>
