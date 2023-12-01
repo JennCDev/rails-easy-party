@@ -5,6 +5,7 @@ class UserEventsController < ApplicationController
     @event = Event.find(params[:event_id])
     @user_event = UserEvent.new
     @users = User.all
+    @participants = @event.user_events.includes(:user).where(status: 'going')
   end
 
   def create
@@ -31,6 +32,11 @@ class UserEventsController < ApplicationController
         flash.now[:alert] = "Impossible d'ajouter l'utilisateur à l'événement."
         render :new, status: 422
       end
+    end
+
+    def show
+      @event = Event.find(params[:id])
+
     end
   end
 
