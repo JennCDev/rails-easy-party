@@ -23,6 +23,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+
     if @event.save
       user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
       user_event.save
@@ -86,7 +87,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_date, :end_date, :place, photos: [])
+    params.require(:event).permit(:title, :description, :start_at, :end_at, :place, :photo_banner)
   end
 
   def update_status(new_status)
