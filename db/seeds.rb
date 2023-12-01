@@ -234,7 +234,7 @@ survey2 = Survey.create!(
 
 # Ajouter des réponses aux sondages
 answer1_survey1 = Answer.create!(
-  content: 'Le birthday de la queen peut être le 15 janvier.',
+  content: 'Le 27 janvier ?',
   survey_id: survey1.id # Assurez-vous d'utiliser l'ID du sondage
 )
 
