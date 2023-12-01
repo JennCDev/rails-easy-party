@@ -61,7 +61,7 @@ class EventsController < ApplicationController
   end
 
   def set_interested
-    update_status('interested')
+    update_status('maybe')
   end
 
   def set_going
@@ -69,7 +69,7 @@ class EventsController < ApplicationController
   end
 
   def set_not_going
-    update_status('not_going')
+    update_status("can't go")
   end
 
   private
