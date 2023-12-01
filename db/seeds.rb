@@ -217,7 +217,7 @@ puts "On créer les surveys !"
 # Create surveys
 survey1 = Survey.create!(
   question: 'Soirée déguisée?',
-  deadline: Date.today + 1.month,
+  deadline: Date.today + 1.week,
   category: 'Autre',
   user: marion,
   event: event1
@@ -225,7 +225,7 @@ survey1 = Survey.create!(
 
 survey2 = Survey.create!(
   question: 'On ramène les enfants?',
-  deadline: Date.today + 2.months,
+  deadline: Date.today + 1.week,
   category: 'Autre',
   result: 'Pending',
   user: nicolas,
