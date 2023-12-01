@@ -24,7 +24,9 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  resources :surveys, only: ["show"]
+  resources :surveys, only: ["show"] do
+    resources :answers, only: ["create"]
+  end
 
   resources :answers, only: [] do
     resources :user_answers, only: ["create"]

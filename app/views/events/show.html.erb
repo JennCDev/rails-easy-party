@@ -28,7 +28,7 @@
 
   <div class="text-center mb-4">
     <%= link_to new_event_user_event_path(event_id: @event.id), class: "link text-bold" do %>
-      <%= "#{@event.user_events.where(status: 'going').count} participants - #{@event.user_events.where(status: 'maybe').count} intéressés " %>
+      <%= "#{pluralize(@event.user_events.where(status: 'going').count, 'participant')} - #{pluralize(@event.user_events.where(status: 'maybe').count, 'intéressé')}" %>
       <span><i class="fa-solid fa-user-plus"></i></span>
     <% end %>
   </div>
@@ -70,7 +70,7 @@
 
   <div class="mt-4">
     <% @event.surveys.each do |survey| %>
-      <% if !survey.answers %>
+      <% if !survey.answers.present? %>
         <% if @event.user_events.where(planner: true) == current_user or survey.user == current_user %>
           <div class="mb-3 survey-card">
             <%= link_to survey_path(survey), class: "link d-flex justify-content-between" do %>
