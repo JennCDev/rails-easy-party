@@ -11,9 +11,9 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-    user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
-    user_event.save
     if @event.save
+      user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
+      user_event.save
       unless @event.start_at && @event.end_at
         @survey_date = Survey.new
         @survey_date.question = "Vos dispos?"
@@ -48,9 +48,31 @@ class EventsController < ApplicationController
     @user_events = UserEvent.where(event_id: @event.id)
   end
 
+  def set_interested
+    update_status('interested')
+  end
+
+  def set_going
+    update_status('going')
+  end
+
+  def set_not_going
+    update_status('not_going')
+  end
+
   private
 
   def event_params
     params.require(:event).permit(:title, :description, :start_date, :end_date, :place, photos: [])
+  end
+
+  def update_status(new_status)
+    user_event = UserEvent.find_by(event_id: params[:id], user_id: current_user.id)
+    if user_event
+      user_event.update(status: new_status)
+      redirect_to event_path(params[:id]), notice: "Statut mis à jour avec succès!"
+    else
+      redirect_to event_path(params[:id]), alert: "Erreur lors de la mise à jour du statut."
+    end
   end
 end

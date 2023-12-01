@@ -11,6 +11,11 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: "events#index"
   resources :events, only: ["show", "new", "create"] do
+    member do
+      patch :set_interested
+      patch :set_going
+      patch :set_not_going
+    end
     resources :surveys, only: ["new", "create"]
     resources :todo_lists, only: ["new", "create"]
     resources :user_events
@@ -28,10 +33,11 @@ Rails.application.routes.draw do
   end
 
   resources :items, only: [] do
-    resources :user_items, only: ["create"]
+    resources :user_items, only: ["create", "destroy"]
   end
 
   resources :user_answers, only: ["destroy"]
   resources :todo_lists, only: ["show"]
+  resource :profiles, only: [:show]
 
 end
