@@ -1,8 +1,20 @@
 class EventsController < ApplicationController
   def index
-    @next_events = Event.where("start_at >= ?", Date.today).order(:start_at)
-    @next_events_without_date = Event.where("start_at is null")
-    @previous_events = Event.where("start_at < ?", Date.today).order(start_at: :desc)
+    # @next_events = Event.where("start_at >= ?", Date.today).order(:start_at)
+    # @next_events_without_date = Event.where("start_at is null")
+    # @previous_events = Event.where("start_at < ?", Date.today).order(start_at: :desc)
+
+    @next_events = Event.joins(:user_events)
+                        .where("start_at >= ? AND user_events.user_id = ?", Date.today, current_user.id)
+                        .order(:start_at)
+                        .distinct
+    @next_events_without_date = Event.joins(:user_events)
+                                     .where("start_at is null AND user_events.user_id = ?",  current_user.id)
+                                     .distinct
+    @previous_events = Event.joins(:user_events)
+                            .where("start_at < ? AND user_events.user_id = ?", Date.today, current_user.id)
+                            .order(start_at: :desc)
+                            .distinct
   end
 
   def new

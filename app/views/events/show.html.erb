@@ -16,14 +16,13 @@
     <% end %>
   </p>
 
-  <% if @event.user_events.where(planner: false) %>
+  <% unless @event.user_events.find_by(user_id: current_user.id)&.planner? %>
   <!-- Boutons de participation / modifier les chemins -->
     <div class="d-flex justify-content-center mb-4">
-  <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-  <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-  <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-</div>
-
+      <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
+      <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
+      <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
+    </div>
   <% end %>
 
   <div class="text-center mb-4">
@@ -33,12 +32,13 @@
     <% end %>
   </div>
 
+  <% planners = @event.user_events.where(planner: true) %>
   <p class="mb-3"><i class="fa-solid fa-user"></i> Organisé par
-    <% @event.user_events.where(planner: true).each do |user_event| %>
-      <% if user_event == @event.user_events.where(planner: true).last %>
-        <%= "#{user_event.user.first_name}" %>
+    <% planners.each do |planner| %>
+      <% if planner == planners.last %>
+        <%= "#{planner.user.first_name}" %>
       <% else %>
-        <%= "#{user_event.user.first_name}" %></p>
+        <%= "#{planner.user.first_name}," %></p>
       <% end %>
     <% end %>
   </p>
