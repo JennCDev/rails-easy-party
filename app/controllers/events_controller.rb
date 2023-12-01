@@ -11,6 +11,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
+    user_event.save
     if @event.save
       unless @event.start_at && @event.end_at
         @survey_date = Survey.new

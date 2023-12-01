@@ -12,9 +12,10 @@ class UserEventsController < ApplicationController
     if @event.user_events.exists?(user_id: user_id)
       redirect_to event_path(@event), notice: "L'utilisateur est déjà ajouté à l'événement."
     else
-      @user_event = @event.user_events.new(user_event_params.merge(status: "pending"))
+      @user_event = @event.user_events.new(user_event_params)
       @user_event.user_id = user_id
       @user_event.planner = user_event_params[:planner].present?
+      @user_event.status = @user_event.planner ? 'going' : 'pending'
 
       if @user_event.save
         redirect_to event_path(@event), notice: "Utilisateur ajouté à l'événement avec succès!"
@@ -24,6 +25,7 @@ class UserEventsController < ApplicationController
       end
     end
   end
+
 
   private
 
