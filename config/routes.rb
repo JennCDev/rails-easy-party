@@ -38,6 +38,5 @@ Rails.application.routes.draw do
 
   resources :user_answers, only: ["destroy"]
   resources :todo_lists, only: ["show"]
-  resource :profiles, only: [:show]
-
+  resource :profiles, only: ["show"]
 end
