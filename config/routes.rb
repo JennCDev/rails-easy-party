@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "events#index"
-  resources :events, only: ["show", "new", "create", "edit", "update"] do
+  resources :events, only: ["show", "new", "create", "update"] do
     resources :surveys, only: ["new", "create"]
     resources :todo_lists, only: ["new", "create"]
     resources :user_events
