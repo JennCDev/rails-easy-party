@@ -1,24 +1,30 @@
-<!-- app/views/users/index.html.erb -->
-<div data-controller="user-search">
+<div class="container mt-4">
+  <h2>Participants à l'événement <%= @event.title %></h2>
+  <ul class="list-group mb-4">
+    <% @participants.each do |participant| %>
+        <%= participant.user.first_name %> <%= participant.user.last_name %> -
+        Organisateur : <%= participant.planner ? 'Oui' : 'Non' %>
+    <% end %>
+  </ul>
 
-  <div class="mb-3" >
-    <label for="user_search">Rechercher un utilisateur</label>
-    <input type="text" id="user_search" name="user_search" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
-    <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
-  </div>
-
-  <div id="search-results" data-target="user-search.searchInput"></div>
-
-
-<!-- Formulaire d'ajout d'utilisateur à un événement -->
-  <%= simple_form_for [@event, @user_event] do |f| %>
-  <%= f.hidden_field :user_id, value: '4', id: 'selected_user_id', data: {user_search_target: "hidden"} %>
-
-    <%= f.hidden_field :event_id, value: @event.id %>
-    <%= f.submit 'Ajouter l\'utilisateur à l\'événement', class: "btn btn-secondary" %>
+  <h2>Ajouter un utilisateur à l'événement</h2>
+  <div data-controller="user-search">
     <div class="mb-3">
-      <%= f.label :planner, "Planner", class: "form-label" %>
-      <%= f.check_box :planner, class: "form-check-input" %>
+      <label for="user_search">Rechercher un utilisateur</label>
+      <input type="text" id="user_search" name="user_search" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
+      <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
     </div>
-  <% end %>
+
+    <div id="search-results" data-target="user-search.searchInput"></div>
+
+    <%= simple_form_for [@event, @user_event], html: { class: 'form-group' } do |f| %>
+      <%= f.hidden_field :user_id, id: 'selected_user_id', data: { user_search_target: "hidden" } %>
+      <%= f.hidden_field :event_id %>
+      <div class="mb-3">
+        <%= f.label :planner, "Organisateur", class: "form-label" %>
+        <%= f.check_box :planner, class: "form-check-input" %>
+      </div>
+      <%= f.submit 'Ajouter', class: "btn btn-primary" %>
+    <% end %>
+  </div>
 </div>
