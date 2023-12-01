@@ -34,11 +34,11 @@
   </div>
 
   <p class="mb-3"><i class="fa-solid fa-user"></i> Organisé par
-    <% @event.user_events.each do |user_event| %>
-      <% if user_event == @event.user_events.last %>
+    <% @event.user_events.where(planner: true).each do |user_event| %>
+      <% if user_event == @event.user_events.where(planner: true).last %>
         <%= "#{user_event.user.first_name}" %>
       <% else %>
-        <%= "#{user_event.user.first_name}," %></p>
+        <%= "#{user_event.user.first_name}" %></p>
       <% end %>
     <% end %>
   </p>
