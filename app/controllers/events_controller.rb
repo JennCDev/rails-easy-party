@@ -11,6 +11,8 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
+    user_event.save
     if @event.save
       unless @event.start_at && @event.end_at
         @survey_date = Survey.new
@@ -21,7 +23,7 @@ class EventsController < ApplicationController
         @survey_date.deadline = Date.today + 1.week
         @survey_date.save
       end
-      unless @event.place
+      unless @event.place != ""
         @survey_place = Survey.new
         @survey_place.question = "Où voulez-vous aller?"
         @survey_place.category = "Lieu"
@@ -30,6 +32,11 @@ class EventsController < ApplicationController
         @survey_place.deadline = Date.today + 1.week
         @survey_place.save
       end
+      user_event = UserEvent.new
+      user_event.user = current_user
+      user_event.event = @event
+      user_event.planner = true
+      user_event.save
       redirect_to event_path(@event)
     else
       render :new, status: :unprocessable_entity

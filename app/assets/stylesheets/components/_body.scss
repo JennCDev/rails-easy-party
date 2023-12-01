@@ -1,7 +1,26 @@
+html, body {
+  height: 100%;
+}
+
+
 body{
   background-color: white;
 }
 
-h1 {
+h1, h2, h3 {
   font-weight: 900;
+  margin: 0;
+}
+
+h3 {
+  font-size: 1.08em;
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}
+
+.text-bold {
+  font-weight: bold;
 }

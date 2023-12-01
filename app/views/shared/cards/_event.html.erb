@@ -1,4 +1,9 @@
 <div class="card-event mt-4">
+  <% if event.photo_banner.attached? %>
+    <%= cl_image_tag event.photo_banner.key, class: "card-image img-fluid", crop: :fill %>
+  <% else %>
+    <div class="card-image d-flex justify-content-center align-items-center"><span>Pas d'image disponible</span></div>
+  <% end %>
   <div class="card-event-infos">
     <h2 class="text-start"><%= event.title %></h2>
     <p>📅
@@ -11,7 +16,7 @@
       <% end %>
     </p>
     <p>
-      📍 <span class="title-bold">Lieu : </span><%= event.place.present? ? event.place : "A vos votes 📩" %>
+      <i class="fa-solid fa-location-dot text-danger"></i> <span class="title-bold">Lieu : </span><%= event.place.present? ? event.place : "A vos votes 📩" %>
     </p>
     <p>🙋 <%= event.user_events.where(status: "going").count %> participants - <%= event.user_events.where(status: "maybe").count %> intéressés</p>
   </div>

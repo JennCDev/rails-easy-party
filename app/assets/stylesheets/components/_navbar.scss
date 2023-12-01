@@ -1,10 +1,20 @@
+@import "variables";
+
+
+
 .navbar {
   position: fixed;
+  background-color: $main-color-light;
   bottom: 0;
   left: 0;
   right: 0;
+  z-index: 1;
 }
 
 .navbar-brand > a {
   color: black;
+}
+
+.yield {
+  min-height: calc(100vh - 100px);
 }

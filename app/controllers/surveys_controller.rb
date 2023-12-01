@@ -1,6 +1,7 @@
 class SurveysController < ApplicationController
   def show
     @survey = Survey.find(params[:id])
+    @event = Event.find(params[:id])
   end
 
   def new
