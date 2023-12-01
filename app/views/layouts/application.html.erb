@@ -12,12 +12,13 @@
     <%= javascript_importmap_tags %>
   </head>
 
-
   <body>
-    <%= render "shared/flashes" %>
-    <%= render "shared/navbar" %>
-    <div class="container-sm">
-      <%= yield %>
+  <div class="resize">
+      <%= render "shared/flashes" %>
+      <%= render "shared/navbar" %>
+      <div class="container">
+        <%= yield %>
+      </div>
     </div>
   </body>
 </html>
