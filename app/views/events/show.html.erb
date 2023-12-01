@@ -24,7 +24,6 @@
 
   <% current_user_event =  UserEvent.find_by(event: @event, user: current_user) %>
   <% unless current_user_event.planner %>
-  <!-- Boutons de participation / modifier les chemins -->
     <div class="d-flex justify-content-center mb-4">
         <% if current_user_event.status == "going" %>
           <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
@@ -88,19 +87,17 @@
   <div class="mt-4">
     <% @event.surveys.each do |survey| %>
       <% if !survey.answers.present? %>
-        <% if @event.user_events.where(planner: true) == current_user or survey.user == current_user %>
-          <div class="mb-3 survey-card">
-            <%= link_to survey_path(survey), class: "link d-flex justify-content-between" do %>
-              <div>
-                <p><%= survey.question %></p>
-                <p class="text-danger">Sondage à compléter</p>
-              </div>
-              <div class="text-center chevron">
-                <i class="fa-solid fa-chevron-right"></i>
-              </div>
-            <% end %>
-          </div>
-        <% end %>
+        <div class="mb-3 survey-card">
+          <%= link_to survey_path(survey), class: "link d-flex justify-content-between" do %>
+            <div>
+              <p><%= survey.question %></p>
+              <p class="text-danger">Sondage à compléter</p>
+            </div>
+            <div class="text-center chevron">
+              <i class="fa-solid fa-chevron-right"></i>
+            </div>
+          <% end %>
+        </div>
       <% else %>
         <div class="mb-3 survey-card">
           <%= link_to survey_path(survey), class: "link d-flex justify-content-between" do %>
