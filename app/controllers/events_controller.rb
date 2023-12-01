@@ -23,6 +23,11 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+
+    user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
+
+    user_event.save
+
     if @event.save
       user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
       user_event.save
@@ -58,6 +63,16 @@ class EventsController < ApplicationController
   def show
     @event = Event.find(params[:id])
     @user_events = UserEvent.where(event_id: @event.id)
+    @user_event = @event.user_events.find_by(user_id: current_user.id)
+    @user_is_planner = @user_event.planner if @user_event
+  end
+
+  def edit
+    raise
+  end
+
+  def update
+    raise
   end
 
   def set_interested
