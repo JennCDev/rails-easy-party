@@ -119,12 +119,14 @@
       <% end %>
     <% end %>
 
-    <% @event.todo_lists.each do |todo| %>
-      <div class="mb-3 survey-card">
-        <%= link_to "#{todo.title}", todo_list_path(todo), class: "link" %>
-      </div>
-    <% end %>
-  </div>
+   <% @event.todo_lists.each do |todo| %>
+  <%= link_to todo_list_path(todo), class: "link" do %>
+    <div class="mb-3 survey-card">
+      <%= todo.title %>
+    </div>
+  <% end %>
+<% end %>
+
 
 <%# Description %>
 <%= render 'shared/show/edit_description' %>
