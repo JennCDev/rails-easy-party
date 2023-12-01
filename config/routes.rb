@@ -10,7 +10,14 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   root to: "events#index"
+
   resources :events, only: ["show", "new", "create", "edit", "update"] do
+    member do
+      patch :set_interested
+      patch :set_going
+      patch :set_not_going
+    end
+
     resources :surveys, only: ["new", "create"]
     resources :todo_lists, only: ["new", "create"]
     resources :user_events
@@ -19,7 +26,9 @@ Rails.application.routes.draw do
     get 'search', on: :collection
   end
 
-  resources :surveys, only: ["show"]
+  resources :surveys, only: ["show"] do
+    resources :answers, only: ["create"]
+  end
 
   resources :answers, only: [] do
     resources :user_answers, only: ["create"]
@@ -31,5 +40,5 @@ Rails.application.routes.draw do
 
   resources :user_answers, only: ["destroy"]
   resources :todo_lists, only: ["show"]
-
+  resource :profiles, only: ["show"]
 end
