@@ -1,13 +1,3 @@
-# This file should ensure the existence of records required to run the application in every environment (production,
-# development, test). The code here should be idempotent so that it can be executed at any point in every environment.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Example:
-#
-#   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
-#     MovieGenre.find_or_create_by!(name: genre_name)
-#   end
-
 
 # db/seeds.rb
 
@@ -15,6 +5,7 @@
 User.destroy_all
 Event.destroy_all
 Survey.destroy_all
+UserEvent.destroy_all
 
 nicolas = User.create!(
   first_name: "Nicolas",
@@ -40,6 +31,25 @@ marion = User.create!(
   password_confirmation: "lewagon"
 )
 
+juan = User.create!(
+  first_name: "Juan",
+  last_name: "Desitter",
+  email: "juan@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+guillaume = User.create!(
+  first_name: "Guillaume",
+  last_name: "Ingrin",
+  email: "guillaume@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+
+photo_guillaume = URI.open("https://i.etsystatic.com/21647555/r/il/2d7fdd/3470674713/il_570xN.3470674713_iqet.jpg")
+photo_juan = URI.open("https://lens-storage.storage.googleapis.com/png/b2b053e9327841408e129b45a3868396")
 photo_marion = URI.open("https://avatars.githubusercontent.com/u/137996776?v=4")
 photo_jf = URI.open("https://avatars.githubusercontent.com/u/109537083?v=4")
 photo_nicolas = URI.open("https://avatars.githubusercontent.com/u/147147521?v=4")
@@ -47,7 +57,8 @@ photo_nicolas = URI.open("https://avatars.githubusercontent.com/u/147147521?v=4"
 marion.avatar.attach(io: photo_marion, filename: "marion.jpg", content_type: "image/jpg")
 jennifer.avatar.attach(io: photo_jf, filename: "jf.jpg", content_type: "image/jpg")
 nicolas.avatar.attach(io: photo_nicolas, filename: "nicolas.jpg", content_type: "image/jpg")
-
+juan.avatar.attach(io: photo_juan, filename: "juan.jpg", content_type: "image/jpg")
+guillaume.avatar.attach(io: photo_guillaume, filename: "guillaume.jpg", content_type: "image/jpg")
 
 # Add more users as needed
 
@@ -67,6 +78,7 @@ event1 = Event.create!(
   start_at: Date.today + 1.week,
   end_at: Date.today + 1.week + 2.days,
   place: "Chez Marion"
+
 )
 
 event2 = Event.create!(
@@ -78,6 +90,7 @@ event2 = Event.create!(
 )
 
 
+
 event3 = Event.create!(
   title: "Laser game",
   description: "Que du love, pas de guerre",
@@ -86,10 +99,97 @@ event3 = Event.create!(
   place: "Lille centre"
 )
 
+
 event4 = Event.create!(
   title: "Belotte",
   description: "Jai pas de jeu",
   place: "Liévin"
+)
+
+user_event_1 = UserEvent.create!(
+  user: nicolas,
+  event: event1,
+  planner: false,
+  status: 'pending'
+)
+
+user_event1 = UserEvent.create!(
+  user: jennifer,
+  event: event1,
+  planner: false,
+  status: 'pending'
+)
+
+user_event1_planner = UserEvent.create!(
+  user: marion,
+  event: event1,
+  planner: true,
+  status: 'going'
+)
+
+user_event_2 = UserEvent.create!(
+  user: nicolas,
+  event: event2,
+  planner: false,
+  status: 'pending'
+)
+
+user_event2 = UserEvent.create!(
+  user: jennifer,
+  event: event2,
+  planner: false,
+  status: 'pending'
+)
+
+user_event2_planner = UserEvent.create!(
+  user: marion,
+  event: event2,
+  planner: true,
+  status: 'going'
+)
+
+
+user_event_3 = UserEvent.create!(
+  user: nicolas,
+  event: event3,
+  planner: false,
+  status: 'pending'
+)
+
+
+user_event3 = UserEvent.create!(
+  user: jennifer,
+  event: event3,
+  planner: false,
+  status: 'pending'
+)
+
+user_event3_planner = UserEvent.create!(
+  user: marion,
+  event: event3,
+  planner: true,
+  status: 'going'
+)
+
+user_event_4 = UserEvent.create!(
+  user: nicolas,
+  event: event4,
+  planner: false,
+  status: 'pending'
+)
+
+user_event4 = UserEvent.create!(
+  user: jennifer,
+  event: event4,
+  planner: false,
+  status: 'pending'
+)
+
+user_event4_planner = UserEvent.create!(
+  user: marion,
+  event: event4,
+  planner: true,
+  status: 'going'
 )
 
 #adding photos to events
@@ -119,8 +219,8 @@ survey1 = Survey.create!(
   question: 'On le fait quand le birthday de la queen?',
   deadline: Date.today + 1.month,
   category: 'Date',
-  user_id: User.first.id,
-  event_id: Event.first.id
+  user: marion,
+  event: event1
 )
 
 survey2 = Survey.create!(
@@ -128,9 +228,31 @@ survey2 = Survey.create!(
   deadline: Date.today + 2.months,
   category: 'Autre',
   result: 'Pending',
-  user_id: User.last.id,
-  event_id: Event.last.id
+  user: nicolas,
+  event: event1
 )
+
+# Ajouter des réponses aux sondages
+answer1_survey1 = Answer.create!(
+  content: 'Le birthday de la queen peut être le 15 janvier.',
+  survey_id: survey1.id # Assurez-vous d'utiliser l'ID du sondage
+)
+
+answer2_survey1 = Answer.create!(
+  content: 'Non, plutôt en février serait mieux.',
+  survey_id: survey1.id # Assurez-vous d'utiliser l'ID du sondage
+)
+
+answer1_survey2 = Answer.create!(
+  content: 'Adoptons un chat!',
+  survey_id: survey2.id # Assurez-vous d'utiliser l'ID du sondage
+)
+
+answer2_survey2 = Answer.create!(
+  content: 'Non, adoptons un chien!',
+  survey_id: survey2.id # Assurez-vous d'utiliser l'ID du sondage
+)
+
 
 # Add more surveys as needed
 
