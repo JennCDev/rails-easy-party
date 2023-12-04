@@ -48,5 +48,18 @@ div[data-controller="user-search"] {
   // Styles pour les résultats de recherche
   #search-results {
     margin-top: 20px;
+    margin-left: 20px;
+    &:hover{
+      font-weight: bold;
+      transition: ease-in-out 0.4s;
+      cursor: pointer;
+    }
   }
 }
+// ici mg
+
+#user_search{
+  width: 70%;
+}
+
+

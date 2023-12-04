@@ -1,15 +1,19 @@
+<%# btn retour %>
 <% event = @survey.event %>
 <%= link_to event_path(event) do %>
   <i class="fa-solid fa-circle-chevron-left"></i>
 <% end %>
 
+<%# titre %>
 <h2 class="mb-5"><%= @survey.question %></h2>
 
+<%# date limite %>
 <div class="survey-content mb-4">
   <span class="title-bold">Date limite : </span>
   <span><%= @survey.deadline.strftime('%d/%m/%Y') %></span>
 </div>
 
+<%# à vos votes %>
 <% if @survey.deadline >= Date.today %>
   <h3 class="mb-3">A vos votes 📩</h3>
 <% else %>
@@ -20,6 +24,7 @@
   <div class="survey-answer mb-3"><%= answer.content %></div>
 <% end %>
 
+<%# ajouter une option & petit valider %>
 <% if @survey.deadline >= Date.today %>
   <%= simple_form_for [@survey, @answer] do |f| %>
     <div class="d-flex input-spacing align-items-start">
@@ -32,8 +37,9 @@
         <%= f.submit 'Valider', class: "validate-btn-small" %>
       </div>
     </div>
-  <% end %>
+<% end %>
 
+<%# valider la modification %>
   <div class="d-flex justify-content-center">
     <%= link_to "Valider", event_path(event), class: "d-flex justify-content-center validate-btn" %>
   </div>

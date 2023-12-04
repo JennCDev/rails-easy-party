@@ -62,14 +62,18 @@ class EventsController < ApplicationController
     @user_events = UserEvent.where(event_id: @event.id)
     @user_event = @event.user_events.find_by(user_id: current_user.id)
     @user_is_planner = @user_event.planner if @user_event
+
+
   end
 
-  def edit
-    raise
-  end
 
   def update
-    raise
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to event_path(@event)
+    else
+      render 'show'
+    end
   end
 
   def set_interested

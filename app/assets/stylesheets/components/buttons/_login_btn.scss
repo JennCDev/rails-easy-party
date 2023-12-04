@@ -1,0 +1,11 @@
+.login-btn{
+  background-color: $main-color;
+  color: white;
+  cursor: pointer;
+  &:hover{
+    transition: ease-in-out 0.3s;
+    background-color: $main-color-light;
+    color: $main-color;
+  };
+}
+

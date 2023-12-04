@@ -1,30 +1,33 @@
-
+<%# btn retour %>
+<%= link_to :back do %>
+  <i class="fa-solid fa-circle-chevron-left"></i>
+<% end %>
 
 <div class="container" data-controller="item">
 <h2><%= @todo_list.title %></h2><br>
+
+<%# liste des items/todos + logique de sélection avec avatars %>
 <div class="items-list">
-<% @todo_list.items.reverse.each do |item| %>
+<% @todo_list.items.each do |item| %>
 <div class="item-avatar d-flex">
   <% if current_user.user_items.exists?(item_id: item.id) %>
     <%= link_to item.content, item_user_item_path(item), class: "items done", data: {turbo_method: :delete} %>
-    <% if current_user.avatar.attached? %>
-      <%= image_tag url_for(current_user.avatar), class: "avatar" %>
-    <% end %>
   <% else %>
     <%= link_to item.content, item_user_items_path(item), class: "items", data: {turbo_method: :post} %>
   <% end %>
+  <%# afficher l'avatar (voir pour en mettre pls) %>
+      <% if item.user_items.first %>
+        <% if item.user_items.first.user.avatar.attached? %>
+          <%= image_tag url_for(item.user_items.first.user.avatar), class: "avatar" %>
+        <% end %>
+      <% end %>
   </div>
 <% end %>
-
-
-
-<%# si le user clique, alors 1/changement de couleur 2/affichage de la photo %>
-<%# s'il reclique, 1/revient à blanc 2/retire la photo %>
-
-
-
-
 </div>
+
+<%# btn de validation %>
+<div class="update-btn d-flex justify-content-center">
+  <%= link_to "Valider", todo_list_path(@todo_list), class: "d-flex justify-content-center validate-btn", data: {turbo_method: :patch} %>
 <div class="validate-btn d-flex justify-content-center">
   <%= link_to "Valider", event_path(@todo_list.event), class: "d-flex justify-content-center validate-btn" %>
 </div>

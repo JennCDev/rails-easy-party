@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root to: "events#index"
 
-  resources :events, only: ["show", "new", "create", "edit", "update"] do
+  resources :events, only: ["show", "new", "create", "update"] do
     member do
       patch :set_interested
       patch :set_going

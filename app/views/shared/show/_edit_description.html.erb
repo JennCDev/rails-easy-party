@@ -1,0 +1,29 @@
+<% if @user_is_planner %>
+  <div class="description-title d-flex">
+    <h3 class="mt-5 mb-2">Description </h3>
+
+    <!-- Bouton pour modifier la description -->
+    <a href="#" class="edit-description"><i class="fa-solid fa-pen"></i></a>
+
+  </div>
+
+  <!-- Formulaire de modification (initiallement caché) -->
+<%= form_for @event, url: event_path(@event), method: :patch, html: { class: "edit-description-form d-none", data: { remote: true } } do |f| %>
+  <div class="field">
+    <%= f.text_area :description, rows: 4, class: "edit-description-form display:none" %>
+  </div>
+
+  <div class="update-btn d-flex justify-content-center">
+    <%= f.submit "Mettre à jour la description", class: "validate-btn", data: { turbo_method: :patch } %>
+  </div>
+<% end %>
+
+  <div>
+    <p class="description"><%= @event.description %></p>
+  </div>
+
+<% else %>
+  <!-- L'user n'est pas planner -->
+  <h3 class="mt-1 mb-2 description">Description </h3>
+   <p><%= @event.description %></p>
+<% end %>
