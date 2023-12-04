@@ -18,6 +18,10 @@ export default class extends Controller {
       this.startDateTarget.value = dates[0]
       this.endDateTarget.value = dates[1]
     }
+    else if (dates.length === 1) {
+      this.startDateTarget.value = dates[0]
+      this.endDateTarget.value = dates[0]
+    }
 
   }
 
