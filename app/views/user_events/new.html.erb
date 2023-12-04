@@ -9,12 +9,11 @@
 
   <h2>Ajouter un utilisateur à l'événement</h2>
   <div data-controller="user-search">
-<div class="mb-3">
-  <label for="user_search">Rechercher un utilisateur</label>
-  <input type="text" id="user_search" name="user_search" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search" placeholder= <i class="fa-solid fa-magnifying-glass"></i> Rechercher un utilisateur...'>
-  <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
-</div>
-
+    <div class="mb-3">
+      <label for="user_search">Rechercher un utilisateur</label>
+      <input type="text" id="user_search" name="user_search"  class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
+      <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
+    </div>
 
     <div id="search-results" data-target="user-search.searchInput"></div>
 
