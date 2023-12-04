@@ -18,12 +18,10 @@ class UserEventsController < ApplicationController
       @user_event = @event.user_events.new(user_event_params)
       @user_event.user_id = user_id
       @user_event.planner = user_event_params[:planner] == '1'
-
-      # Modifier le statut en fonction du rôle de l'utilisateur dans l'événement
       if @user_event.planner
-        @user_event.status = 'going' # Si c'est le planner, statut "going"
+        @user_event.status = 'going'
       else
-        @user_event.status = 'pending' # Sinon, statut "invited"
+        @user_event.status = 'pending'
       end
 
       if @user_event.save
