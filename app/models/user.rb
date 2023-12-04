@@ -15,6 +15,7 @@ class User < ApplicationRecord
   has_many :created_events, class_name: 'Event', foreign_key: 'creator_id'
   has_many :user_events
   has_many :user_items
+  has_many :user_answers
   has_many :todo_lists
   has_many :attended_events, through: :user_events, source: :event
   has_many :created_surveys, class_name: 'Survey', foreign_key: 'creator_id'

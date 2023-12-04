@@ -31,14 +31,13 @@ Rails.application.routes.draw do
   end
 
   resources :answers, only: [] do
-    resources :user_answers, only: ["create"]
+    resources :user_answers, only: ["create", "destroy"]
   end
 
   resources :items, only: [] do
     resources :user_items, only: ["create", "destroy"]
   end
 
-  resources :user_answers, only: ["destroy"]
   resources :todo_lists, only: ["show"]
   resource :profiles, only: ["show"]
 end
