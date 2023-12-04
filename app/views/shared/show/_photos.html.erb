@@ -1,0 +1,9 @@
+<%= form_for @event do |f| %>
+  <%= f.file_field :new_photos, multiple: true, input_html: { multiple: true}, label: "Galerie de #{@event.title}" %>
+  <%= f.submit 'Ajouter', class: "mt-5 validate-btn w-75" %>
+<% end %>
+
+
+<% @event.photos.each do |photo| %>
+    <%= cl_image_tag photo.key, class: "card-photos img-fluid", crop: :fill %>
+<% end %>
