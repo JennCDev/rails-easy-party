@@ -1,10 +1,11 @@
+<%# photo de l'évènement %>
 <% if @event.photo_banner.attached? %>
   <%= cl_image_tag @event.photo_banner.key, class: "card-image img-fluid mt-2", crop: :fill %>
 <% else %>
   <div class="card-image d-flex justify-content-center align-items-center mt-2"><span>Pas d'image disponible</span></div>
 <% end %>
 
-<%# Dates %>
+<%# Titre + Dates %>
 
 
 <%= render 'modals/edit_dates' %>
@@ -18,11 +19,16 @@
     <% elsif @event.start_at && @event.end_at  %>
       <span class="title-bold">LE <%= @event.start_at.strftime('%d/%m/%Y') %></span>
     <% else %>
+    <div class="date-to-define d-flex justify-content-center">
       <span class="title-bold">DATE A DEFINIR</span>
+      <i class="fa-solid fa-pen pt-1"></i>
+    </div>
     <% end %>
   </p>
 
-  <% current_user_event =  UserEvent.find_by(event: @event, user: current_user) %>
+<%# Participants %>
+<%# choix %>
+  <% current_user_event = UserEvent.find_by(event: @event, user: current_user) %>
   <% unless current_user_event.planner %>
     <div class="d-flex justify-content-center mb-4">
         <% if current_user_event.status == "going" %>
@@ -45,13 +51,23 @@
     </div>
   <% end %>
 
+<%# résultats (nb invités, nb participants, nb intéressés) %>
   <div class="text-center mb-4">
     <%= link_to new_event_user_event_path(event_id: @event.id), class: "link text-bold" do %>
-      <%= "#{pluralize(@event.user_events.where(status: 'going').count, 'participant')} - #{pluralize(@event.user_events.where(status: 'maybe').count, 'intéressé')}" %>
-      <span><i class="fa-solid fa-user-plus"></i></span>
+      <% guests_count = @event.user_events.count %>
+      <% participants_count = @event.user_events.where(status: 'going').count %>
+      <% interested_count = @event.user_events.where(status: 'maybe').count %>
+
+      <% guests_text = guests_count == 1 ? 'invité' : 'invités' %>
+      <% participants_text = participants_count == 1 ? 'participant' : 'participants' %>
+      <% interested_text = interested_count == 1 ? 'intéressé' : 'intéressés' %>
+
+      <%= "#{guests_count} #{guests_text} - #{pluralize(participants_count, participants_text)} - #{pluralize(interested_count, interested_text)}" %>
+      <span><i class="fa-solid fa-user-plus px-1"></i></span>
     <% end %>
   </div>
 
+<%# organisateurs %>
   <% planners = @event.user_events.where(planner: true) %>
   <p class="mb-3"><i class="fa-solid fa-user"></i> Organisé par
     <% planners.each_with_index do |planner, index| %>
@@ -59,16 +75,23 @@
     <% end %>
   </p>
 
-  <p class="mb-3">
-    <i class="fa-solid fa-location-dot"></i>
-    <% if @event.place.present? %>
-      <%= @event.place %>
-    <% else %>
-      Lieu à définir
-    <% end %>
-  </p>
 
-  <!-- Partager l evenement -->
+<%# lieu %>
+  <div class="location d-flex">
+    <p class="mb-3">
+      <i class="fa-solid fa-location-dot"></i>
+      <% if @event.place.present? %>
+        <%= @event.place %>
+      <% else %>
+        Lieu à définir
+      <% end %>
+    </p>
+    <i class="fa-solid fa-pen pt-1"></i>
+  </div>
+
+<%# bouton de partage de l'évènement %>
+
+  <!-- Créer nouveaux sondages et listes -->
 
   <div class="mb-3">
     <%= link_to new_event_survey_path(@event), class: "link" do %>
@@ -83,6 +106,8 @@
       <% end %>
     </div>
   <% end %>
+
+  <%# affichage des surveys  %>
 
   <div class="mt-4">
     <% @event.surveys.each do |survey| %>
@@ -119,6 +144,7 @@
       <% end %>
     <% end %>
 
+<%# affichage des listes %>
    <% @event.todo_lists.each do |todo| %>
   <%= link_to todo_list_path(todo), class: "link" do %>
     <div class="mb-3 survey-card">
