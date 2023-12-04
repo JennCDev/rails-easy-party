@@ -20,9 +20,24 @@
   <p  class="mb-3 title-bold">Sondage terminé <i class="fa-solid fa-check text-success"></i></p>
 <% end %>
 
-<% @survey.answers.each do |answer| %>
-  <div class="survey-answer mb-3"><%= answer.content %></div>
-<% end %>
+<%# Affichage de la liste des réponses %>
+<div class="items-list">
+  <% @survey.answers.each do |answer| %>
+    <div class="item-avatar d-flex">
+    <% if current_user.user_answers.exists?(answer_id: answer.id) %>
+      <%= link_to answer.content, answer_user_answer_path(answer), class: "items done", data: {turbo_method: :delete} %>
+    <% else %>
+      <%= link_to answer.content, answer_user_answers_path(answer), class: "items", data: {turbo_method: :post} %>
+    <% end %>
+    <%# afficher l'avatar (voir pour en mettre pls) %>
+        <% if answer.user_answers.first %>
+          <% if answer.user_answers.first.user.avatar.attached? %>
+            <%= image_tag url_for(answer.user_answers.first.user.avatar), class: "avatar" %>
+          <% end %>
+        <% end %>
+    </div>
+  <% end %>
+</div>
 
 <%# ajouter une option & petit valider %>
 <% if @survey.deadline >= Date.today %>

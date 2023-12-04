@@ -23,7 +23,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
     if @event.save
       user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
       user_event.save
@@ -62,18 +61,9 @@ class EventsController < ApplicationController
     @user_events = UserEvent.where(event_id: @event.id)
     @user_event = @event.user_events.find_by(user_id: current_user.id)
     @user_is_planner = @user_event.planner if @user_event
-
-
   end
 
-
   def update
-    @event = Event.find(params[:id])
-    if @event.update(event_params)
-      redirect_to event_path(@event)
-    else
-      render 'show'
-    end
   end
 
   def set_interested
