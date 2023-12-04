@@ -3,8 +3,9 @@
 
 <%# user is planner %>
 <% if @user_is_planner %>
+<div data-controller = "edit-event">
   <div class="location d-flex">
-    <p class="mb-3">
+    <p class="mb-3" data-edit-event-target = "editField">
       <i class="fa-solid fa-location-dot"></i>
       <% if @event.place.present? %>
         <%= @event.place %>
@@ -12,18 +13,18 @@
         Lieu à définir
       <% end %>
     </p>
-    <i class="fa-solid fa-pen pt-1 edit-place-button"></i>
+    <!-- Formulaire de modification (initiallement caché) -->
+    <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, html: { class: "edit-place-form d-none", data: { remote: true, edit_event_target: "editForm" } } do |f| %>
+      <div class="field">
+        <%= f.text_field :place, class: "edit-place-form display:none"  %>
+      </div>
+      <div class="update-btn d-flex justify-content-center">
+        <%= f.submit "Mettre à jour le lieu", class: "validate-btn", data: { turbo_method: :patch } %>
+      </div>
+    <% end %>
+    <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen pt-1"></i></a>
   </div>
-
-  <!-- Formulaire de modification (initiallement caché) -->
-<%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, html: { class: "edit-place-form d-none", data: { remote: true } } do |f| %>
-  <div class="field">
-    <%= f.text_field :place, class: "edit-place-form display:none" %>
-  </div>
-  <div class="update-btn d-flex justify-content-center">
-    <%= f.submit "Mettre à jour le lieux", class: "validate-btn", data: { turbo_method: :patch } %>
-  </div>
-<% end %>
+</div>
 
 <% else %>
 

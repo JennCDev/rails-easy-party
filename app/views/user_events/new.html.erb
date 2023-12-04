@@ -28,6 +28,7 @@
   <%# recherche %>
   <div data-controller="user-search">
     <div class="mb-3">
+
       <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
 
 
@@ -61,6 +62,7 @@
   <input type="text" id="user_search" name="user_search" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search" placeholder= <i class="fa-solid fa-magnifying-glass"></i> Rechercher un utilisateur...'>
   <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
 </div>
+
 
 
     <div id="search-results" data-target="user-search.searchInput"></div>

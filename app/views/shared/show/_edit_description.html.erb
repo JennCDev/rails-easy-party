@@ -1,23 +1,26 @@
 <%# user is planner %>
 <% if @user_is_planner %>
-  <div class="description-title d-flex">
-    <h3 class="mt-5 mb-2">Description </h3>
-    <!-- Bouton pour modifier la description -->
-    <a href="" class="edit-description"><i class="fa-solid fa-pen "></i></a>
-  </div>
 
-  <!-- Formulaire de modification (initiallement caché) -->
-<%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, html: { class: "edit-description-form d-none", data: { remote: true } } do |f| %>
-  <div class="field">
-    <%= f.text_area :description, rows: 4, class: "edit-description-form display:none" %>
-  </div>
-  <div class="update-btn d-flex justify-content-center">
-    <%= f.submit "Mettre à jour la description", class: "validate-btn", data: { turbo_method: :patch } %>
-  </div>
-<% end %>
+  <div data-controller = "edit-event">
+    <div class="description-title d-flex">
+      <h3 class="mt-5 mb-2">Description </h3>
+      <!-- Bouton pour modifier la description -->
+      <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen edit-description"></i></a>
+    </div>
 
-  <div>
-    <p class="description"><%= @event.description %></p>
+    <!-- Formulaire de modification (initialement caché) -->
+    <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, data: { remote: true, edit_event_target: "editForm" }, html: { class: "edit-description-form d-none" } do |f| %>
+      <div class="field">
+        <%= f.text_area :description, rows: 4, class: "edit-description-form display:none" %>
+      </div>
+      <div class="update-btn d-flex justify-content-center">
+        <%= f.submit "Mettre à jour la description", class: "validate-btn", data: { turbo_method: :patch } %>
+      </div>
+    <% end %>
+
+    <div>
+      <p class="description" data-edit-event-target = "editField"><%= @event.description %></p>
+    </div>
   </div>
 <% else %>
 

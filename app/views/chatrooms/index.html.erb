@@ -1,0 +1,21 @@
+<h1 class="text-center mb-4">Talks</h1>
+
+<div class="container">
+  <div class="row">
+    <% @chatrooms.each do |chatroom| %>
+      <div class="col-md-4 mb-3">
+        <%= link_to event_chatroom_path(chatroom.event), class: "card-link" do %>
+          <div class="card h-100">
+            <div class="card-body">
+             <%# <%= image_tag , class: "" if ? %>
+              <h5 class="card-title"><%= chatroom.name %></h5>
+              <p class="card-text">
+                <!-- Descriptions de la chatroom ici, si disponible -->
+              </p>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>

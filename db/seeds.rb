@@ -257,3 +257,7 @@ answer2_survey2 = Answer.create!(
 # Add more surveys as needed
 
 puts "C'est tout good :-)!"
+
+
+
+puts "creation des chatrooms"

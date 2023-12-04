@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_many :chatrooms
+  has_one :chatroom
   has_many :surveys
   has_many :todo_lists
   has_many :user_events
@@ -23,4 +23,11 @@ class Event < ApplicationRecord
   # end
 
 
+  after_create :create_chatroom
+
+  private
+
+  def create_chatroom
+    chatroom = Chatroom.create(event: self, name: title)
+  end
 end

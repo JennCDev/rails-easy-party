@@ -1,0 +1,26 @@
+/* Styles pour les messages à gauche */
+.left-message {
+  text-align: left;
+
+  margin-right: auto; /* Pour aligner le message à gauche */
+}
+
+/* Styles pour les messages à droite (messages des autres utilisateurs) */
+.right-message {
+  text-align: right;
+  margin-left: auto; /* Pour aligner le message à droite */
+}
+
+strong {
+  color: violet
+}
+
+.avatar {
+  width: 40px; // ou la taille que vous souhaitez
+  height: 40px; // doit être égal à la largeur pour un cercle parfait
+  border-radius: 50%; // rend l'image circulaire
+  object-fit: cover; // assure que l'image couvre tout l'espace sans être déformée
+  margin-bottom: 8px;
+
+  // Ajoutez d'autres styles si nécessaire, comme les bordures, l'ombre, etc.
+}
