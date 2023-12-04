@@ -1,0 +1,32 @@
+.guest {
+  position: relative;
+  border: 1px solid $main-color-light;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 10px;
+  margin-bottom: 15px;
+}
+
+.guest-details {
+  flex: 1; /* Pour occuper l'espace restant */
+}
+
+
+
+.yellow-crown {
+  color: rgb(205, 196, 31);
+  font-size: 26px;
+  // padding-left: 200px;
+  margin-right: 50px;
+}
+
+
+
+.fa-xmark {
+  position: absolute !important;
+  left: 460px;
+  font-size: 20px;
+  top: 18px !important;
+}

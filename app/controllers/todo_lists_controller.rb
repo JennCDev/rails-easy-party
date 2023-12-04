@@ -27,9 +27,11 @@ class TodoListsController < ApplicationController
 
   def update
     @todo_list = TodoList.find(params[:id])
-    # if @todo_list.update(todo_list_params)
-    # else
-    # end
+    if @todo_list.update(todo_list_params)
+      redirect_to todo_list_path(@todo_list.event)
+    else
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   def edit

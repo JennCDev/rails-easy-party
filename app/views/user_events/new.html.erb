@@ -1,30 +1,59 @@
+<%# btn retour %>
+<%= link_to event_path(@event) do %>
+  <i class="fa-solid fa-circle-chevron-left"></i>
+<% end %>
+
 <div class="container mt-4">
-  <h2>Participants à l'événement <%= @event.title %></h2>
-  <ul class="list-group mb-4">
+
+<%# liste des invités %>
+  <h2>Invités à "<%= @event.title %>"</h2>
+ <ul class="list-group mb-4 participants-status">
     <% @participants.each do |participant| %>
-        <%= participant.user.first_name %> <%= participant.user.last_name %> -
-        Organisateur : <%= participant.planner ? 'Oui' : 'Non' %>
+      <li class="guest">
+        <%= "#{participant.user.first_name} #{participant.user.last_name}" %>
+        <div class="icons-container">
+          <% if participant.planner %>
+            <i class="fa-solid fa-crown yellow-crown"></i>
+          <% else %>
+            <i class="fa-solid fa-crown"></i>
+          <% end %>
+        <i class="fa-solid fa-xmark"></i>
+        </div>
+      </li>
     <% end %>
   </ul>
 
-  <h2>Ajouter un utilisateur à l'événement</h2>
+<%# code de nico sur slack %>
+
+  <%# recherche %>
   <div data-controller="user-search">
     <div class="mb-3">
-      <label for="user_search">Rechercher un utilisateur</label>
-      <input type="text" id="user_search" name="user_search" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
+      <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
+
+
       <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
     </div>
 
     <div id="search-results" data-target="user-search.searchInput"></div>
 
-    <%= simple_form_for [@event, @user_event], html: { class: 'form-group' } do |f| %>
-      <%= f.hidden_field :user_id, id: 'selected_user_id', data: { user_search_target: "hidden" } %>
-      <%= f.hidden_field :event_id %>
-      <div class="mb-3">
-        <%= f.label :planner, "Organisateur", class: "form-label" %>
-        <%= f.check_box :planner, class: "form-check-input" %>
-      </div>
-      <%= f.submit 'Ajouter', class: "btn btn-primary" %>
-    <% end %>
-  </div>
+    <%# formulaire de résultat ? %>
+      <%= simple_form_for [@event, @user_event], html: { class: 'form-group' } do |f| %>
+        <%= f.hidden_field :user_id, id: 'selected_user_id', data: { user_search_target: "hidden" } %>
+        <%= f.hidden_field :event_id %>
+        <div class="mb-3">
+          <%= f.label :planner, "Organisateur", class: "form-label" %>
+          <%= f.check_box :planner, class: "form-check-input" %>
+        </div>
+
+    <%# couronne %>
+        <label for="organizer-crown" class="crown-label">
+          <i class="fa-solid fa-crown yellow-crown"></i>
+        </label>
+
+    <!-- Champ caché pour stocker l'état d'organisateur -->
+        <%= f.hidden_field :planner, class: "organizer-checkbox" %>
+        <%= f.submit 'Ajouter', class: "validate-btn" %>
+      <% end %>
+    </div>
+
 </div>
