@@ -64,6 +64,13 @@ class EventsController < ApplicationController
   end
 
   def update
+    # raise
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to event_path(@event)
+    else
+      render "events/show", status: :unprocessable_entity
+    end
   end
 
   def set_interested
