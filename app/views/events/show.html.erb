@@ -13,18 +13,7 @@
 
 <div class="event-infos">
   <h2 class="mt-3"><%= @event.title %></h2>
-  <p class="text-center">
-    <% if @event.start_at && @event.end_at && @event.start_at != @event.end_at %>
-      <span class="title-bold">DU <%= @event.start_at.strftime('%d/%m/%Y') %> AU <%= @event.end_at.strftime('%d/%m/%Y') %></span>
-    <% elsif @event.start_at && @event.end_at  %>
-      <span class="title-bold">LE <%= @event.start_at.strftime('%d/%m/%Y') %></span>
-    <% else %>
-    <div class="date-to-define d-flex justify-content-center">
-      <span class="title-bold">DATE A DEFINIR</span>
-      <i class="fa-solid fa-pen pt-1"></i>
-    </div>
-    <% end %>
-  </p>
+  <%= render "shared/show/edit_date" %>
 
 <%# Participants %>
 <%# choix %>
@@ -77,19 +66,9 @@
 
 
 <%# lieu %>
-  <div class="location d-flex">
-    <p class="mb-3">
-      <i class="fa-solid fa-location-dot"></i>
-      <% if @event.place.present? %>
-        <%= @event.place %>
-      <% else %>
-        Lieu à définir
-      <% end %>
-    </p>
-    <i class="fa-solid fa-pen pt-1"></i>
-  </div>
+<%= render "shared/show/edit_place" %>
 
-<%# bouton de partage de l'évènement %>
+<%# bouton de partage de l'évènement TODO %>
 
   <!-- Créer nouveaux sondages et listes -->
 

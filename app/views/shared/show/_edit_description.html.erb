@@ -1,3 +1,4 @@
+<%# user is planner %>
 <% if @user_is_planner %>
   <div class="description-title d-flex">
     <h3 class="mt-5 mb-2">Description </h3>
@@ -19,6 +20,7 @@
     <p class="description"><%= @event.description %></p>
   </div>
 <% else %>
+
   <!-- L'user n'est pas planner -->
   <h3 class="mt-5 mb-2 description">Description </h3>
    <p><%= @event.description %></p>
