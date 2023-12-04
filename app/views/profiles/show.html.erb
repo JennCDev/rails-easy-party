@@ -1,1 +1,57 @@
-<%= link_to 'Déconnexion', destroy_user_session_path, data: { turbo_method: :delete } %>
+<%# btn retour %>
+<%= link_to :back do %>
+  <i class="fa-solid fa-circle-chevron-left"></i>
+<% end %>
+
+<%# avatar %>
+<div class="mt-5 mb-2 d-flex justify-content-center position-relative">
+  <% if current_user.avatar.attached? %>
+    <%= image_tag url_for(current_user.avatar), class: "avatar-large" %>
+  <% end %>
+  <a href="#" class="edit-avatar position-absolute"><i class="fa-solid fa-pen p-3 fa-pen-avatar"></i></a>
+</div>
+
+<%# first name %>
+<p class="p-2">Prénom</p>
+<div class="first-name-show">
+  <p class="m-3"><%= current_user.first_name %></p>
+  <a href="#" class="edit-first-name"><i class="fa-solid fa-pen p-3"></i></a>
+</div>
+
+<%# last name %>
+<p class="p-2">NOM</p>
+<div class="last-name-show">
+  <p class="m-3"><%= current_user.last_name %></p>
+  <a href="#" class="edit-last-name"><i class="fa-solid fa-pen p-3"></i></a>
+</div>
+
+<%# password %>
+<p class="p-2">Mot de passe</p>
+<div class="password-show">
+  <p class="m-3">*******</p>
+  <a href="#" class="edit-password"><i class="fa-solid fa-pen p-3"></i></a>
+</div>
+
+
+<%# formulaire de modification %>
+<%= form_for @user, url: profiles_path(current_user),
+  method: :patch,
+  html: {
+      class: "edit-first-name-form d-none",
+      data: {
+        remote: true
+      }} do |f| %>
+        <div class="field">
+          <%= f.text_area :first_name, rows: 1, class: "edit-first-name-form display:none" %>
+        </div>
+          <div class="update-btn d-flex justify-content-center">
+    <%= f.submit "Mettre à jour le profil",
+      class: "validate-btn",
+      data: { turbo_method: :patch } %>
+  </div>
+      <% end %>
+
+
+<div class="d-flex justify-content-center">
+  <%= link_to 'Se déconnecter', destroy_user_session_path, class:"deconnexion", data: { turbo_method: :delete } %>
+</div>

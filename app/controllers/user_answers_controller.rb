@@ -9,8 +9,9 @@ class UserAnswersController < ApplicationController
   end
 
   def destroy
-    @answer = Answer.find(params[:id])
-    @answer.destroy
-    redirect_to survey_path(@answer.survey), status: :see_other
+    answer = Answer.find(params[:answer_id])
+    user_answer = current_user.user_answers.find_by(answer: answer)
+    user_answer.destroy if user_answer
+    redirect_to survey_path(answer.survey), status: :see_other
   end
 end

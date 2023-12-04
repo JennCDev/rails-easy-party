@@ -23,7 +23,6 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
-
     if @event.save
       user_event = UserEvent.new(user: current_user, event: @event, planner: true, status: 'going')
       user_event.save
@@ -64,12 +63,14 @@ class EventsController < ApplicationController
     @user_is_planner = @user_event.planner if @user_event
   end
 
-  def edit
-    raise
-  end
-
   def update
-    raise
+    # raise
+    @event = Event.find(params[:id])
+    if @event.update(event_params)
+      redirect_to event_path(@event)
+    else
+      render "events/show", status: :unprocessable_entity
+    end
   end
 
   def set_interested

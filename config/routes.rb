@@ -5,7 +5,7 @@ Rails.application.routes.draw do
 
   root to: "events#index"
 
-  resources :events, only: ["show", "new", "create", "edit", "update"] do
+  resources :events, only: ["show", "new", "create", "update"] do
     member do
       patch :set_interested
       patch :set_going
@@ -29,14 +29,13 @@ Rails.application.routes.draw do
   end
 
   resources :answers, only: [] do
-    resources :user_answers, only: ["create"]
+    resources :user_answers, only: ["create", "destroy"]
   end
 
   resources :items, only: [] do
     resources :user_items, only: ["create", "destroy"]
   end
 
-  resources :user_answers, only: ["destroy"]
   resources :todo_lists, only: ["show"]
   resource :profiles, only: ["show"]
 
