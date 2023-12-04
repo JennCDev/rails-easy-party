@@ -41,6 +41,6 @@
 
 <%# valider la modification %>
   <div class="d-flex justify-content-center">
-    <%= render "shared/buttons/validate_btn" %>
+    <%= link_to "Valider", event_path(event), class: "d-flex justify-content-center validate-btn" %>
   </div>
 <% end %>

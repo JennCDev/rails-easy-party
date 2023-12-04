@@ -216,16 +216,16 @@ puts "Evenement créer sans problème"
 puts "On créer les surveys !"
 # Create surveys
 survey1 = Survey.create!(
-  question: 'On le fait quand le birthday de la queen?',
-  deadline: Date.today + 1.month,
-  category: 'Date',
+  question: 'Soirée déguisée?',
+  deadline: Date.today + 1.week,
+  category: 'Autre',
   user: marion,
   event: event1
 )
 
 survey2 = Survey.create!(
-  question: 'On adopte un chat ou un chien?',
-  deadline: Date.today + 2.months,
+  question: 'On ramène les enfants?',
+  deadline: Date.today + 1.week,
   category: 'Autre',
   result: 'Pending',
   user: nicolas,
@@ -234,22 +234,22 @@ survey2 = Survey.create!(
 
 # Ajouter des réponses aux sondages
 answer1_survey1 = Answer.create!(
-  content: 'Le birthday de la queen peut être le 15 janvier.',
+  content: 'Oui',
   survey_id: survey1.id # Assurez-vous d'utiliser l'ID du sondage
 )
 
 answer2_survey1 = Answer.create!(
-  content: 'Non, plutôt en février serait mieux.',
+  content: 'Non',
   survey_id: survey1.id # Assurez-vous d'utiliser l'ID du sondage
 )
 
 answer1_survey2 = Answer.create!(
-  content: 'Adoptons un chat!',
+  content: 'Carrément !',
   survey_id: survey2.id # Assurez-vous d'utiliser l'ID du sondage
 )
 
 answer2_survey2 = Answer.create!(
-  content: 'Non, adoptons un chien!',
+  content: 'Même pas en rêve',
   survey_id: survey2.id # Assurez-vous d'utiliser l'ID du sondage
 )
 
