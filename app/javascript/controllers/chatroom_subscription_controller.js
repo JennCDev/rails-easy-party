@@ -6,24 +6,36 @@ export default class extends Controller {
   static targets = ["messages"];
 
   connect() {
+    const currentUserId = this.messagesTarget.dataset.currentUserId;
     this.channel = createConsumer().subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
       {
         received: data => {
-          this.insertMessageAndScrollDown(data);
+          this.insertMessageAndScrollDown(data, currentUserId);
         }
       }
     );
-    console.log("salut")
     console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`);
   }
 
-  insertMessageAndScrollDown(data) {
-    console.log("Inserting message and scrolling down:", data);
-    this.messagesTarget.insertAdjacentHTML("beforeend", data);
-    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
+  insertMessageAndScrollDown(data, currentUserId) {
+    const message = document.createElement('div')
 
+    message.innerHTML = data
+    this.messagesTarget.insertAdjacentElement('beforeend', message);
+
+    console.log(message.firstChild.nextElementSibling.dataset.senderid === currentUserId)
+    console.log(currentUserId)
+
+    if (message.firstChild.nextElementSibling.dataset.senderid === currentUserId) {
+      message.firstChild.nextElementSibling.classList.add('right-message');
+    } else {
+      message.firstChild.nextElementSibling.classList.remove('right-message');
+      message.firstChild.nextElementSibling.classList.add('left-message');
+      message.firstChild.nextElementSibling.classList.add('avatar');
+    }
   }
+
 
   resetForm(event) {
     event.target.reset()
