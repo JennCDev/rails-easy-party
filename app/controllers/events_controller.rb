@@ -64,7 +64,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    # raise
     @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to event_path(@event)
@@ -72,6 +71,7 @@ class EventsController < ApplicationController
       render "events/show", status: :unprocessable_entity
     end
   end
+
 
   def set_interested
     update_status('maybe')
@@ -88,7 +88,7 @@ class EventsController < ApplicationController
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_at, :end_at, :place, :photo_banner)
+    params.require(:event).permit(:title, :description, :start_at, :end_at, :place, :photo_banner, new_photos: [])
   end
 
   def update_status(new_status)

@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
+
   const editDate = document.querySelector('.edit-date');
   const editDateForm = document.querySelector('.edit-date-form');
   const dateContainer = document.querySelector('.date-container')
@@ -7,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   editDate.addEventListener('click', function(event) {
     event.preventDefault();
+    console.log('hrllo');
     console.log(editDate);
 
     editDateForm.classList.toggle('d-none');

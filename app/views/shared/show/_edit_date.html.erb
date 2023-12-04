@@ -1,48 +1,42 @@
 <% if @user_is_planner %>
-  <div class="date-container d-flex justify-content-center">
-      <% if @event.start_at && @event.end_at && @event.start_at != @event.end_at %>
-        <span class="title-bold">DU <%= @event.start_at.strftime('%d/%m/%Y') %> AU <%= @event.end_at.strftime('%d/%m/%Y') %></span>
-      <% elsif @event.start_at && @event.end_at  %>
-        <span class="title-bold">LE <%= @event.start_at.strftime('%d/%m/%Y') %></span>
-      <% else %>
-      <div class="date-to-define d-flex justify-content-center">
-        <span class="title-bold">DATE A DEFINIR</span>
-      </div>
-      <% end %>
-    <a href="#" class="edit-date"><i class="fa-solid fa-pen "></i></a>
-  </div>
-
-
-
-
-  <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, html: { class: "edit-date-form d-none", data: { remote: true } } do |f| %>
-    <div class="dates" data-controller="edit-dates">
-    <%= f.label :dates, "Dates", class: "form-label" %>
-    <input type="text" id="dates" data-edit-dates-target="dateInput" data-action="change->edit-dates#editDates" class="form-control">
-      <%= f.hidden_field :start_at,
-        label: 'Date de début',
-        as: :string,
-
-          data: {
-            edit_dates_target:"startDate"
-            },
-
-        label: false %>
-      <%= f.hidden_field :end_at,
-      label: 'Date de fin',
-      as: :string,
-
-        data: {
-          edit_dates_target:"endDate"
-          },
-
+  <div data-controller="">
+    <div class="date-container d-flex justify-content-center">
+        <% if @event.start_at && @event.end_at && @event.start_at != @event.end_at %>
+          <span class="title-bold">DU <%= @event.start_at.strftime('%d/%m/%Y') %> AU <%= @event.end_at.strftime('%d/%m/%Y') %></span>
+        <% elsif @event.start_at && @event.end_at  %>
+          <span class="title-bold">LE <%= @event.start_at.strftime('%d/%m/%Y') %></span>
+        <% else %>
+        <div class="date-to-define d-flex justify-content-center">
+          <span class="title-bold">DATE A DEFINIR</span>
+        </div>
+        <% end %>
+      <a href="#" class="edit-date"><i class="fa-solid fa-pen "></i></a>
+    </div>
+    <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, html: { class: "edit-date-form d-none", data: { remote: true } } do |f| %>
+      <div class="dates" data-controller="edit-dates">
+      <%= f.label :dates, "Dates", class: "form-label" %>
+      <input type="text" id="dates" data-edit-dates-target="dateInput" data-action="change->edit-dates#editDates" class="form-control">
+        <%= f.hidden_field :start_at,
+          label: 'Date de début',
+          as: :string,
+            data: {
+              edit_dates_target:"startDate"
+              },
           label: false %>
-    </div>
-  <%# btn de validation %>
-    <div class="update-btn d-flex justify-content-center">
-      <%= f.submit "Mettre à jour les dates", class: "validate-btn", data: { turbo_method: :patch } %>
-    </div>
-  <% end %>
+        <%= f.hidden_field :end_at,
+        label: 'Date de fin',
+        as: :string,
+          data: {
+            edit_dates_target:"endDate"
+            },
+            label: false %>
+      </div>
+    <%# btn de validation %>
+      <div class="update-btn d-flex justify-content-center">
+        <%= f.submit "Mettre à jour les dates", class: "validate-btn", data: { turbo_method: :patch } %>
+      </div>
+    <% end %>
+  </div>
 
 
 
