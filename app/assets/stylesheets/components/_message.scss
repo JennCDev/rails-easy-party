@@ -20,6 +20,7 @@ strong {
   height: 40px; // doit être égal à la largeur pour un cercle parfait
   border-radius: 50%; // rend l'image circulaire
   object-fit: cover; // assure que l'image couvre tout l'espace sans être déformée
+  margin-bottom: 8px;
 
   // Ajoutez d'autres styles si nécessaire, comme les bordures, l'ombre, etc.
 }
