@@ -4,8 +4,6 @@ class UserEventsController < ApplicationController
   def new
     @event = Event.find(params[:event_id])
     @user_event = UserEvent.new
-    @users = User.all
-    @guests = @event.user_events.includes(:user).where(status: 'pending')
   end
 
   def create

@@ -7,6 +7,9 @@ class SurveysController < ApplicationController
   def new
     @survey = Survey.new
     @event = Event.find(params[:event_id])
+    @user = User.all
+    @guests = @event.user_events
+
   end
 
   def create
