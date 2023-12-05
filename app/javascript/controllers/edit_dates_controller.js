@@ -8,11 +8,15 @@ export default class extends Controller {
   connect() {
     flatpickr(this.dateInputTarget, {
       mode: "range",
+      dateFormat: "d/m/Y",
+      locale: {
+        rangeSeparator: ' - '
+    }
     })
   }
 
   editDates(event) {
-    const dates = this.dateInputTarget.value.split(" to ")
+    const dates = this.dateInputTarget.value.split(" - ")
     if (dates.length > 1) {
       this.startDateTarget.value = dates[0]
       this.endDateTarget.value = dates[1]
