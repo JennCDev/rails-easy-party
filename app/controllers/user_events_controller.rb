@@ -38,6 +38,11 @@ class UserEventsController < ApplicationController
       @event = Event.find(params[:id])
     end
 
+    def update
+      guest = UserEvent.find(params[:id])
+      guest.update(planner: guest.planner == false)
+      redirect_to new_event_user_event_path(guest.event)
+    end
 
 
 

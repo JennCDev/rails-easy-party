@@ -13,9 +13,11 @@
         <%= "#{guest.user.first_name} #{guest.user.last_name}" %>
         <div class="icons-container">
           <% crown_class = guest.planner ? 'fa-crown yellow-crown' : 'fa-crown' %>
-          <i class="fa-solid <%= crown_class %>"
-             onclick="this.classList.toggle('yellow-crown'); this.classList.toggle('black-crown'); document.getElementById('planner_status_<%= guest.id %>').value = this.classList.contains('yellow-crown');"></i>
-          <i class="fa-solid fa-xmark-guest"></i>
+          <%= link_to user_event_path(guest), data: {turbo_method: "PATCH"} do  %>
+            <i class="fa-solid <%= crown_class %>"
+               onclick="this.classList.toggle('yellow-crown'); this.classList.toggle('black-crown'); document.getElementById('planner_status_<%= guest.id %>').value = this.classList.contains('yellow-crown');"></i>
+            <i class="fa-solid fa-xmark-guest"></i>
+          <% end %>
         </div>
       </li>
     <% end %>
