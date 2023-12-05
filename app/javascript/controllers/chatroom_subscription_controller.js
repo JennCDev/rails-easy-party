@@ -29,11 +29,15 @@ export default class extends Controller {
 
     if (message.firstChild.nextElementSibling.dataset.senderid === currentUserId) {
       message.firstChild.nextElementSibling.classList.add('right-message');
+      this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
     } else {
       message.firstChild.nextElementSibling.classList.remove('right-message');
       message.firstChild.nextElementSibling.classList.add('left-message');
       message.firstChild.nextElementSibling.classList.add('avatar');
+      this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight)
+
     }
+
   }
 
 

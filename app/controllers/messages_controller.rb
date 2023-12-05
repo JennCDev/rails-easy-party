@@ -16,6 +16,10 @@ class MessagesController < ApplicationController
     end
   end
 
+  def mark_messages_as_read(chatroom, user)
+    chatroom.messages.where(user: user, read: false).update_all(read: true)
+  end
+
   private
 
   def message_params

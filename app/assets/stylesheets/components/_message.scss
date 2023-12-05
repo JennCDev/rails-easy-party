@@ -24,3 +24,70 @@ strong {
 
   // Ajoutez d'autres styles si nécessaire, comme les bordures, l'ombre, etc.
 }
+.text-center {
+  text-align: center;
+}
+
+.container_messages {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 500px; /* Taille fixe de la carte */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+}
+
+.card-link {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.card-img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 15px;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.card-title {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.card-text {
+  margin-top: 5px;
+  font-size: 1rem;
+  color: #666;
+}
+
+.message-read {
+  color: green;
+  font-weight: bold;
+}
+
+.message-unread {
+  color: red;
+  font-weight: bold;
+}
+
+.message {
+  background-color: grey;
+}
