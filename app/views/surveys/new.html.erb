@@ -5,13 +5,16 @@
 <h2>Nouveau sondage</h2>
 
 <%= simple_form_for [@event, @survey] do |f| %>
+<!--
   <%= f.input :category, label: 'Sujet du sondage', collection: Survey::CATEGORIES %>
+-->
   <%= f.input :question, label: 'Question', as: :string %>
   <%= f.input :deadline, label: 'Date limite de réponse', as: :string, input_html: { data: { controller: "datepicker-simple" } } %>
 
   <div id="answers" data-controller="insert-in-answers">
     <div data-insert-in-answers-target="answers">
   </div>
+  
   <%= f.fields_for :answers do |a| %>
     <div class="d-flex input-spacing align-items-start">
       <div class="d-flex btn-group w-100">

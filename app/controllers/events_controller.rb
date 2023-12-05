@@ -64,7 +64,6 @@ class EventsController < ApplicationController
   end
 
   def update
-    # raise
     @event = Event.find(params[:id])
     if @event.update(event_params)
       redirect_to event_path(@event)
@@ -72,6 +71,7 @@ class EventsController < ApplicationController
       render "events/show", status: :unprocessable_entity
     end
   end
+
 
   def set_interested
     update_status('maybe')
@@ -85,10 +85,25 @@ class EventsController < ApplicationController
     update_status("can't go")
   end
 
+  def invite
+    if user_signed_in?
+      @event = Event.find(params[:id])
+      unless UserEvent.find_by(event: @event, user: current_user)
+        @user_event = UserEvent.new
+        @user_event.event = @event
+        @user_event.user = current_user
+        @user_event.status = "pending"
+        @user_event.planner = false
+        @user_event.save
+      end
+      redirect_to event_path(@event)
+    end
+  end
+
   private
 
   def event_params
-    params.require(:event).permit(:title, :description, :start_at, :end_at, :place, :photo_banner)
+    params.require(:event).permit(:title, :description, :start_at, :end_at, :place, :photo_banner, new_photos: [])
   end
 
   def update_status(new_status)

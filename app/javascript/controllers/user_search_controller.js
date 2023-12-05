@@ -2,7 +2,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["searchInput", "link", "hidden"];
+  static targets = ["searchInput", "link", "hidden", "crown"];
 
   connect() {
     console.log(this.linkTarget.href);
@@ -51,6 +51,9 @@ export default class extends Controller {
     });
   }
 
-
+  planner() {
+    // console.log("youre in")
+    this.crownTarget.toggle
+  }
 
 }
