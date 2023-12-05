@@ -1,12 +1,18 @@
-.card-photos{
-  width: 44vw;
-  object-fit: cover;
-}
+.display-photos {
+  display: flex;
+  flex-wrap: wrap;
+  margin: -5px; /* Ajoute des marges négatives pour compenser les marges des éléments enfants */
 
+  .card-photos {
+    width: calc(33.33% - 10px); /* Calcule la largeur pour 3 photos par ligne avec marges */
+    margin: 5px; /* Ajoute des marges pour espacer les photos */
 
-.select-files{
-  // background-color: $main-color;
-  // color: white;
-  // border-radius: 8px;
-  // a revoir
+    @media (min-width: 481px) and (max-width: 1024px) {
+      width: calc(50% - 5px); /* 3 photos par ligne pour les écrans moyens */
+    }
+
+    @media (min-width: 1025px) {
+      width: calc(16.66% - 5px); /* 6 photos par ligne pour les grands écrans */
+    }
+  }
 }
