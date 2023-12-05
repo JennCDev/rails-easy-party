@@ -5,7 +5,7 @@ class UserEventsController < ApplicationController
     @event = Event.find(params[:event_id])
     @user_event = UserEvent.new
     @users = User.all
-    @participants = @event.user_events.includes(:user).where(status: 'going')
+    @guests = @event.user_events.includes(:user).where(status: 'pending')
   end
 
   def create
@@ -24,6 +24,7 @@ class UserEventsController < ApplicationController
         @user_event.status = 'pending'
       end
 
+      @guests = @event.user_events.includes(:user).where(status: 'going')
       if @user_event.save
         redirect_to event_path(@event), notice: "Utilisateur ajouté à l'événement avec succès!"
       else
@@ -35,6 +36,13 @@ class UserEventsController < ApplicationController
     def show
       @event = Event.find(params[:id])
     end
+
+    def update
+      @event = Event.find(params[:event_id])
+      
+      # @user_events = @event.user_events.find(params[:users][:planner])
+    end
+
   end
 
   private
