@@ -1,0 +1,27 @@
+
+<% if @user_is_planner or @survey.user == current_user %>
+  <div data-controller = "edit-event">
+    <div class="survey-content mb-4 d-flex">
+      <span class="title-bold">Date limite :</span>
+      <span data-edit-event-target = "editField" class="mx-1"> <%= @survey.deadline.strftime('%d/%m/%Y') %> </span>
+      <!--Bouton pour modifier-->
+      <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen edit-description"></i></a>
+    </div>
+      <!--Formulaire de modification-->
+      <%= simple_form_for @survey, url: survey_path(@survey), data: { turbo_method: :patch }, data: { remote: true, edit_event_target: "editForm" }, html: { class: " mx-2 d-none" } do |f| %>
+        <%= f.input :deadline, label: false, as: :string,  input_html: { data: { controller: "datepicker-simple-edit" }, value: @survey.deadline.strftime('%d/%m/%Y') } %>
+        <div class="update-btn d-flex justify-content-center">
+          <%= f.submit "Mettre à jour la date limite", class: "validate-btn", data: { turbo_method: :patch } %>
+        </div>
+      <% end %>
+  </div>
+
+<% else %>
+
+  <!-- L'user n'est pas planner -->
+  <div class="survey-content mb-4">
+    <span class="title-bold">Date limite : </span>
+    <span><%= @survey.deadline.strftime('%d/%m/%Y') %></span>
+  </div>
+
+<% end %>

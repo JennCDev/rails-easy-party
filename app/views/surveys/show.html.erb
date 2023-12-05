@@ -8,10 +8,7 @@
 <h2 class="mb-5"><%= @survey.question %></h2>
 
 <%# date limite %>
-<div class="survey-content mb-4">
-  <span class="title-bold">Date limite : </span>
-  <span><%= @survey.deadline.strftime('%d/%m/%Y') %></span>
-</div>
+<%= render "shared/show/edit_deadline_survey" %>
 
 <%# à vos votes %>
 <% if @survey.deadline >= Date.today %>
