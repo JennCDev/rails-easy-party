@@ -11,7 +11,11 @@
           <h5 class="card-title">
             <%= chatroom_data[:chatroom].name %>
           </h5>
-
+    <% if chatroom_data[:last_message].present? %>
+              <%= chatroom_data[:last_message].content %>
+              <% else %>
+              <p class="resize-text-card">Aucun message</p>
+          <% end %>
         </div>
       <% end %>
     </div>
