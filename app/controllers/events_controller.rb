@@ -30,7 +30,7 @@ class EventsController < ApplicationController
       unless @event.start_at && @event.end_at
         @survey_date = Survey.new
         @survey_date.question = "Vos dispos?"
-        @survey_date.category = "Date"
+        @survey_date.category = "date"
         @survey_date.user = current_user
         @survey_date.event = @event
         @survey_date.deadline = Date.today + 1.week
@@ -39,7 +39,7 @@ class EventsController < ApplicationController
       unless @event.place != ""
         @survey_place = Survey.new
         @survey_place.question = "Où va-t-on?"
-        @survey_place.category = "Lieu"
+        @survey_place.category = "place"
         @survey_place.user = current_user
         @survey_place.event = @event
         @survey_place.deadline = Date.today + 1.week
