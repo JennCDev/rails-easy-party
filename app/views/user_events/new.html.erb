@@ -5,37 +5,33 @@
 
 <div class="container mt-4">
 
-<%# liste des invités %>
+<%# Liste des invités %>
   <h2>Invités à "<%= @event.title %>"</h2>
- <ul class="list-group mb-4 guests-status">
+  <ul class="list-group mb-4 guests-status">
     <% @guests.each do |guest| %>
       <li class="guest">
         <%= "#{guest.user.first_name} #{guest.user.last_name}" %>
         <div class="icons-container">
-          <% if guest.planner %>
-            <i class="fa-solid fa-crown yellow-crown"></i>
-          <% else %>
-            <i class="fa-solid fa-crown"></i>
+          <% crown_class = guest.planner ? 'fa-crown yellow-crown' : 'fa-crown' %>
+          <%= link_to user_event_path(guest), data: {turbo_method: "PATCH"} do  %>
+            <i class="fa-solid <%= crown_class %>"
+               onclick="this.classList.toggle('yellow-crown'); this.classList.toggle('black-crown'); document.getElementById('planner_status_<%= guest.id %>').value = this.classList.contains('yellow-crown');"></i>
+            <i class="fa-solid fa-xmark-guest"></i>
           <% end %>
-        <i class="fa-solid fa-xmark-guest"></i>
         </div>
       </li>
     <% end %>
   </ul>
 
+
 <%# code de nico sur slack %>
 
   <%# recherche %>
-  <div data-controller="user-search" >
+  <div data-controller="user-search">
     <div class="mb-3">
-
       <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
-
-  <%# link to invisible qui redirige vers un index qui liste tous les utilisateurs. il va chercher index jbuilder json %>
       <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
-
     </div>
-
     <div id="search-results" data-target="user-search.searchInput"></div>
 
     <%# formulaire de résultat ? %>
@@ -59,13 +55,13 @@
     </div>
 
 
+
+
+
     <div id="search-results" data-target="user-search.searchInput"></div>
 
+    <%= simple_form_for [@event, @user_event] do |f| %>
+  <!-- Vos champs de formulaire ici -->
 
-<%# je souhaite qu'au clic sur le bouton valider, ça enregistre user_events.planner = true si crown-yellow et vice versa. ma condition est à mettre dans le controller ou dans la vue ? que mettre dans la méthode update ? %>
-
-<div class="update-btn d-flex justify-content-center">
-  <%= link_to "Valider", "" , class: "d-flex justify-content-center validate-btn", data: {turbo_method: :patch} %>
-</div>
-
-<%= console %>
+  <%= f.button :submit, "Valider" %>
+<% end %>

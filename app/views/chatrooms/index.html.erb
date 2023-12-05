@@ -1,21 +1,25 @@
-<h1 class="text-center mb-4">Discussions</h1>
 
-<div class="container">
-  <div class="row">
-    <% @chatrooms.each do |chatroom| %>
-      <div class="col-md-4 mb-3">
-        <%= link_to event_chatroom_path(chatroom.event), class: "card-link" do %>
-          <div class="card h-100">
-            <div class="card-body">
-             <%# <%= image_tag , class: "" if ? %>
-              <h5 class="card-title"><%= chatroom.name %></h5>
-              <p class="card-text">
-                <!-- Descriptions de la chatroom ici, si disponible -->
-              </p>
-            </div>
-          </div>
+<h1 class="text-center">Talks</h1>
+
+
+<div class="container_messages">
+  <% @chatrooms.each do |chatroom_data| %>
+    <div class="card">
+      <%= link_to event_chatroom_path(chatroom_data[:chatroom].event), class: "card-link" do %>
+        <% if chatroom_data[:chatroom].event.photo_banner.attached? %>
+          <%= image_tag chatroom_data[:chatroom].event.photo_banner, class: "card-img" %>
         <% end %>
-      </div>
-    <% end %>
-  </div>
+        <div class="card-info">
+          <h5 class="card-title">
+            <%= chatroom_data[:chatroom].name %>
+          </h5>
+    <% if chatroom_data[:last_message].present? %>
+              <%= chatroom_data[:last_message].content %>
+              <% else %>
+              <p class="resize-text-card">Aucun message</p>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
 </div>
