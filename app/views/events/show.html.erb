@@ -13,9 +13,6 @@
   <h2 class="mt-3"><%= @event.title %></h2>
 <%= render "shared/show/edit_date" %>
 
-<%# ajout des photos de l'évènement %>
-<%= render "shared/show/photos" %>
-
 
 <%# Participants %>
 <%# choix %>
@@ -53,9 +50,14 @@
 <%= render 'shared/show/create_surveys_todos' %>
 
 
-<%# affichage des surveys et listes  %>
+
+  <%# affichage des surveys et listes  %>
 <%= render 'shared/show/surveys_todo_lists' %>
 
 
 <%# Description %>
 <%= render 'shared/show/edit_description' %>
+
+
+<%# ajout des photos de l'évènement %>
+<%= render "shared/show/photos" %>

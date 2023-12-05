@@ -57,6 +57,7 @@ class EventsController < ApplicationController
   end
 
   def show
+    console
     @event = Event.find(params[:id])
     @user_events = UserEvent.where(event_id: @event.id)
     @user_event = @event.user_events.find_by(user_id: current_user.id)

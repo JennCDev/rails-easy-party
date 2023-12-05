@@ -8,12 +8,18 @@ class MessagesController < ApplicationController
     if @message.save
       ChatroomChannel.broadcast_to(
         @chatroom,
-        render_to_string(partial: "message", locals: {message: @message})
+        message: render_to_string(partial: "message", locals: { message: @message }),
+        sender_id: @message.user.id,
+        avatar_url: @message.user.avatar.attached? ? url_for(@message.user.avatar) : nil
       )
-      head :ok
+
     else
       #
     end
+  end
+
+  def mark_messages_as_read(chatroom, user)
+    chatroom.messages.where(user: user, read: false).update_all(read: true)
   end
 
   private

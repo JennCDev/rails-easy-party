@@ -14,11 +14,12 @@ Rails.application.routes.draw do
 
     resources :surveys, only: ["new", "create"]
     resources :todo_lists, only: ["new", "create"]
-    resources :user_events
+    resources :user_events, except: ["update"]
 
     resource :chatroom, only: ["show", "create"]
   end
 
+  resources :user_events, only: ["update"]
 
   resources :users, only: [:index] do
     get 'search', on: :collection
@@ -46,4 +47,5 @@ Rails.application.routes.draw do
   end
 
   get 'events/:id/invite', to: 'events#invite', as: :event_url
+
 end

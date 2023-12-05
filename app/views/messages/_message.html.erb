@@ -1,13 +1,12 @@
-<% message = local_assigns[:message] %>
-<% next_message = local_assigns[:next_message] %>
-<% is_last_of_series = next_message.nil? || next_message.user != message.user %>
-
-<div id="message-<%= message.id %>" data-senderid="<%= message.user.id  %>" class="<%= message.user == current_user ? 'right-message' : 'left-message ' %>">
+<div id="message-<%= message.id %>" data-senderid="<%= message.user.id  %>" >
   <small>
-    <% if message.user != current_user && is_last_of_series %>
+    <% if message.user != current_user %>
       <%= image_tag message.user.avatar, class: "avatar" if message.user.avatar.attached? %>
     <% end %>
-    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+    <div class="top-0 end-0">
+    <i><%= message.created_at.strftime("le %d-%m-%Y à %Hh%m") %></i>
+    </div>
   </small>
   <p><%= message.content %></p>
 </div>
+
