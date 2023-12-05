@@ -5,6 +5,8 @@
   <% end %>
 </div>
 
-<% @event.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, class: "card-photos img-fluid", crop: :fill %>
-<% end %>
+<div class="display-photos">
+  <% @event.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, class: "card-photos img-fluid", crop: :fill %>
+  <% end %>
+</div>

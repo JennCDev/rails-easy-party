@@ -7,7 +7,8 @@
     <% if message.user != current_user && is_last_of_series %>
       <%= image_tag message.user.avatar, class: "avatar" if message.user.avatar.attached? %>
     <% end %>
-    <i><%= message.created_at.strftime("%a %b %e at %l:%M %p") %></i>
+  <p class="message-date"><%= message.created_at.strftime("%d-%B-%Y à %H:%M:%S") %></p>
   </small>
   <p><%= message.content %></p>
 </div>
+
