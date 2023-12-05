@@ -1,0 +1,14 @@
+  <div class="text-center mb-4">
+    <%= link_to new_event_user_event_path(event_id: @event.id), class: "link text-bold" do %>
+      <% guests_count = @event.user_events.count %>
+      <% participants_count = @event.user_events.where(status: 'going').count %>
+      <% interested_count = @event.user_events.where(status: 'maybe').count %>
+
+      <% guests_text = guests_count == 1 ? 'invité' : 'invités' %>
+      <% participants_text = participants_count == 1 ? 'participant' : 'participants' %>
+      <% interested_text = interested_count == 1 ? 'intéressé' : 'intéressés' %>
+
+      <%= "#{guests_count} #{guests_text} - #{pluralize(participants_count, participants_text)} - #{pluralize(interested_count, interested_text)}" %>
+      <span><i class="fa-solid fa-user-plus px-1"></i></span>
+    <% end %>
+  </div>

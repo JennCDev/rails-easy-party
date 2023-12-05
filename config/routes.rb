@@ -46,5 +46,6 @@ Rails.application.routes.draw do
     resources :messages, only: :create
   end
 
+  get 'events/:id/invite', to: 'events#invite', as: :event_url
 
 end
