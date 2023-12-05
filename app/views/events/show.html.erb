@@ -39,6 +39,21 @@
 
 <%# bouton de partage de l'évènement TODO %>
 
+<div data-controller="clipboard" class="mb-3" data-clipboard-url-value="<%= event_url_path(@event) %>">
+  <button  data-action="click->clipboard#copy" class="btn-share">
+    <i class="fa-solid fa-share-nodes"></i> Partager l'évènement
+  </button>
+  <div class="alert alert-success alert-dismissible fade show d-none" role="alert" data-clipboard-target="notification">
+    URL copié avec succès!
+    <button type="button" class="btn-close" data-action="click->clipboard#hideAlert"></button>
+</div>
+</div>
+
+<div class="alert alert-success alert-dismissible fade show d-none" role="alert">
+  URL copié avec succès!
+  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+</div>
+
 <!-- Créer nouveaux sondages et listes -->
 <%= render 'shared/show/create_surveys_todos' %>
 

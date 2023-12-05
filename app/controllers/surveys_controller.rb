@@ -15,9 +15,11 @@ class SurveysController < ApplicationController
     @survey.user = current_user
     @survey.event = @event
     if @survey.save
-      params[:survey][:answer].each do |answer|
-        new_answer = Answer.new(content: answer, survey: @survey)
-        new_answer.save if new_answer.valid?
+      if params[:survey][:answer].present?
+        params[:survey][:answer].each do |answer|
+          new_answer = Answer.new(content: answer, survey: @survey)
+          new_answer.save if new_answer.valid?
+        end
       end
       redirect_to survey_path(@survey)
     else
