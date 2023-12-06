@@ -2,47 +2,63 @@ import { Controller } from "@hotwired/stimulus";
 import { createConsumer } from "@rails/actioncable";
 
 export default class extends Controller {
-  static values = { chatroomId: Number };
+  static values = { chatroomId: Number, currentUserId: Number };
   static targets = ["messages"];
 
   connect() {
-    const currentUserId = this.messagesTarget.dataset.currentUserId;
     this.channel = createConsumer().subscriptions.create(
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
       {
         received: data => {
-          this.insertMessageAndScrollDown(data, currentUserId);
+          this.insertMessageAndScrollDown(data);
         }
       }
     );
-    console.log(`Subscribed to the chatroom with the id ${this.chatroomIdValue}.`);
   }
 
-  insertMessageAndScrollDown(data, currentUserId) {
-    const message = document.createElement('div')
+  #buildMessageElement(currentUserIsSender, message, avatarUrl, userId) {
+    // Construction de l'élément image pour l'avatar
+    const avatarImg = avatarUrl ? `<img src="${avatarUrl}" class="avatar">` : '';
 
-    message.innerHTML = data
-    this.messagesTarget.insertAdjacentElement('beforeend', message);
+    // Construction de l'élément HTML pour le message, incluant l'avatar et le message dans la même div
+    const messageContent = `<div class="message-content ${this.userStyleClass(currentUserIsSender)}">
+                              ${currentUserIsSender ? '' : avatarImg}
+                              <div class="message-text">${message}</div>
+                            </div>`;
 
-    console.log(message.firstChild.nextElementSibling.dataset.senderid === currentUserId)
-    console.log(currentUserId)
+    return `
+      <div class="message-row d-flex ${this.justifyClass(currentUserIsSender)}">
+        ${messageContent}
+      </div>
+    `;
+  }
 
-    if (message.firstChild.nextElementSibling.dataset.senderid === currentUserId) {
-      message.firstChild.nextElementSibling.classList.add('right-message');
-    } else {
-      message.firstChild.nextElementSibling.classList.remove('right-message');
-      message.firstChild.nextElementSibling.classList.add('left-message');
-      message.firstChild.nextElementSibling.classList.add('avatar');
-    }
+
+
+  // Détermine la classe de justification en fonction de l'expéditeur
+  justifyClass(currentUserIsSender) {
+    return currentUserIsSender ? "justify-content-end" : "justify-content-start";
+  }
+
+  // Détermine la classe de style en fonction de l'expéditeur
+  userStyleClass(currentUserIsSender) {
+    return currentUserIsSender ? "sender-style" : "receiver-style";
+  }
+
+  // Insère le message dans le DOM et fait défiler jusqu'à lui
+  insertMessageAndScrollDown(data) {
+    const currentUserIsSender = this.currentUserIdValue === data.sender_id;
+    const messageElement = this.#buildMessageElement(currentUserIsSender, data.message, data.avatar_url, data.sender_id);
+    this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
+    this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
   }
 
 
   resetForm(event) {
-    event.target.reset()
+    event.target.reset();
   }
 
   disconnect() {
-    console.log("Unsubscribed from the chatroom")
-    this.channel.unsubscribe()
+    this.channel.unsubscribe();
   }
 }

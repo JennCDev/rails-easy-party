@@ -12,6 +12,7 @@
   <div id="answers" data-controller="insert-in-answers">
     <div data-insert-in-answers-target="answers">
   </div>
+
   <%= f.fields_for :answers do |a| %>
     <div class="d-flex input-spacing align-items-start">
       <div class="d-flex btn-group w-100">
@@ -24,6 +25,26 @@
         <%= link_to "Valider", "", class: "validate-btn-small", data: { action: "click->insert-in-answers#insertAnswers" } %>
       </div>
     </div>
+
+<%# display les avatars d'invités pour pouvoir les mettre en hidden %>
+<div class="d-flex justify-content-center pb-3">Je cache ce sondage à</div>
+  <div class="d-flex flex-row">
+    <% @guests.each do |guest| %>
+      <%= f.radio_button :hidden_user_id, guest.user.id %>
+        <% if guest.user.avatar.attached? %>
+          <img src="<%= url_for(guest.user.avatar) %>"
+              class="avatar m-1"
+              id="avatar_<%= guest.id %>"
+              alt="Avatar"
+              onclick="this.classList.toggle('gray-scale'); this.classList.toggle(''); document.getElementById('planner_status_<%= guest.id %>').value = this.classList.contains('yellow-crown');">
+        <% else %>
+          <%= image_tag "default_avatar.jpg", class: "avatar" %>
+        <% end %>
+    <% end %>
+  </div>
+
+
+    <%# validation %>
     <div class="d-flex justify-content-center">
       <%= f.submit 'Valider', class: "mt-5 validate-btn w-75" %>
     </div>

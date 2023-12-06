@@ -1,9 +1,24 @@
-<%= form_for @event do |f| %>
-  <%= f.file_field :new_photos, multiple: true, input_html: { multiple: true}, label: "Galerie de #{@event.title}" %>
-  <%= f.submit 'Ajouter', class: "mt-5 validate-btn w-75" %>
-<% end %>
+<div class="add-photos" data-controller="add-photos">
+
+  <%= form_for @event do |f| %>
+    <%= f.file_field :new_photos,
+    multiple: true,
+    multiple: true,
+    input_html: { data: {
+      add_photos_target: "add",
+      action: "change->add-photos#photos"} } %>
 
 
-<% @event.photos.each do |photo| %>
-    <%= cl_image_tag photo.key, class: "card-photos img-fluid", crop: :fill %>
-<% end %>
+    <%= f.submit "Ajouter des photos ",
+      class: "mt-5 validate-btn d-none",
+      input_html: { data: {
+        add_photos_target: "submit" } } %>
+  <% end %>
+</div>
+
+<div class="display-photos">
+  <% @event.photos.each do |photo| %>
+      <%= cl_image_tag photo.key, class: "card-photos img-fluid", crop: :fill %>
+  <% end %>
+
+</div>
