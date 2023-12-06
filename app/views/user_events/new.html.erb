@@ -3,31 +3,31 @@
   <i class="fa-solid fa-circle-chevron-left"></i>
 <% end %>
 
-<div class="container mt-4">
+<div data-controller="user-search" class="container mt-4">
 
 <%# Liste des invités %>
   <h2>Invités à "<%= @event.title %>"</h2>
-  <ul class="list-group mb-4 guests-status">
-    <% @guests.each do |guest| %>
-      <li class="guest">
-        <%= "#{guest.user.first_name} #{guest.user.last_name}" %>
-        <div class="icons-container">
-          <% crown_class = guest.planner ? 'fa-crown yellow-crown' : 'fa-crown' %>
-          <%= link_to user_event_path(guest), data: {turbo_method: "PATCH"} do  %>
-            <i class="fa-solid <%= crown_class %>"
-               onclick="this.classList.toggle('yellow-crown'); this.classList.toggle('black-crown'); document.getElementById('planner_status_<%= guest.id %>').value = this.classList.contains('yellow-crown');"></i>
-            <i class="fa-solid fa-xmark-guest"></i>
-          <% end %>
-        </div>
-      </li>
-    <% end %>
-  </ul>
+<ul class="list-group mb-4 guests-status">
+  <% @guests.order(:id).each do |guest| %>
+    <li class="guest">
+      <%= "#{guest.user.first_name} #{guest.user.last_name}" %>
+      <div class="icons-container">
+        <% crown_class = guest.planner ? 'fa-crown yellow-crown' : 'fa-crown' %>
+        <%= link_to user_event_path(guest), data: { turbo_method: "PATCH", action: "click->user-search#planner" } do %>
+          <i data-user-search-target= "crown" class="fa-solid <%= crown_class %>"
+             onclick="this.classList.toggle('yellow-crown'); console.log(this.classList)"></i>
+          <i class="fa-solid fa-xmark-guest"></i>
+        <% end %>
+      </div>
+    </li>
+  <% end %>
+</ul>
 
 
 <%# code de nico sur slack %>
 
   <%# recherche %>
-  <div data-controller="user-search">
+  <div>
     <div class="mb-3">
       <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
       <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
@@ -42,11 +42,6 @@
           <%= f.label :planner, "Organisateur", class: "form-label" %>
           <%= f.check_box :planner, class: "form-check-input" %>
         </div>
-
-    <%# couronne %>
-        <label for="organizer-crown" class="crown-label">
-          <i class="fa-solid fa-crown yellow-crown"></i>
-        </label>
 
     <!-- Champ caché pour stocker l'état d'organisateur -->
         <%= f.hidden_field :planner, class: "organizer-checkbox" %>
