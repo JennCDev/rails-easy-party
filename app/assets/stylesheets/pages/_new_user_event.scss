@@ -1,29 +1,30 @@
-.guest {
+.guest{
   position: relative;
   border: 1px solid $main-color-light;
   border-radius: 8px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-direction: row;
   padding: 10px;
   margin-bottom: 15px;
+  align-items: center;
 }
 
 .guest-details {
   flex: 1; /* Pour occuper l'espace restant */
 }
 
-
-
 .yellow-crown  {
+  margin-right: 0px !important;
   color: rgb(205, 196, 31);
   font-size: 26px;
-  // padding-left: 200px;
-  margin-right: 50px;
 }
 
-.fa-crown{
-  text-decoration: none !important;
+.fa-crown::before, ::after {
+  box-sizing: border-box;
+  margin-right: -50px;
+  font-size: 26px;
+
 }
 
 .fa-xmark-guest {
@@ -31,4 +32,36 @@
   left: 304px;
   font-size: 20px;
   top: 18px !important;
+}
+
+#search-results{
+  margin-top: -20px !important;
+  margin-bottom: 20px !important;
+  margin-left: 0px !important;
+  display: flex;
+  justify-content: center;
+  margin-right: 175px;
+
+}
+
+div[data-controller="user-search"] {
+  background-color: white;
+  /* padding: 20px; */
+  border-radius: 8px;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+.search-guest{
+  margin-bottom: 20px;
+  background-color: $third-color;
+  color: white;
+}
+
+.avatar-guest{
+  margin-right: -80px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
 }

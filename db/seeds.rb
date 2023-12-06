@@ -47,18 +47,127 @@ guillaume = User.create!(
   password_confirmation: "lewagon"
 )
 
+oscar = User.create!(
+  first_name: "Oscar",
+  last_name: "Boittiaux",
+  email: "oscar@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
 
-photo_guillaume = URI.open("https://i.etsystatic.com/21647555/r/il/2d7fdd/3470674713/il_570xN.3470674713_iqet.jpg")
+cyril = User.create!(
+  first_name: "Cyril",
+  last_name: "Marek",
+  email: "cyril@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+noemie = User.create!(
+  first_name: "Noémie",
+  last_name: "Brunel",
+  email: "noemie@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+thomas = User.create!(
+  first_name: "Thomas",
+  last_name: "Loock",
+  email: "thomas@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+alex = User.create!(
+  first_name: "Alex",
+  last_name: "Zoonekynd",
+  email: "alex@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+mathilde = User.create!(
+  first_name: "Mathilde",
+  last_name: "Bonhomme",
+  email: "mathilde@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+simon = User.create!(
+  first_name: "Simon",
+  last_name: "Chrétien",
+  email: "simon@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+py = User.create!(
+  first_name: "PY",
+  last_name: "Hoorens",
+  email: "py@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+marie = User.create!(
+  first_name: "Marie",
+  last_name: "Lepers",
+  email: "marie@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+jordane = User.create!(
+  first_name: "Jordane",
+  last_name: "Celet",
+  email: "jordane@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+hugo = User.create!(
+  first_name: "Hugo",
+  last_name: "Chaumette",
+  email: "hugo@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
+
+photo_guillaume = URI.open("https://avatars.githubusercontent.com/u/123516447?v=4")
 photo_juan = URI.open("https://lens-storage.storage.googleapis.com/png/b2b053e9327841408e129b45a3868396")
 photo_marion = URI.open("https://avatars.githubusercontent.com/u/137996776?v=4")
 photo_jf = URI.open("https://avatars.githubusercontent.com/u/109537083?v=4")
 photo_nicolas = URI.open("https://avatars.githubusercontent.com/u/147147521?v=4")
+photo_noemie = URI.open("https://avatars.githubusercontent.com/u/146840631?v=4")
+photo_oscar = URI.open("https://avatars.githubusercontent.com/u/147140319?v=4")
+photo_thomas = URI.open("https://avatars.githubusercontent.com/u/147383492?v=4")
+
+photo_simon = URI.open("https://avatars.githubusercontent.com/u/10392065?v=4")
+photo_cyril = URI.open("https://avatars.githubusercontent.com/u/146963840?v=4")
+photo_marie = URI.open("https://avatars.githubusercontent.com/u/65217977?v=4")
+photo_alex = URI.open("https://ca.slack-edge.com/T02NE0241-U053J8Q0Z50-d2fc9cd44c37-512")
+photo_hugo = URI.open("https://avatars.githubusercontent.com/u/14314611?v=4")
+photo_py = URI.open("https://avatars.githubusercontent.com/u/96627831?v=4")
+photo_jordane = URI.open("https://avatars.githubusercontent.com/u/10586046?v=4")
+photo_mathilde = URI.open("https://ca.slack-edge.com/T02NE0241-U053LLSGPT6-629f852f088b-512")
+
 
 marion.avatar.attach(io: photo_marion, filename: "marion.jpg", content_type: "image/jpg")
 jennifer.avatar.attach(io: photo_jf, filename: "jf.jpg", content_type: "image/jpg")
 nicolas.avatar.attach(io: photo_nicolas, filename: "nicolas.jpg", content_type: "image/jpg")
 juan.avatar.attach(io: photo_juan, filename: "juan.jpg", content_type: "image/jpg")
+noemie.avatar.attach(io: photo_noemie, filename: "noemie.jpg", content_type: "image/jpg")
+oscar.avatar.attach(io: photo_oscar, filename: "oscar.jpg", content_type: "image/jpg")
+thomas.avatar.attach(io: photo_thomas, filename: "thomas.jpg", content_type: "image/jpg")
+cyril.avatar.attach(io: photo_cyril, filename: "cyril.jpg", content_type: "image/jpg")
 guillaume.avatar.attach(io: photo_guillaume, filename: "guillaume.jpg", content_type: "image/jpg")
+py.avatar.attach(io: photo_py, filename: "py.jpg", content_type: "image/jpg")
+hugo.avatar.attach(io: photo_hugo, filename: "hugo.jpg", content_type: "image/jpg")
+marie.avatar.attach(io: photo_marie, filename: "marie.jpg", content_type: "image/jpg")
+alex.avatar.attach(io: photo_alex, filename: "alex.jpg", content_type: "image/jpg")
+simon.avatar.attach(io: photo_simon, filename: "simon.jpg", content_type: "image/jpg")
+mathilde.avatar.attach(io: photo_mathilde, filename: "mathilde.jpg", content_type: "image/jpg")
+jordane.avatar.attach(io: photo_jordane, filename: "jordane.jpg", content_type: "image/jpg")
 
 # Add more users as needed
 
