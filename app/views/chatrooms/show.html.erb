@@ -4,9 +4,9 @@
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
 
 
-  <div style="background-color: blue" class="position-fixed top-0 start-0 w-100"><h2 class="text-center"><%= @chatroom.name %></h2></div>
+  <div class="title-messages sticky-top w-100 text-center text-white mb-3"><h2 class="p-0"><%= @chatroom.name %></h2></div>
 
-  <div class="messages mt-5" data-chatroom-subscription-target="messages">
+  <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
     <div class="message-row d-flex mb-4 <%= message.user_id == current_user.id ? 'justify-content-end' : 'justify-content-start' %>"
       data-chatroom-subscription-initials-value="<%= '#{message.user.first_name.first.upcase} #{message.user.last_name.first.upcase}' %>">
