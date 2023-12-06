@@ -16,3 +16,27 @@
     }
   }
 }
+
+
+/* Masquer le texte "Aucun fichier choisi" */
+.select-files::-webkit-file-upload-button {
+  visibility: hidden;
+}
+
+.select-files::before {
+  content: 'Sélectionner des photos';
+  display: inline-block;
+  background: $main-color;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.select-files :hover{
+  background-color: lighten($main-color, 10%);
+  transition: 0.3s ease;
+  color: white;
+  font-weight: bold;
+  }

@@ -1,7 +1,18 @@
-<div class="add-photos">
+<div class="add-photos" data-controller="add-photos">
+
   <%= form_for @event do |f| %>
-    <%= f.file_field :new_photos, multiple: true, input_html: { multiple: true }, label: "Sélectionner des photos", class: "select-files" %>
-    <%= f.submit "Ajouter des photos de '#{@event.title}'", class: "mt-5 validate-btn w-75" %>
+    <%= f.file_field :new_photos,
+    multiple: true,
+    multiple: true,
+    input_html: { data: {
+      add_photos_target: "add",
+      action: "change->add-photos#photos"} } %>
+
+
+    <%= f.submit "Ajouter des photos ",
+      class: "mt-5 validate-btn d-none",
+      input_html: { data: {
+        add_photos_target: "submit" } } %>
   <% end %>
 </div>
 
@@ -9,4 +20,5 @@
   <% @event.photos.each do |photo| %>
       <%= cl_image_tag photo.key, class: "card-photos img-fluid", crop: :fill %>
   <% end %>
+
 </div>

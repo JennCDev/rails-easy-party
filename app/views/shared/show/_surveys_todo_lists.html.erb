@@ -23,7 +23,7 @@
                           <% if survey.deadline < Date.today %>
                             <p class="survey-infos">Sondage terminé <i class="fa-solid fa-check text-success"></i></p>
                           <% elsif survey.deadline > Date.today %>
-                            <p class="survey-infos"><i class="fa-solid fa-hourglass-start"></i> Fin du sondage dans <%= pluralize((survey.deadline - Date.today).to_i, "jour") %></p>
+                            <p class="survey-infos"><i class="fa-solid fa-hourglass-start"></i> Fin du sondage dans <%= pluralize((survey.deadline - Date.today).to_i, "jour(s)") %></p>
                           <% else %>
                             <p class="survey-infos"><i class="fa-solid fa-hourglass-half"></i> Fin du sondage aujourd'hui</p>
                           <% end %>
