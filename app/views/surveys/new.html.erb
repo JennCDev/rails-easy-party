@@ -38,7 +38,9 @@
               alt="Avatar"
               onclick="this.classList.toggle('gray-scale'); this.classList.toggle(''); document.getElementById('planner_status_<%= guest.id %>').value = this.classList.contains('yellow-crown');">
         <% else %>
-          <%= image_tag "default_avatar.jpg", class: "avatar" %>
+          <div class="avatar avatar-placeholder">
+            <%= "#{guest.user.first_name.first.upcase} #{guest.user.last_name.first.upcase}" %>
+          </div>
         <% end %>
     <% end %>
   </div>

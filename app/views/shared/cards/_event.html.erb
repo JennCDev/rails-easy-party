@@ -18,6 +18,6 @@
     <p>
       <i class="fa-solid fa-location-dot text-danger"></i> <span class="title-bold">Lieu : </span><%= event.place.present? ? event.place : "A vos votes 📩" %>
     </p>
-    <p>🙋 <%= event.user_events.where(status: "going").count %> participants - <%= event.user_events.where(status: "maybe").count %> intéressés</p>
+    <p>🙋 <%= event.user_events.count %> invités - <%= event.user_events.where(status: "going").count %> participants - <%= event.user_events.where(status: "maybe").count %> intéressés</p>
   </div>
 </div>

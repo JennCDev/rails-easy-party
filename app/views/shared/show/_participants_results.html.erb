@@ -1,4 +1,4 @@
-  <div class="text-center mb-4">
+  <div class="text-center mt-4 mb-4">
     <%= link_to new_event_user_event_path(event_id: @event.id), class: "link text-bold" do %>
       <% guests_count = @event.user_events.count %>
       <% participants_count = @event.user_events.where(status: 'going').count %>
