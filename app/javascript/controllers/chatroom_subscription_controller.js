@@ -17,6 +17,7 @@ export default class extends Controller {
   }
 
   #buildMessageElement(currentUserIsSender, message, avatarUrl, userId) {
+    console.log("coucou", avatarUrl)
     const avatarImg = avatarUrl ? `<img src="${avatarUrl}" class="avatar-chatroom mt-2 me-2">` :
       `<div class="avatar avatar-placeholder mt-2 me-2">
         ${this.initialsValue}
@@ -50,6 +51,7 @@ export default class extends Controller {
     const messageElement = this.#buildMessageElement(currentUserIsSender, data.message, data.avatar_url, data.sender_id);
     this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
+    console.log(data.sender_id)
   }
 
 
