@@ -3,7 +3,7 @@ strong {
   color: violet
 }
 
-.avatar {
+.avatar-chatroom {
   width: 40px; // ou la taille que vous souhaitez
   height: 40px; // doit être égal à la largeur pour un cercle parfait
   border-radius: 50%; // rend l'image circulaire
@@ -25,13 +25,24 @@ strong {
   gap: 20px;
 }
 
-.card {
+.card-chatroom {
+  overflow: hidden;
+  background: white;
   display: flex;
   align-items: center;
   width: 100%;
   max-width: 500px; /* Taille fixe de la carte */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  // box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
   padding: 10px;
+  border-radius: 20px;
+  transition: box-shadow 0.3s;
+  // box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-chatroom:hover {
+  box-shadow: 0 0px 18px rgba(0, 0, 0, 0.4);
+  transition: box-shadow 0.3s;
 }
 
 .card-link {
@@ -53,11 +64,7 @@ strong {
 .card-info {
   display: flex;
   flex-direction: column;
-}
-
-.card-title {
-  margin: 0;
-  font-size: 1.25rem;
+  padding: 5px;
 }
 
 .card-text {
