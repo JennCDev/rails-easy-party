@@ -1,42 +1,56 @@
 .display-photos {
   display: flex;
   flex-wrap: wrap;
-  margin: -5px; /* Ajoute des marges négatives pour compenser les marges des éléments enfants */
+  margin: -5px;
 
   .card-photos {
-    width: calc(33.33% - 10px); /* Calcule la largeur pour 3 photos par ligne avec marges */
-    margin: 5px; /* Ajoute des marges pour espacer les photos */
+    width: calc(33.33% - 10px);
+    margin: 5px;
 
     @media (min-width: 481px) and (max-width: 1024px) {
-      width: calc(50% - 5px); /* 3 photos par ligne pour les écrans moyens */
+      width: calc(50% - 5px);
     }
 
     @media (min-width: 1025px) {
-      width: calc(16.66% - 5px); /* 6 photos par ligne pour les grands écrans */
+      width: calc(16.66% - 5px);
     }
   }
 }
 
-
-/* Masquer le texte "Aucun fichier choisi" */
 .select-files::-webkit-file-upload-button {
   visibility: hidden;
 }
 
-.select-files::before {
-  content: 'Sélectionner des photos';
-  display: inline-block;
-  background: $main-color;
-  color: #fff;
+
+.custom-file-upload {
+  color: white;
+  background-color: $main-color;
+  border-radius: 8px;
   padding: 8px 12px;
-  border-radius: 5px;
   cursor: pointer;
+  border: none;
+  width: 250px;
+  padding-bottom: 10px;
+}
+
+.custom-file-upload input[type="file"] {
+  display: none;
 }
 
 
-.select-files :hover{
-  background-color: lighten($main-color, 10%);
-  transition: 0.3s ease;
+.add-photos{
+  padding-top: 20px;
+  display: flex;
+}
+
+
+.validate-photos-btn{
   color: white;
-  font-weight: bold;
-  }
+  background-color: $main-color;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  border: none;
+  width: 250px;
+  margin-bottom: 10px;
+}
