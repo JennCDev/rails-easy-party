@@ -5,9 +5,7 @@
 <h2>Nouveau sondage</h2>
 
 <%= simple_form_for [@event, @survey] do |f| %>
-<!-- sélection de catégorie, désuet
-  <%= f.input :category, label: 'Sujet du sondage', collection: Survey::CATEGORIES %>
--->
+  <!--<%= f.input :category, label: 'Sujet du sondage', collection: Survey::CATEGORIES %>-->
   <%= f.input :question, label: 'Question', as: :string %>
   <%= f.input :deadline, label: 'Date limite de réponse', as: :string, input_html: { data: { controller: "datepicker-simple" } } %>
 

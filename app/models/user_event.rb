@@ -3,5 +3,5 @@ class UserEvent < ApplicationRecord
   belongs_to :user
   belongs_to :event
   accepts_nested_attributes_for :user
-  validates :status, inclusion: { in: STATUS  }
+  validates :status, inclusion: { in: STATUS }
 end
