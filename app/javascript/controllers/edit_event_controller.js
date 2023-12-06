@@ -10,8 +10,7 @@ export default class extends Controller {
 
   editField(event) {
     event.preventDefault();
-    console.log("Hello");
-      this.editFormTarget.classList.toggle('d-none');
+    this.editFormTarget.classList.toggle('d-none');
     this.editFieldTarget.classList.toggle('d-none');
   }
 }

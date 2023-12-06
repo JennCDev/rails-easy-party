@@ -1,14 +1,12 @@
 class Event < ApplicationRecord
   has_one :chatroom
-  has_many :surveys
-  has_many :todo_lists
-  has_many :user_events
+  has_many :surveys, dependent: :destroy
+  has_many :todo_lists, dependent: :destroy
+  has_many :user_events, dependent: :destroy
   validates :title, presence: true
   validates :description, presence: true
   has_one_attached :photo_banner
   has_many_attached :photos
-
-
 
   def new_photos=(photos)
     self.photos.attach(photos)

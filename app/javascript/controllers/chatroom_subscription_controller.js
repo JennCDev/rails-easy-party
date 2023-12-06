@@ -17,9 +17,14 @@ export default class extends Controller {
   }
 
   #buildMessageElement(currentUserIsSender, message, avatarUrl, userId) {
+    // Construction de l'élément image pour l'avatar
     const avatarImg = avatarUrl ? `<img src="${avatarUrl}" class="avatar">` : '';
-    const messageContent = currentUserIsSender ? `${avatarImg}<div class="${this.userStyleClass(currentUserIsSender)}">${message}</div>`
-                                               : `<div class="${this.userStyleClass(currentUserIsSender)}">${message}</div>${avatarImg}`;
+
+    // Construction de l'élément HTML pour le message, incluant l'avatar et le message dans la même div
+    const messageContent = `<div class="message-content ${this.userStyleClass(currentUserIsSender)}">
+                              ${currentUserIsSender ? '' : avatarImg}
+                              <div class="message-text">${message}</div>
+                            </div>`;
 
     return `
       <div class="message-row d-flex ${this.justifyClass(currentUserIsSender)}">
@@ -27,6 +32,7 @@ export default class extends Controller {
       </div>
     `;
   }
+
 
 
   // Détermine la classe de justification en fonction de l'expéditeur

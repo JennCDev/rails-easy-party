@@ -1,4 +1,4 @@
 class Answer < ApplicationRecord
   belongs_to :survey
-  has_many :user_answers
+  has_many :user_answers, dependent: :destroy
 end
