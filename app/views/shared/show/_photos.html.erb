@@ -1,19 +1,17 @@
 <div class="add-photos" data-controller="add-photos">
+  <form action="<%= event_path(@event) %>" method="post" enctype="multipart/form-data">
+    <input type="hidden" name="_method" value="patch">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <label class="custom-file-upload">
+      <input type="file" name="event[new_photos][]" multiple
+        data-add-photos-target="add"
+        data-action="change->add-photos#photos">
+      Sélectionner des photos
+    </label>
 
-  <%= form_for @event do |f| %>
-    <%= f.file_field :new_photos,
-    multiple: true,
-    multiple: true,
-    input_html: { data: {
-      add_photos_target: "add",
-      action: "change->add-photos#photos"} } %>
-
-
-    <%= f.submit "Ajouter des photos ",
-      class: "mt-5 validate-btn d-none",
-      input_html: { data: {
-        add_photos_target: "submit" } } %>
-  <% end %>
+    <input type="submit" value="Ajouter à la galerie" class="mt-5 validate-photos-btn d-none"
+      data-add-photos-target="submit">
+  </form>
 </div>
 
 <div class="display-photos">

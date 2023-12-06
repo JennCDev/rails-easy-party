@@ -55,25 +55,26 @@
   <% end %>
 </div>
 
-<%# aller récupérer les options dans new todo list %>
- <%= f.fields_for :options do |a| %>
-      <div class="d-flex align-items-start input-spacing">
-        <div class="d-flex btn-group input-spacing">
-          <%= a.input :option,
+
+  <%= simple_form_for [@todo_list, @item] do |f| %>
+    <div class="d-flex input-spacing align-items-start add-options">
+      <div class="d-flex btn-group w-100">
+        <%= f.input :content,
             label: false,
-            placeholder: "Option",
+            placeholder: "Ajouter une option",
             as: :string,
-            input_html: { data: {target: "option.options"} },
-            class: "custom-input-for-option input-spacing"  %>
-          <%= link_to "Valider", "",
-          class: "validate-btn-small input-spacing",
-          data: { action: "click->option#insertOptions" } %>
-        </div>
+            class: "custom-input-for-option input-spacing" %>
+        <%= f.submit 'Valider', class: "validate-btn-small" %>
       </div>
-      <% end %>
+    </div>
 
 
-<%# btn de validation %>
-<div class="update-btn d-flex justify-content-center">
-  <%= link_to "Valider", todo_list_path(@todo_list), class: "d-flex justify-content-center validate-btn", data: {turbo_method: :patch} %>
+
+
+<div class="d-flex justify-content-center">
+  <%= f.submit 'Valider', class: "validate-btn" %>
+</div>
+
+<% end %>
+
 </div>

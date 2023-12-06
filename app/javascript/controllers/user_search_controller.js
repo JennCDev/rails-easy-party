@@ -52,7 +52,7 @@ export default class extends Controller {
   }
 
   planner() {
-    // console.log("youre in")
+    console.log(event.currentTarget)
     this.crownTarget.toggle
   }
 
