@@ -37,7 +37,10 @@ Rails.application.routes.draw do
     resources :user_items, only: ["create", "destroy"]
   end
 
-  resources :todo_lists, only: ["show"]
+  resources :todo_lists, only: ["show"] do
+    resources :items, only: ["create"]
+  end
+
   resource :profiles, only: ["show"]
 
   resources :chatrooms, only: [:index]

@@ -4,10 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["optionsList", "options"]
   connect() {
-    console.log("youre in")
+    console.log("youre connected")
   }
   insertOptions(event) {
-    // console.log("youre in")
+    console.log("youre in")
     event.preventDefault();
     if (this.optionsTarget.value !== "") {
       const html = `<input class="form-control string optional" type="text" name="option[]" value="${this.optionsTarget.value}"></input>

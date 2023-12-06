@@ -4,7 +4,8 @@
 
 .navbar {
   position: fixed;
-  background-color: darken($main-color-light, 20%); /* Rend la couleur 10% plus foncée */
+  // background-color: darken($main-color-light, 20%); /* Rend la couleur 10% plus foncée */
+  background-color: $main-color;
   bottom: 0;
   left: 0;
   right: 0;

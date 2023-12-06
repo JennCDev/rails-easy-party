@@ -24,7 +24,7 @@
 
 .custom-file-upload {
   color: white;
-  background-color: $main-color;
+  background-color: $third-color;
   border-radius: 8px;
   padding: 8px 12px;
   cursor: pointer;
@@ -41,12 +41,13 @@
 .add-photos{
   padding-top: 20px;
   display: flex;
+  padding-bottom: 15px;
 }
 
 
 .validate-photos-btn{
   color: white;
-  background-color: $main-color;
+  background-color: $fourth-color;
   border-radius: 8px;
   padding: 8px 12px;
   cursor: pointer;
