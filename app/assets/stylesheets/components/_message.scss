@@ -1,3 +1,4 @@
+@import "variables";
 
 strong {
   color: violet
@@ -79,16 +80,16 @@ strong {
 
 .message-row {
   margin-bottom: 10px;
-  padding: 8px;
+  // padding: 8px;
 }
 
 // To style the message itself
 .sender-style, .receiver-style {
   width: 70%;
   max-width: 400px;
-  border-radius: 4px;
-  padding: 8px;
-  min-height: 80px;
+  border-radius: 15px;
+  padding: 10px;
+  min-height: 50px;
 }
 
 .sender-style {
@@ -100,4 +101,33 @@ strong {
 .receiver-style {
   background-color: lightblue;
   margin-bottom: 16px
+}
+
+.form-message {
+  margin: 0;
+}
+
+.form-message input {
+  border-radius: 15px;
+}
+
+.form-message .btn {
+  background-color: $third-color;
+  border: none;
+}
+
+.date-message {
+  font-size: 10px;
+  position: absolute;
+  bottom: -20px;
+  right: 8px;
+}
+
+.message-content {
+  margin: 0;
+  color: white;
+}
+
+.title-messages {
+  background-color: $third-color;
 }
