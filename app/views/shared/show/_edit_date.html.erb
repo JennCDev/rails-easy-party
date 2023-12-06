@@ -3,12 +3,12 @@
     <div class="edit-event d-flex justify-content-center">
       <div data-edit-event-target = "editField">
         <% if @event.start_at && @event.end_at && @event.start_at != @event.end_at %>
-          <span class="title-bold">DU <%= @event.start_at.strftime('%d/%m/%Y') %> AU <%= @event.end_at.strftime('%d/%m/%Y') %></span>
+          <span class="title-bold">📅 DU <%= @event.start_at.strftime('%d/%m/%Y') %> AU <%= @event.end_at.strftime('%d/%m/%Y') %></span>
         <% elsif @event.start_at && @event.end_at  %>
-          <span class="title-bold">LE <%= @event.start_at.strftime('%d/%m/%Y') %></span>
+          <span class="title-bold">📅 LE <%= @event.start_at.strftime('%d/%m/%Y') %></span>
         <% else %>
         <div class="date-to-define d-flex justify-content-center">
-          <span class="title-bold">DATE A DEFINIR</span>
+          <span class="title-bold">📅 DATE A DEFINIR</span>
         </div>
         <% end %>
       </div>
@@ -38,7 +38,7 @@
 
       <%# btn de validation %>
         <div class="update-btn d-flex justify-content-center mt-3">
-          <%= f.submit "Mettre à jour les dates", class: "validate-btn", data: { turbo_method: :patch } %>
+          <%= f.submit "Mettre à jour les dates", class: "validate-btn-date", data: { turbo_method: :patch } %>
         </div>
 
       <% end %>

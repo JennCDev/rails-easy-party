@@ -1,6 +1,7 @@
 class TodoListsController < ApplicationController
   def show
     @todo_list = TodoList.find(params[:id])
+    @item = Item.new
   end
 
   def new

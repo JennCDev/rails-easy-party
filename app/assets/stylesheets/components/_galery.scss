@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: -5px;
+  object-fit: cover;
 
   .card-photos {
     width: calc(33.33% - 10px);
@@ -24,13 +25,14 @@
 
 .custom-file-upload {
   color: white;
-  background-color: $main-color;
+  background-color: $third-color;
   border-radius: 8px;
   padding: 8px 12px;
   cursor: pointer;
   border: none;
-  width: 250px;
+  width: 50vw;
   padding-bottom: 10px;
+  text-align: center;
 }
 
 .custom-file-upload input[type="file"] {
@@ -41,16 +43,18 @@
 .add-photos{
   padding-top: 20px;
   display: flex;
+  padding-bottom: 15px;
+  justify-content: center;
 }
 
 
 .validate-photos-btn{
   color: white;
-  background-color: $main-color;
+  background-color: $fourth-color;
   border-radius: 8px;
   padding: 8px 12px;
   cursor: pointer;
   border: none;
-  width: 250px;
+  width: 40vw;
   margin-bottom: 10px;
 }

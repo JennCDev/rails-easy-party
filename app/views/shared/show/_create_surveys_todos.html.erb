@@ -2,14 +2,14 @@
 
   <div class="mb-3">
     <%= link_to new_event_survey_path(@event), class: "link" do %>
-      <i class="fa-solid fa-circle-plus"></i> Créer un nouveau sondage
+      <i class="fa-solid fa-circle-plus new-survey"></i> Créer un nouveau sondage
     <% end %>
   </div>
 
   <% if @event.user_events.where(planner: true) %>
     <div class="mb-3">
       <%= link_to new_event_todo_list_path(@event), class: "link" do %>
-        <i class="fa-solid fa-circle-plus"></i> Créer une to-do list
+        <i class="fa-solid fa-circle-plus new-todo"></i> Créer une to-do list
       <% end %>
     </div>
   <% end %>
