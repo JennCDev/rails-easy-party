@@ -1,7 +1,7 @@
 .chatroom {
   background: white;
   margin-top: 9px;
-  height: calc(100vh - 75px);
+  height: calc(100vh - 40px);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -26,5 +26,9 @@
     .form-group {
       margin-bottom: 0;
     }
+  }
+
+  .flexgrow-1 {
+    border-radius: 10px;
   }
 }

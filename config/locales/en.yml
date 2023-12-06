@@ -28,6 +28,4 @@
 #       enabled: "ON"
 
 en:
-  time:
-    formats:
-      custom: "%a %b %e at %l:%M %p"
+  hello: "Hello world"

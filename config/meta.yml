@@ -1,0 +1,11 @@
+# config/meta.yml
+
+meta_product_name: "Easy Party"
+
+meta_title: "Easyparty, et vos soirées prennent vie"
+
+meta_description: "Découvrez Easy Party – l'application qui révolutionne la planification de soirées. Avec Easy Party, organisez vos événements sans effort, invitant créativité et convivialité. Que ce soit pour un petit rassemblement intime ou une grande fête, notre interface intuitive vous guide à travers chaque étape, de la création d'invitations personnalisées à la gestion des listes d'invités. Rejoignez la communauté Easy Party et faites de chaque soirée un moment inoubliable."
+
+meta_image: "cover.png" # should exist in `app/assets/images/`
+
+twitter_account: "@product_twitter_account" # required for Twitter Cards
