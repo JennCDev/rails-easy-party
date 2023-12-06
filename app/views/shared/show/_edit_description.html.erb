@@ -9,7 +9,7 @@
     </div>
 
     <!-- Formulaire de modification (initialement caché) -->
-    <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, data: { remote: true, edit_event_target: "editForm" }, html: { class: "edit-description-form d-none" } do |f| %>
+    <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, data: { remote: true, edit_event_target: "editForm" }, html: { class: "edit-description-form d-none mb-5" } do |f| %>
       <div class="field">
         <%= f.text_area :description, rows: 4, class: "edit-description-form display:none" %>
       </div>

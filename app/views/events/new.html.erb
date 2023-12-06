@@ -2,7 +2,6 @@
 
 <%= simple_form_for @event do |f| %>
   <%= f.input :title, label: "Nom de l'évènement", as: :string %>
-  https://icones8.fr/icon/33824/confettis
   <%= f.input :description, label: 'Description 🎉', as: :string %>
   <div class="dates" data-controller="dates-pickr">
   <%= f.label :dates, "Dates ✨", class: "form-label" %>

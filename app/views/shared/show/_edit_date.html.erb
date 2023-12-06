@@ -13,12 +13,9 @@
         <% end %>
       </div>
 
-      <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen"></i></a>
-
       <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, html: { class: "edit-date-form d-none", data: { remote: true, edit_event_target: "editForm" } } do |f| %>
         <div class="dates" data-controller="edit-dates">
-        <%= f.label :dates, "Dates", class: "form-label" %>
-        <input type="text" id="dates" data-edit-dates-target="dateInput" data-action="change->edit-dates#editDates" class="form-control">
+        <input type="text" id="dates" data-edit-dates-target="dateInput" data-action="change->edit-dates#editDates" class="form-control" placeholder="Dates 📅">
           <%= f.hidden_field :start_at,
             label: 'Date de début',
             as: :string,
@@ -38,13 +35,16 @@
 
               label: false %>
         </div>
+
       <%# btn de validation %>
-        <div class="update-btn d-flex justify-content-center">
+        <div class="update-btn d-flex justify-content-center mt-3">
           <%= f.submit "Mettre à jour les dates", class: "validate-btn", data: { turbo_method: :patch } %>
         </div>
         </div>
 
       <% end %>
+
+      <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen"></i></a>
 
   </div>
 

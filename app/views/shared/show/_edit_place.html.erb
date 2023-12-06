@@ -5,8 +5,8 @@
 <% if @user_is_planner %>
 <div data-controller = "edit-event">
   <div class="location d-flex">
+    <p><i class="fa-solid fa-location-dot me-1"></i></p>
     <p class="mb-3" data-edit-event-target = "editField">
-      <i class="fa-solid fa-location-dot"></i>
       <% if @event.place.present? %>
         <%= @event.place %>
       <% else %>
@@ -15,11 +15,11 @@
     </p>
     <!-- Formulaire de modification (initiallement caché) -->
     <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, html: { class: "edit-place-form d-none", data: { remote: true, edit_event_target: "editForm" } } do |f| %>
-      <div class="field">
+      <div class="field mb-3 ms-2">
         <%= f.text_field :place, class: "edit-place-form display:none"  %>
       </div>
       <div class="update-btn d-flex justify-content-center">
-        <%= f.submit "Mettre à jour le lieu", class: "validate-btn", data: { turbo_method: :patch } %>
+        <%= f.submit "Mettre à jour le lieu", class: "validate-btn mb-4", data: { turbo_method: :patch } %>
       </div>
     <% end %>
     <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen pt-1"></i></a>
