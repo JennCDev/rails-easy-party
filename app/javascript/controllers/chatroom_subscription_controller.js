@@ -16,21 +16,23 @@ export default class extends Controller {
     );
   }
 
-  #buildMessageElement(currentUserIsSender, message, avatarUrl) {
-    // Si l'utilisateur actuel est le destinataire, ajoutez l'avatar
-    let avatarImg = '';
-    if (!currentUserIsSender && avatarUrl) {
-      avatarImg = `<img src="${avatarUrl}" class="avatar">`;
-    }
+  #buildMessageElement(currentUserIsSender, message, avatarUrl, userId) {
+    // Construction de l'élément image pour l'avatar
+    const avatarImg = avatarUrl ? `<img src="${avatarUrl}" class="avatar">` : '';
 
-    // Combine l'avatar et le message dans une seule div
-    const messageClass = this.userStyleClass(currentUserIsSender);
-    const combinedContent = `${avatarImg}<p>${message}</p>`;
-    const messageDiv = `<div class="${messageClass}">${combinedContent}</div>`;
-    const messageRow = `  ${this.justifyClass(currentUserIsSender)}">${messageDiv}</div>`;
+    // Construction de l'élément HTML pour le message, incluant l'avatar et le message dans la même div
+    const messageContent = `<div class="message-content ${this.userStyleClass(currentUserIsSender)}">
+                              ${currentUserIsSender ? '' : avatarImg}
+                              <div class="message-text">${message}</div>
+                            </div>`;
 
-    return messageRow;
+    return `
+      <div class="message-row d-flex ${this.justifyClass(currentUserIsSender)}">
+        ${messageContent}
+      </div>
+    `;
   }
+
 
 
   // Détermine la classe de justification en fonction de l'expéditeur
@@ -43,9 +45,10 @@ export default class extends Controller {
     return currentUserIsSender ? "sender-style" : "receiver-style";
   }
 
+  // Insère le message dans le DOM et fait défiler jusqu'à lui
   insertMessageAndScrollDown(data) {
     const currentUserIsSender = this.currentUserIdValue === data.sender_id;
-    const messageElement = this.#buildMessageElement(currentUserIsSender, data.message, data.avatar_url);
+    const messageElement = this.#buildMessageElement(currentUserIsSender, data.message, data.avatar_url, data.sender_id);
     this.messagesTarget.insertAdjacentHTML("beforeend", messageElement);
     this.messagesTarget.scrollTo(0, this.messagesTarget.scrollHeight);
   }
