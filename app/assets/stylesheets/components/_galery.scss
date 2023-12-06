@@ -2,6 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: -5px;
+  object-fit: cover;
 
   .card-photos {
     width: calc(33.33% - 10px);
@@ -29,8 +30,9 @@
   padding: 8px 12px;
   cursor: pointer;
   border: none;
-  width: 250px;
+  width: 50vw;
   padding-bottom: 10px;
+  text-align: center;
 }
 
 .custom-file-upload input[type="file"] {
@@ -42,6 +44,7 @@
   padding-top: 20px;
   display: flex;
   padding-bottom: 15px;
+  justify-content: center;
 }
 
 
@@ -52,6 +55,6 @@
   padding: 8px 12px;
   cursor: pointer;
   border: none;
-  width: 250px;
+  width: 40vw;
   margin-bottom: 10px;
 }

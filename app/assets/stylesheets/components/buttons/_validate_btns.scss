@@ -29,3 +29,19 @@
     }
 
 // }
+
+.validate-btn-date{
+  color: white;
+  background-color: $first-color;
+  font-size: 14px;
+  padding: 8px 10px 8px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  display: inline-block;
+  width: 210px;
+  text-align: center;
+  display: flex;
+  justify-content: center !important;
+  align-content: center;
+  border: none;
+}
