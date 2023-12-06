@@ -3,22 +3,46 @@
   <i class="fa-solid fa-circle-chevron-left"></i>
 <% end %>
 
-<div data-controller="user-search" class="container mt-4">
+  <h2>Invités à "<%= @event.title %>"</h2>
+
+  <%# recherche %>
+<div data-controller="user-search" class="container mt-4 d-flex justify-content-center">
+  <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
+    <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
+
+    <%# formulaire de résultat ? %>
+      <%= simple_form_for [@event, @user_event], html: { class: 'form-group' } do |f| %>
+        <%= f.hidden_field :user_id, id: 'selected_user_id', data: { user_search_target: "hidden" }, html: { class: 'no-border' } %>
+        <%= f.hidden_field :event_id %>
+    <!-- Champ caché pour stocker l'état d'organisateur -->
+    <div class="add-guest d-flex">
+        <%= f.hidden_field :planner, class: "organizer-checkbox" %>
+        <%= f.submit 'Ajouter', class: "validate-btn-small" %>
+        </div>
+    </div>
+
+
+
+    <div id="search-results" data-target="user-search.searchInput"></div>
+      <% end %>
+
+    <div id="search-results" class="d-none" data-target="user-search.searchInput"></div>
+
+    <%= simple_form_for [@event, @user_event] do |f| %>
 
 <%# Liste des invités %>
-  <h2>Invités à "<%= @event.title %>"</h2>
+
 <ul class="list-group mb-4 guests-status">
   <% @guests.order(:id).each do |guest| %>
     <li class="guest">
-      <%= "#{guest.user.first_name} #{guest.user.last_name}" %>
-      <div class="icons-container">
+    <%= image_tag guest.user.avatar, class:"avatar-guest" %>
+      <%= " #{guest.user.first_name} #{guest.user.last_name}" %>
         <% crown_class = guest.planner ? 'fa-crown yellow-crown' : 'fa-crown' %>
-        <%= link_to user_event_path(guest), data: { turbo_method: "PATCH", action: "click->user-search#planner" } do %>
           <i data-user-search-target= "crown" class="fa-solid <%= crown_class %>"
              onclick="this.classList.toggle('yellow-crown'); console.log(this.classList)"></i>
           <i class="fa-solid fa-xmark-guest"></i>
+        <%= link_to user_event_path(guest), data: { turbo_method: "PATCH", action: "click->user-search#planner" } do %>
         <% end %>
-      </div>
     </li>
   <% end %>
 </ul>
@@ -26,37 +50,6 @@
 
 <%# code de nico sur slack %>
 
-  <%# recherche %>
   <div>
-    <div class="mb-3">
-      <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
-      <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
-    </div>
-    <div id="search-results" data-target="user-search.searchInput"></div>
 
-    <%# formulaire de résultat ? %>
-      <%= simple_form_for [@event, @user_event], html: { class: 'form-group' } do |f| %>
-        <%= f.hidden_field :user_id, id: 'selected_user_id', data: { user_search_target: "hidden" } %>
-        <%= f.hidden_field :event_id %>
-        <div class="mb-3">
-          <%= f.label :planner, "Organisateur", class: "form-label" %>
-          <%= f.check_box :planner, class: "form-check-input" %>
-        </div>
-
-    <!-- Champ caché pour stocker l'état d'organisateur -->
-        <%= f.hidden_field :planner, class: "organizer-checkbox" %>
-        <%= f.submit 'Ajouter', class: "validate-btn" %>
-      <% end %>
-    </div>
-
-
-
-
-
-    <div id="search-results" data-target="user-search.searchInput"></div>
-
-    <%= simple_form_for [@event, @user_event] do |f| %>
-  <!-- Vos champs de formulaire ici -->
-
-  <%= f.button :submit, "Valider" %>
 <% end %>
