@@ -2,7 +2,7 @@ import { Controller } from "@hotwired/stimulus";
 import { createConsumer } from "@rails/actioncable";
 
 export default class extends Controller {
-  static values = { chatroomId: Number, currentUserId: Number };
+  static values = { chatroomId: Number, currentUserId: Number, initials: String };
   static targets = ["messages"];
 
   connect() {
@@ -17,17 +17,16 @@ export default class extends Controller {
   }
 
   #buildMessageElement(currentUserIsSender, message, avatarUrl, userId) {
-    // Construction de l'élément image pour l'avatar
-    const avatarImg = avatarUrl ? `<img src="${avatarUrl}" class="avatar">` : '';
-
-    // Construction de l'élément HTML pour le message, incluant l'avatar et le message dans la même div
-    const messageContent = `<div class="message-content ${this.userStyleClass(currentUserIsSender)}">
-                              ${currentUserIsSender ? '' : avatarImg}
-                              <div class="message-text">${message}</div>
-                            </div>`;
+    const avatarImg = avatarUrl ? `<img src="${avatarUrl}" class="avatar-chatroom mt-2 me-2">` :
+      `<div class="avatar avatar-placeholder mt-2 me-2">
+        ${this.initialsValue}
+      </div>`;
+    const messageContent = currentUserIsSender ?
+     `<div class="${this.userStyleClass(currentUserIsSender)} position-relative">${message}</div>`
+    :  `${avatarImg}<div class="${this.userStyleClass(currentUserIsSender)} position-relative">${message}</div>`;
 
     return `
-      <div class="message-row d-flex ${this.justifyClass(currentUserIsSender)}">
+      <div class="message-row d-flex ${this.justifyClass(currentUserIsSender)} mb-4">
         ${messageContent}
       </div>
     `;
