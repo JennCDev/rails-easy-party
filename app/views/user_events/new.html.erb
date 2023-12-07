@@ -33,7 +33,7 @@
     <li class="guest">
       <%= "#{guest.user.first_name} #{guest.user.last_name}" %>
       <div class="icons-container">
-        <% crown_class = guest.planner ? 'fa-crown yellow-crown' : 'fa-crown' %>
+        <% crown_class = guest.planner ? 'fa-crown yellow-crown' : 'fa-crown grey-crown' %>
         <%= link_to user_event_path(guest), data: { turbo_method: "PATCH", action: "click->user-search#planner" } do %>
           <i data-user-search-target="crown" class="fa-solid <%= crown_class %>"
              onclick="this.classList.toggle('yellow-crown'); console.log(this.classList)"></i>

@@ -1,6 +1,6 @@
 <%# photo de l'évènement %>
 <% if @event.photo_banner.attached? %>
-  <%= cl_image_tag @event.photo_banner.key, class: "card-image img-fluid mt-2", crop: :fill %>
+  <%= cl_image_tag @event.photo_banner.key, class: "card-image img-fluid mt-2 photo-banner", crop: :fill %>
 <% else %>
   <div class="card-image d-flex justify-content-center align-items-center mt-2"><span>Pas d'image disponible</span></div>
 <% end %>
@@ -61,3 +61,4 @@
 
 <%# ajout des photos de l'évènement %>
 <%= render "shared/show/photos" %>
+<div class="clear"></div>
