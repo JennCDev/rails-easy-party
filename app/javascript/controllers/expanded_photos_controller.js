@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   close(event){
-    console.log("youre in")
+    // console.log("youre in")
     this.expandedPhotoTarget.classList.toggle('d-none')
 
   }
