@@ -200,7 +200,7 @@ event1 = Event.create!(
 
 event2 = Event.create!(
   title: "Demoday Gucci Night 🚋",
-  description: "Ce n'est qu'un au revoir 💞 #1395",
+  description: "Ce n'est qu'un au revoir ❤❤❤ #1395",
   start_at: Date.today + 2.weeks,
   end_at: Date.today + 2.weeks + 1.day,
   place: "Euratechnologies"
@@ -556,23 +556,39 @@ user_event_32 = UserEvent.create!(
 
 #adding banners to events
 
+
+
 photo1 = URI.open("https://www.toutelanutrition.com/media/cache/terravita_blog_article_thumbnail_medium/blog/wikifit-sante-conseil-vin-rouge-les-bienfaits-du-resveratrol.jpg")
-photo2 = URI.open("https://files.slack.com/files-pri/T02NE0241-F0651V3SR62/img_2312.jpg")
+# photo2 = URI.open("https://files.slack.com/files-pri/T02NE0241-F0651V3SR62/img_2312.jpg")
 photo3 = URI.open("https://cdn.sortiraparis.com/images/80/66131/907451-laser-game-notre-selection-des-spots-ou-pratiquer-a-paris-et-en-ile-de-france.jpg")
 photo4 = URI.open("https://fac.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Ffac.2F2023.2F09.2F05.2F53fc7fd8-8c1f-489e-8416-f5ce7b35e4b1.2Ejpeg/970x485/quality/80/crop-from/center/belote-les-meilleurs-sites-et-applis-pour-jouer-gratuitement-en-ligne.jpeg")
 
 event1.photo_banner.attach(io: photo1, filename: "vin.jpg", content_type: "image/jpg")
-event2.photo_banner.attach(io: photo2, filename: "demoday.jpg", content_type: "image/jpg")
+event2.photo_banner.attach(io: File.open("app/assets/images/demoday.jpg"), filename: "demoday.jpg")
 event3.photo_banner.attach(io: photo3, filename: "laser.jpg", content_type: "image/jpg")
 event4.photo_banner.attach(io: photo4, filename: "belote.jpeg", content_type: "image/jpg")
 
 
 #adding photos to events
 # lasergame
+<<<<<<< HEAD
+=======
+chemin_photo1 = Rails.root.join('public', 'images', 'laser1.jpg')
+chemin_photo2 = Rails.root.join('public', 'images', 'laser2.jpg')
+chemin_photo3 = Rails.root.join('public', 'images', 'laser3.png')
+
+# Ouvrir les fichiers
+file_photo1 = File.open(chemin_photo1)
+file_photo2 = File.open(chemin_photo2)
+file_photo3 = File.open(chemin_photo3)
+
+# Attacher les fichiers
+event3.photos.attach(io: file_photo1, filename: 'laser1.jpg', content_type: 'image/jpg')
+event3.photos.attach(io: file_photo2, filename: 'laser2.jpg', content_type: 'image/jpg')
+event3.photos.attach(io: file_photo3, filename: 'laser3.png', content_type: 'image/png')
+>>>>>>> 0dd2d27053df594b8b84848b609f3324b7d0eb65
 
 puts "Evenements créés sans problème"
-
-
 
 # db/seeds.rb
 
