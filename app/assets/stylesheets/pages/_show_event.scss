@@ -34,7 +34,7 @@
 
 
 .todo-card{
-  background-color: lighten($fifth-color, 12%);
+  background-color: lighten($fifth-color, 13%);
   border-radius: 5px;
   padding: 5px;
 }
@@ -43,13 +43,13 @@
  color: $fourth-color;
 }
 
-.chevron-todo{
+.todo-chevron{
   color: $fifth-color;
  }
-.event-infos .todo-card {
+.event-infos {
   margin: 0;
   padding: 10px;
-  background-color: $main-color-light;
+  // background-color: $main-color-light;
   border-radius: 12px;
 }
 

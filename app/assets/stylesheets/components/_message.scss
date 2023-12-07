@@ -93,13 +93,13 @@ strong {
 }
 
 .sender-style {
-  background-color: lightcoral;
+  background-color: $second-color;
   margin-bottom: 16px
   // position: relative;
 }
 
 .receiver-style {
-  background-color: lightblue;
+  background-color: $third-color;
   margin-bottom: 16px
 }
 
@@ -130,5 +130,5 @@ strong {
 }
 
 .title-messages {
-  background-color: $third-color;
+  background-color: $fourth-color;
 }
