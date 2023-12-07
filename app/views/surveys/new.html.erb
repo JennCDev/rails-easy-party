@@ -18,10 +18,10 @@
       <div class="d-flex btn-group w-100">
         <%= a.input :answer,
           label: false,
-          placeholder: "Option",
+          placeholder: "Ici pour une idée brillante 🌟",
           as: :string,
-          input_html: { data: {insert_in_answers_target: "input"} },
-          class: "custom-input-for-option input-spacing" %>
+          input_html: { data: {insert_in_answers_target: "input"} ,
+          class: "custom-input-for-option input-spacing" }%>
         <%= link_to "Valider", "", class: "validate-btn-small-survey", data: { action: "click->insert-in-answers#insertAnswers" } %>
       </div>
     </div>
