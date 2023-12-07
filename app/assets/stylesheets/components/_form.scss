@@ -1,3 +1,5 @@
+@import "variables";
+
 .form {
   margin: 5px;
   padding: 25px 15px;
@@ -12,5 +14,11 @@
 }
 
 .input {
+  border-color: #dee2e6;
   border-radius: 12px;
+}
+
+input[type="file"]::-webkit-file-upload-button {
+  background-color: $main-color-light;
+  // color: #votre-couleur-de-texte;
 }

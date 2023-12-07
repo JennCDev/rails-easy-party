@@ -1,17 +1,19 @@
 .edit-description-form{
   margin: 0 auto;
+  border-bottom: 1px solid #cdd0d3;
+  padding-bottom: 30px;
 }
 
 /* CSS pour supprimer la bordure de l'input en focus */
 
 .edit-description-form textarea:focus {
   outline: none;
-  border-color: $main-color-light;
+  // border-color: $main-color-light;
   border-radius: 8px;
 }
 .edit-description-form textarea{
   outline: none;
-  border-color: $main-color-light;
+  // border-color: $main-color-light;
   border-radius: 8px;
   margin-bottom: 8px;
   width: 100%;
@@ -30,6 +32,10 @@
 }
 
 .description{
-  padding-bottom: 10px;
-  border-bottom: 1px solid $main-color-light;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #cdd0d3;
+}
+
+.edit-place {
+  border: 1px solid #cdd0d3;
 }

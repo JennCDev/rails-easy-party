@@ -12,7 +12,7 @@ export default class extends Controller {
   }
 
   copy() {
-    const textToCopy = `http://127.0.0.1:3000${this.urlValue}`; //A modifier en prod
+    const textToCopy = `www.easy-party.pro${this.urlValue}`;
 
     navigator.clipboard.writeText(textToCopy)
       .then(() => {
