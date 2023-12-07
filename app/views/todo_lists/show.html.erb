@@ -4,7 +4,6 @@
   <i class="fa-solid fa-circle-chevron-left"></i>
 <% end %>
 
-<div data-controller="item">
 <h2><%= @todo_list.title %></h2><br>
 
 <%# liste des items/todos + logique de sélection avec avatars %>
@@ -39,7 +38,7 @@
         <span class="close" data-action="click->modal-avatars#hide">&times;</span>
         <ul>
           <% item.user_items.each do |user_item| %>
-            <li class="d-flex">
+            <li class="d-flex m-2">
               <% if user_item.user.avatar.attached? %>
                 <%= image_tag url_for(user_item.user.avatar), class: "avatar mx-2" %>
               <% else %>
@@ -68,11 +67,8 @@
         <%= f.submit 'Ajouter', class: "validate-btn-small btn-submit-option" %>
       </div>
     </div>
+  <% end %>
 
     <div class="d-flex justify-content-center">
       <%= link_to "Valider", event_path(event), class: "d-flex justify-content-center validate-btn" %>
     </div>
-
-  <% end %>
-
-</div>
