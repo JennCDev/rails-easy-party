@@ -1,4 +1,4 @@
-<%# btn retour %>
+<%# btn retour vers event %>
 <% event = @survey.event %>
 <%= link_to event_path(event) do %>
   <i class="fa-solid fa-circle-chevron-left"></i>
@@ -75,7 +75,7 @@
             label: false,
             placeholder: "Ici pour une idée brillante 🌟",
             as: :string,
-            input_html: { class: "custom-input-for-option input-spacing" } %>
+            input_html: { class: "custom-input-for-option input-spacing new-option" } %>
         <%= f.submit 'Ajouter', class: "validate-btn-small btn-submit-option" %>
       </div>
     </div>
