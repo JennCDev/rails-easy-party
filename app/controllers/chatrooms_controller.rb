@@ -1,16 +1,13 @@
 class ChatroomsController < ApplicationController
   def index
-    @chatrooms = Chatroom.all.map do |chatroom|
-      last_message = chatroom.messages.order(created_at: :desc).first
-      unread_messages_count = chatroom.messages.where(read: false).count
-      { chatroom: chatroom, last_message: last_message, unread_messages_count: unread_messages_count }
-    end     #A modif
+    @chatrooms =  current_user.events.map do |event|
+      last_message = event.chatroom.messages.order(created_at: :desc).first
+      unread_messages_count = event.chatroom.messages.where(read: false).count
+      { chatroom: event.chatroom, last_message: last_message, unread_messages_count: unread_messages_count }
+    end
   end
 
-
-
   def show
-
     @event = Event.find(params[:event_id])
     @chatroom = @event.chatroom
     @message = Message.new

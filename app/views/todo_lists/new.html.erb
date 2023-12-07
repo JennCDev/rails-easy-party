@@ -2,31 +2,30 @@
   <i class="fa-solid fa-circle-chevron-left"></i>
 <% end %>
 
-
 <h2>Nouvelle liste</h2>
 
-<%= simple_form_for [@event, @todo_list] do |f| %>
-  <%= f.input :title, label: 'Titre' %>
+<%= simple_form_for [@event, @todo_list], html: { class: "form" } do |f| %>
+  <%= f.input :title, label: 'Titre', input_html: { class: "input" } %>
   <div id="option" data-controller="option">
     <div data-option-target="optionsList">
     </div>
     <%= f.fields_for :options do |a| %>
       <div class="d-flex align-items-start input-spacing">
-        <div class="d-flex btn-group input-spacing">
+        <div class="d-flex btn-group w-100">
           <%= a.input :option,
             label: false,
             placeholder: "Option",
             as: :string,
-            input_html: { data: {target: "option.options"} },
-            class: "custom-input-for-option input-spacing"  %>
+            input_html: { data: {target: "option.options"} ,
+            class: "custom-input-for-option input-spacing" }  %>
           <%= link_to "Valider", "",
-          class: "validate-btn-small input-spacing",
+          class: "validate-btn-small btn-submit-option",
           data: { action: "click->option#insertOptions" } %>
         </div>
       </div>
     <% end %>
   </div>
-  
+
 <div class="d-flex justify-content-center">
   <%= f.submit 'Valider', class: "validate-btn" %>
 </div>

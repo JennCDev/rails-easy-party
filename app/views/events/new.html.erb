@@ -1,35 +1,38 @@
-<h2 class="mt-4 mb-5 text-center">NOUVEL EVENEMENT</h2>
+<h2 class="m-5 text-center">NOUVEL EVENEMENT</h2>
 
-<%= simple_form_for @event, html: { class: 'new-event-form' } do |f| %>
-  <%= f.input :title, label: "Nom de l'évènement", as: :string, input_html: { class: 'mb-5' } %>
-  <%= f.input :description, label: 'Description 🎉', as: :string, input_html: { class: 'mb-5' } %>
+<%= simple_form_for @event, html: { class: "form" } do |f| %>
+  <%= f.input :title, label: "Nom de l'évènement", as: :string, input_html: { class: "input" } %>
+  <%= f.input :description, label: 'Description 🎉', as: :string, input_html: { class: "input" } %>
   <div class="dates" data-controller="dates-pickr">
-    <%= f.label :dates, "Dates ✨", class: "form-label mb-3" %>
-    <input type="text" id="dates" data-dates-pickr-target="dateInput" data-action="change->dates-pickr#setDates" class="form-control mb-5">
+  <%= f.label :dates, "Dates ✨", class: "form-label" %>
+  <input type="text" id="dates" data-dates-pickr-target="dateInput" data-action="change->dates-pickr#setDates" class="form-control input">
     <%= f.input :start_at,
       label: 'Date de début',
       as: :string,
       input_html: {
-        data: { dates_pickr_target:"startDate" }
-      },
+         data: {
+          dates_pickr_target:"startDate"
+          }},
       as: :hidden,
-      label: false,
-      input_html: { class: 'mb-5' } %>
+      label: false %>
     <%= f.input :end_at,
-      label: 'Date de fin',
-      as: :string,
-      input_html: {
-        data: { dates_pickr_target:"endDate" }
-      },
-      as: :hidden,
-      label: false,
-      input_html: { class: 'mb-5' } %>
+    label: 'Date de fin',
+    as: :string,
+    input_html:
+      { data: {
+         dates_pickr_target:"endDate"
+         }},
+         as: :hidden,
+         label: false %>
   </div>
-  <%= f.input :place, label: 'Lieu', as: :string, input_html: { class: 'mb-5' } %>
+  <%= f.input :place, label: 'Lieu', as: :string, input_html: { class: "input" } %>
 
-  <%= f.input :photo_banner, as: :file, input_html: { class: 'form-field mb-5' } %>
+  <%= f.label :photo_banner, "Photo", class: "form-label" %>
+  <%= f.input :photo_banner, label: false, as: :file, input_html: {class: "form-field input"} %>
 
   <div class="d-flex justify-content-center">
-    <%= f.submit 'Valider', class: "mt-5 validate-btn w-75" %>
+    <%= f.submit 'Valider', class: "mt-5 validate-btn w-75 input" %>
   </div>
 <% end %>
+
+<!--<%= render "shared/buttons/validate_btn" %>-->
