@@ -41,8 +41,11 @@
   <%# affichage des listes %>
     <% @event.todo_lists.each do |todo| %>
     <%= link_to todo_list_path(todo), class: "link" do %>
-      <div class="mb-3 survey-card">
-        <%= todo.title %>
+      <div class="mb-3 todo-card d-flex justify-content-between">
+        <div><%= todo.title %></div>
+        <div class="text-center chevron">
+          <i class="fa-solid fa-chevron-right"></i>
+        </div>
       </div>
     <% end %>
   <% end %>

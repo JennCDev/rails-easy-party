@@ -19,7 +19,7 @@
         <%= f.text_field :place, class: "edit-place display:none"  %>
       </div>
       <div class="update-btn d-flex justify-content-center">
-        <%= f.submit "Mettre à jour le lieu", class: "validate-btn mb-4", data: { turbo_method: :patch } %>
+        <%= f.submit "Mettre à jour le lieu", class: "validate-btn-edit mb-4", data: { turbo_method: :patch } %>
       </div>
     <% end %>
     <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen pt-1"></i></a>

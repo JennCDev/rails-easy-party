@@ -2,7 +2,7 @@
 <% if @user_is_planner %>
 
   <div data-controller = "edit-event">
-    <div class="description-title d-flex">
+    <div class="mt-5 description-title d-flex">
       <h3 class="mt-1 mb-2">Description </h3>
       <!-- Bouton pour modifier la description -->
       <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen edit-description"></i></a>
@@ -17,7 +17,7 @@
         <%= f.text_area :description, rows: 4, class: "edit-description-form display:none" %>
       </div>
       <div class="update-btn d-flex justify-content-center">
-        <%= f.submit "Mettre à jour la description", class: "validate-btn", data: { turbo_method: :patch } %>
+        <%= f.submit "Mettre à jour la description", class: "validate-btn-edit", data: { turbo_method: :patch } %>
       </div>
     <% end %>
 
