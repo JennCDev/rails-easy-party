@@ -4,7 +4,7 @@
   data-chatroom-subscription-current-user-id-value="<%= current_user.id %>">
 
 
-  <div class="title-messages sticky-top w-100 text-center text-white mb-3"><h2 class="p-0"><%= @chatroom.name %></h2></div>
+  <div class="title-messages sticky-top w-100 text-center mb-3"><h2 class="p-0"><%= @chatroom.name %></h2></div>
 
   <div class="messages" data-chatroom-subscription-target="messages">
     <% @chatroom.messages.each do |message| %>
