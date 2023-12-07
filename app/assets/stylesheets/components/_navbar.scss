@@ -10,7 +10,7 @@
   left: 0;
   right: 0;
   z-index: 1000;
-  background-image: linear-gradient(to top, $main-color, lighten($main-color, 15%));
+  background-image: linear-gradient(to top, $main-color, lighten($main-color, 10%));
 }
 
 .navbar-brand > a {
