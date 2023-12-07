@@ -26,7 +26,7 @@
         data: { target: "gallery", action: "click->expanded-photos#expanded" },
         crop: :fill %>
 
-      <div data-expanded-photos-target="expandedPhoto" class="expanded-photo-container d-none">
+      <div data-expanded-photos-target="expandedPhoto" data-action="click->expanded-photos#close" class="expanded-photo-container d-none">
         <%= cl_image_tag photo.key,
         class: "expanded-photo img-fluid",
         crop: :fill %>
