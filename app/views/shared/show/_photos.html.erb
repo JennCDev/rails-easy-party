@@ -17,8 +17,8 @@
   </form>
 </div>
 
-<div class="display-photos">
-  <% @event.photos.each do |photo| %>
+<div class="display-photos" data-controller="slider">
+  <% @event.photos.each do |photo|%>
 
     <div class="card-photos" data-controller="expanded-photos">
       <%= cl_image_tag photo.key,
@@ -26,10 +26,20 @@
         data: { target: "gallery", action: "click->expanded-photos#expanded" },
         crop: :fill %>
 
-      <div data-expanded-photos-target="expandedPhoto" data-action="click->expanded-photos#close" class="expanded-photo-container d-none">
+      <%# <button data-action="click->slider#previous"> left</button> %>
+
+      <div data-expanded-photos-target="expandedPhoto" data-slider-target="expandedPhoto" class="expanded-photo-container d-none">
+
+      <i class="fa-solid fa-xmark close-slider position-absolute" data-action="click->expanded-photos#close" ></i>
+
+      <i class="fa-solid fa-circle-chevron-left chevron-slider" data-action="click->slider#previous"></i>
         <%= cl_image_tag photo.key,
         class: "expanded-photo img-fluid",
         crop: :fill %>
+
+
+      <%# <button data-action="click->slider#next">right</button> %>
+      <i class="fa-solid fa-circle-chevron-right chevron-slider position-relative" data-action="click->slider#next"></i>
       </div>
 
     </div>
