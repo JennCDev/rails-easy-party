@@ -16,7 +16,7 @@
     <!-- Formulaire de modification (initiallement caché) -->
     <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, html: { class: "edit-place-form d-none", data: { remote: true, edit_event_target: "editForm" } } do |f| %>
       <div class="field mb-3 ms-2">
-        <%= f.text_field :place, class: "edit-place-form display:none"  %>
+        <%= f.text_field :place, class: "edit-place display:none"  %>
       </div>
       <div class="update-btn d-flex justify-content-center">
         <%= f.submit "Mettre à jour le lieu", class: "validate-btn mb-4", data: { turbo_method: :patch } %>

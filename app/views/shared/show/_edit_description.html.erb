@@ -12,7 +12,7 @@
     <%= form_for @event, url: event_path(@event),
       data: { turbo_method: :patch },
       data: { remote: true, edit_event_target: "editForm" },
-      html: { class: "edit-description-form d-none mb-5" } do |f| %>
+      html: { class: "edit-description-form d-none mb-2" } do |f| %>
       <div class="field">
         <%= f.text_area :description, rows: 4, class: "edit-description-form display:none" %>
       </div>
@@ -22,7 +22,7 @@
     <% end %>
 
     <div>
-      <p class="description" data-edit-event-target = "editField"><%= @event.description %></p>
+      <p class="description mb-2" data-edit-event-target = "editField"><%= @event.description %></p>
     </div>
   </div>
 <% else %>

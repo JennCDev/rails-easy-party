@@ -32,6 +32,7 @@ export default class extends Controller {
   }
 
   fill() {
+    console.log("Hello");
     this.searchInputTarget.value = event.currentTarget.innerText
     this.hiddenTarget.value = event.currentTarget.dataset.id
   }
