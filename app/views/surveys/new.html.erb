@@ -15,20 +15,20 @@
 
   <%= f.fields_for :answers do |a| %>
     <div class="d-flex input-spacing align-items-start">
-      <div class="d-flex btn-group w-100">
+      <div class="d-flex btn-group">
         <%= a.input :answer,
           label: false,
-          placeholder: "Option",
+          placeholder: "Ici pour une idée brillante 🌟",
           as: :string,
-          input_html: { data: {insert_in_answers_target: "input"} },
-          class: "custom-input-for-option input-spacing" %>
+          input_html: { data: {insert_in_answers_target: "input"} ,
+          class: "custom-input-for-option input-spacing new-option" }%>
         <%= link_to "Valider", "", class: "validate-btn-small-survey", data: { action: "click->insert-in-answers#insertAnswers" } %>
       </div>
     </div>
 
 <%# display les avatars d'invités pour pouvoir les mettre en hidden %>
 <div class="d-flex justify-content-center pb-3">Je cache ce sondage à</div>
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-row flex-wrap justify-content-center">
     <% @guests.each do |guest| %>
       <%= f.radio_button :hidden_user_id, guest.user.id, class: "radio" %>
         <% if guest.user.avatar.attached? %>

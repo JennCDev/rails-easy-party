@@ -8,10 +8,10 @@
       <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen edit-description"></i></a>
     </div>
       <!--Formulaire de modification-->
-      <%= simple_form_for @survey, url: survey_path(@survey), data: { turbo_method: :patch }, data: { remote: true, edit_event_target: "editForm" }, html: { class: " mx-2 d-none" } do |f| %>
+      <%= simple_form_for @survey, url: survey_path(@survey), data: { turbo_method: :patch }, data: { remote: true, edit_event_target: "editForm" }, html: { class: " my-5 mx-2 d-none" } do |f| %>
         <%= f.input :deadline, label: false, as: :string,  input_html: { data: { controller: "datepicker-simple-edit" }, value: @survey.deadline.strftime('%d/%m/%Y') } %>
         <div class="update-btn d-flex justify-content-center">
-          <%= f.submit "Mettre à jour la date limite", class: "validate-btn", data: { turbo_method: :patch } %>
+          <%= f.submit "Mettre à jour la date limite", class: "validate-btn-edit", data: { turbo_method: :patch } %>
         </div>
       <% end %>
   </div>

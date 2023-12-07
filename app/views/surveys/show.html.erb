@@ -1,4 +1,4 @@
-<%# btn retour %>
+<%# btn retour vers event %>
 <% event = @survey.event %>
 <%= link_to event_path(event) do %>
   <i class="fa-solid fa-circle-chevron-left"></i>
@@ -49,7 +49,7 @@
         <span class="close" data-action="click->modal-avatars#hide">&times;</span>
         <ul>
           <% answer.user_answers.each do |user_answer| %>
-            <li class="d-flex">
+            <li class="d-flex m-2">
               <% if user_answer.user.avatar.attached? %>
                 <%= image_tag url_for(user_answer.user.avatar), class: "avatar mx-2" %>
               <% else %>
@@ -70,12 +70,12 @@
 <% if @survey.deadline >= Date.today %>
   <%= simple_form_for [@survey, @answer] do |f| %>
     <div class="d-flex input-spacing align-items-start">
-      <div class="d-flex btn-group w-100">
+      <div class="d-flex btn-group">
         <%= f.input :content,
             label: false,
             placeholder: "Ici pour une idée brillante 🌟",
             as: :string,
-            input_html: { class: "custom-input-for-option input-spacing" } %>
+            input_html: { class: "custom-input-for-option input-spacing new-option" } %>
         <%= f.submit 'Ajouter', class: "validate-btn-small btn-submit-option" %>
       </div>
     </div>

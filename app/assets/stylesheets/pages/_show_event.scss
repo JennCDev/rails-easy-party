@@ -19,6 +19,7 @@
   background-color: lighten($fourth-color, 15%);
   border-radius: 5px;
   padding: 5px;
+  border-radius: 12px;
 }
 
 .survey-card p {
@@ -45,3 +46,19 @@
 .chevron-todo{
   color: $fifth-color;
  }
+.event-infos .todo-card {
+  margin: 0;
+  padding: 10px;
+  background-color: $main-color-light;
+  border-radius: 12px;
+}
+
+.todo-card p {
+  margin: 0;
+  padding: 4px;
+}
+
+.todo-card .chevron {
+  margin: 0;
+  padding-right: 8px;
+}

@@ -6,6 +6,7 @@ User.destroy_all
 Event.destroy_all
 Survey.destroy_all
 UserEvent.destroy_all
+Answer.destroy_all
 
 nicolas = User.create!(
   first_name: "Nicolas",
