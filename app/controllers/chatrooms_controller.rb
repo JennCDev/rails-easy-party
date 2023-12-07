@@ -4,7 +4,7 @@ class ChatroomsController < ApplicationController
       last_message = chatroom.messages.order(created_at: :desc).first
       unread_messages_count = chatroom.messages.where(read: false).count
       { chatroom: chatroom, last_message: last_message, unread_messages_count: unread_messages_count }
-    end
+    end     #A modif
   end
 
 
