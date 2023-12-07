@@ -8,7 +8,14 @@ export default class extends Controller {
   }
 
   expanded(event){
-    console.log("youre in")
     this.expandedPhotoTarget.classList.toggle('d-none');
   }
+
+  close(event){
+    console.log("youre in")
+    this.expandedPhotoTarget.classList.toggle('d-none')
+
+  }
+
+
 }

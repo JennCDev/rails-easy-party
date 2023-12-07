@@ -132,6 +132,13 @@ hugo = User.create!(
   password: "lewagon",
   password_confirmation: "lewagon"
 )
+camille = User.create!(
+  first_name: "Camille",
+  last_name: "Delbarre",
+  email: "camille@gmail.com",
+  password: "lewagon",
+  password_confirmation: "lewagon"
+)
 
 photo_guillaume = URI.open("https://avatars.githubusercontent.com/u/123516447?v=4")
 photo_juan = URI.open("https://lens-storage.storage.googleapis.com/png/b2b053e9327841408e129b45a3868396")
@@ -150,7 +157,7 @@ photo_hugo = URI.open("https://avatars.githubusercontent.com/u/14314611?v=4")
 photo_py = URI.open("https://avatars.githubusercontent.com/u/96627831?v=4")
 photo_jordane = URI.open("https://avatars.githubusercontent.com/u/10586046?v=4")
 photo_mathilde = URI.open("https://ca.slack-edge.com/T02NE0241-U053LLSGPT6-629f852f088b-512")
-
+photo_camille = URI.open("https://ca.slack-edge.com/T02NE0241-U022YCF5RHR-ecaeb1e108e2-512")
 
 marion.avatar.attach(io: photo_marion, filename: "marion.jpg", content_type: "image/jpg")
 jennifer.avatar.attach(io: photo_jf, filename: "jf.jpg", content_type: "image/jpg")
@@ -168,6 +175,7 @@ alex.avatar.attach(io: photo_alex, filename: "alex.jpg", content_type: "image/jp
 simon.avatar.attach(io: photo_simon, filename: "simon.jpg", content_type: "image/jpg")
 mathilde.avatar.attach(io: photo_mathilde, filename: "mathilde.jpg", content_type: "image/jpg")
 jordane.avatar.attach(io: photo_jordane, filename: "jordane.jpg", content_type: "image/jpg")
+camille.avatar.attach(io: photo_camille, filename: "camille.jpg", content_type: "image/jpg")
 
 # Add more users as needed
 
@@ -183,7 +191,7 @@ puts "Evenement en création ! "
 # Create events
 event1 = Event.create!(
   title: "Anniversaire de Marion",
-  description: "Méga soirée à base de vin rouge !",
+  description: "Big night à base de vin rouge !",
   start_at: Date.today + 1.week,
   end_at: Date.today + 1.week + 2.days,
   place: "Chez Marion"
@@ -191,11 +199,11 @@ event1 = Event.create!(
 )
 
 event2 = Event.create!(
-  title: "Soirée pétanque",
-  description: "Ramenez bien vos jeu de boules",
+  title: "Demoday Gucci Night 🚋",
+  description: "Ce n'est qu'un au revoir 💞 #1395",
   start_at: Date.today + 2.weeks,
   end_at: Date.today + 2.weeks + 1.day,
-  place: "Dans les 48m² de chez Jennifer"
+  place: "Euratechnologies"
 )
 
 
@@ -210,111 +218,366 @@ event3 = Event.create!(
 
 
 event4 = Event.create!(
-  title: "Belotte",
-  description: "Jai pas de jeu",
-  place: "Liévin"
+  title: "Tournoi de belotte",
+  description: "Hello les copains, on avait parlé de faire ce tournoi, allez voter pour trouver une date 🤩",
+  place: "PMU de Liévin"
 )
 
-user_event_1 = UserEvent.create!(
+# invités à l'event 1 (anniversaire de marion)
+user_event_51 = UserEvent.create!(
   user: nicolas,
   event: event1,
-  planner: false,
-  status: 'pending'
+  planner: true,
+  status: 'going'
 )
 
-user_event1 = UserEvent.create!(
+user_event_61 = UserEvent.create!(
   user: jennifer,
-  event: event1,
-  planner: false,
-  status: 'pending'
-)
-
-user_event1_planner = UserEvent.create!(
-  user: marion,
   event: event1,
   planner: true,
   status: 'going'
 )
 
-user_event_2 = UserEvent.create!(
-  user: nicolas,
-  event: event2,
+user_event_71 = UserEvent.create!(
+  user: marion,
+  event: event1,
   planner: false,
-  status: 'pending'
+  status: 'going'
 )
 
-user_event2 = UserEvent.create!(
+user_event_81 = UserEvent.create!(
+  user: noemie,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+user_event_91 = UserEvent.create!(
+  user: oscar,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+user_event_101 = UserEvent.create!(
+  user: juan,
+  event: event1,
+  planner: false,
+  status: 'maybe'
+)
+user_event_111 = UserEvent.create!(
+  user: cyril,
+  event: event1,
+  planner: false,
+  status: 'maybe'
+)
+user_event_121 = UserEvent.create!(
+  user: guillaume,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+user_event_131 = UserEvent.create!(
+  user: thomas,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+
+user_event_141 = UserEvent.create!(
+  user: simon,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+
+user_event_151 = UserEvent.create!(
+  user: jordane,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+
+user_event_161 = UserEvent.create!(
+  user: camille,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+user_event_171 = UserEvent.create!(
+  user: py,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+
+
+user_event_181 = UserEvent.create!(
+  user: marie,
+  event: event1,
+  planner: false,
+  status: 'maybe'
+)
+
+user_event_191 = UserEvent.create!(
+  user: hugo,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+
+user_event_201 = UserEvent.create!(
+  user: alex,
+  event: event3,
+  planner: false,
+  status: 'maybe'
+)
+
+user_event_211 = UserEvent.create!(
+  user: mathilde,
+  event: event1,
+  planner: false,
+  status: 'going'
+)
+
+# invités à l'event 2 demoday
+user_event_52 = UserEvent.create!(
+  user: nicolas,
+  event: event2,
+  planner: true,
+  status: 'going'
+)
+
+user_event_6 = UserEvent.create!(
   user: jennifer,
   event: event2,
   planner: false,
-  status: 'pending'
+  status: 'going'
 )
 
-user_event2_planner = UserEvent.create!(
+user_event_7 = UserEvent.create!(
   user: marion,
   event: event2,
   planner: true,
   status: 'going'
 )
 
-
-user_event_3 = UserEvent.create!(
-  user: nicolas,
-  event: event3,
+user_event_8 = UserEvent.create!(
+  user: noemie,
+  event: event2,
   planner: false,
-  status: 'pending'
+  status: 'going'
+)
+user_event_9 = UserEvent.create!(
+  user: oscar,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+user_event_10 = UserEvent.create!(
+  user: juan,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+user_event_11 = UserEvent.create!(
+  user: cyril,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+user_event_12 = UserEvent.create!(
+  user: guillaume,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+user_event_13 = UserEvent.create!(
+  user: thomas,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+
+user_event_14 = UserEvent.create!(
+  user: simon,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+
+user_event_15 = UserEvent.create!(
+  user: hugo,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+
+user_event_16 = UserEvent.create!(
+  user: camille,
+  event: event2,
+  planner: true,
+  status: 'going'
+)
+user_event_17 = UserEvent.create!(
+  user: py,
+  event: event2,
+  planner: false,
+  status: 'going'
 )
 
 
-user_event3 = UserEvent.create!(
+user_event_18 = UserEvent.create!(
+  user: marie,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+
+user_event_19 = UserEvent.create!(
+  user: jordane,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+
+user_event_20 = UserEvent.create!(
+  user: alex,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+
+user_event_21 = UserEvent.create!(
+  user: mathilde,
+  event: event2,
+  planner: false,
+  status: 'going'
+)
+
+# invités à l'event 3 (laser game)
+
+user_event_22 = UserEvent.create!(
   user: jennifer,
   event: event3,
   planner: false,
   status: 'pending'
 )
 
-user_event3_planner = UserEvent.create!(
+user_event_231 = UserEvent.create!(
   user: marion,
+  event: event3,
+  planner: true,
+  status: 'maybe'
+)
+user_event_232 = UserEvent.create!(
+  user: nicolas,
+  event: event3,
+  planner: true,
+  status: "can't go"
+)
+user_event_233 = UserEvent.create!(
+  user: guillaume,
+  event: event3,
+  planner: true,
+  status: 'going'
+)
+user_event_234 = UserEvent.create!(
+  user: juan,
   event: event3,
   planner: true,
   status: 'going'
 )
 
-user_event_4 = UserEvent.create!(
+user_event_235 = UserEvent.create!(
+  user: noemie,
+  event: event3,
+  planner: true,
+  status: 'going'
+)
+
+# invités à l'event 4 (belotte)
+user_event_24 = UserEvent.create!(
   user: nicolas,
   event: event4,
   planner: false,
-  status: 'pending'
+  status: 'going'
 )
 
-user_event4 = UserEvent.create!(
+user_event_25 = UserEvent.create!(
   user: jennifer,
   event: event4,
   planner: false,
   status: 'pending'
 )
+user_event_26 = UserEvent.create!(
+  user: juan,
+  event: event4,
+  planner: false,
+  status: "can't go"
+)
+user_event_27 = UserEvent.create!(
+  user: guillaume,
+  event: event4,
+  planner: false,
+  status: 'maybe'
+)
 
-user_event4_planner = UserEvent.create!(
-  user: marion,
+user_event_28 = UserEvent.create!(
+  user: cyril,
   event: event4,
   planner: true,
   status: 'going'
 )
+user_event_29 = UserEvent.create!(
+  user: marion,
+  event: event4,
+  planner: false,
+  status: "can't go"
+)
+user_event_30 = UserEvent.create!(
+  user: thomas,
+  event: event4,
+  planner: false,
+  status: 'maybe'
+)
 
-#adding photos to events
+user_event_31 = UserEvent.create!(
+  user: oscar,
+  event: event4,
+  planner: true,
+  status: 'going'
+)
+user_event_32 = UserEvent.create!(
+  user: noemie,
+  event: event4,
+  planner: true,
+  status: 'going'
+
+)
+
+#adding banners to events
 
 photo1 = URI.open("https://www.toutelanutrition.com/media/cache/terravita_blog_article_thumbnail_medium/blog/wikifit-sante-conseil-vin-rouge-les-bienfaits-du-resveratrol.jpg")
-photo2 = URI.open("https://www.bandoltourisme.fr/wp-content/uploads/2021/03/Petanque-boules.jpg")
+photo2 = URI.open("https://files.slack.com/files-pri/T02NE0241-F0651V3SR62/img_2312.jpg")
 photo3 = URI.open("https://cdn.sortiraparis.com/images/80/66131/907451-laser-game-notre-selection-des-spots-ou-pratiquer-a-paris-et-en-ile-de-france.jpg")
 photo4 = URI.open("https://fac.img.pmdstatic.net/fit/https.3A.2F.2Fi.2Epmdstatic.2Enet.2Ffac.2F2023.2F09.2F05.2F53fc7fd8-8c1f-489e-8416-f5ce7b35e4b1.2Ejpeg/970x485/quality/80/crop-from/center/belote-les-meilleurs-sites-et-applis-pour-jouer-gratuitement-en-ligne.jpeg")
 
 event1.photo_banner.attach(io: photo1, filename: "vin.jpg", content_type: "image/jpg")
-event2.photo_banner.attach(io: photo2, filename: "pétanque.jpg", content_type: "image/jpg")
-event3.photo_banner.attach(io: photo3, filename: "pétanque.jpg", content_type: "image/jpg")
+event2.photo_banner.attach(io: photo2, filename: "demoday.jpg", content_type: "image/jpg")
+event3.photo_banner.attach(io: photo3, filename: "laser.jpg", content_type: "image/jpg")
 event4.photo_banner.attach(io: photo4, filename: "belote.jpeg", content_type: "image/jpg")
 
 
-puts "Evenement créer sans problème"
+#adding photos to events
+# lasergame
+photos1 = URI.open("https://files.slack.com/files-pri/T02NE0241-F06839C84Q3/img_20231130_203103.jpg")
+photos2 = URI.open("https://files.slack.com/files-pri/T02NE0241-F067WNWD230/img_20231130_203101.jpg")
+photos3 = URI.open("https://files.slack.com/files-pri/T02NE0241-F068G1G0E2D/img_20231130_193835.jpg")
+
+event1.photo_banner.attach(io: photos1, filename: "laser1.jpg", content_type: "image/jpg")
+event2.photo_banner.attach(io: photos2, filename: "laser2.jpg", content_type: "image/jpg")
+event3.photo_banner.attach(io: photos3, filename: "laser2.jpg", content_type: "image/jpg")
+
+puts "Evenements créés sans problème"
 
 
 
@@ -322,7 +585,7 @@ puts "Evenement créer sans problème"
 
 # Clear existing data
 
-puts "On créer les surveys !"
+puts "On crée les surveys !"
 # Create surveys
 survey1 = Survey.create!(
   question: 'Soirée déguisée?',
