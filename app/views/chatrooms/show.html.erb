@@ -32,6 +32,6 @@
   <%= simple_form_for [@chatroom, @message],
       html: { data: { action: "turbo:submit-end->chatroom-subscription#resetForm" }, class: "d-flex form-message mt-3" } do |f| %>
     <%= f.input :content, as: :string, label: false, placeholder: "Tape ton message ici", wrapper_html: {class: "flex-grow-1 me-3"} %>
-    <%= f.submit "Send", class: "btn btn-primary mb-3" %>
+    <%= f.submit "Envoyer", class: "btn btn-primary mb-3" %>
   <% end %>
 </div>

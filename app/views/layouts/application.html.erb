@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
+
     <%= favicon_link_tag "favicon.ico" %>
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -17,6 +18,10 @@
   </head>
 
   <body>
+<!--
+<%= image_tag("banniere.jpg", class: "ban") %>
+-->
+    <%= render "shared/flashes" %>
     <%= render "shared/navbar" %>
     <div class="container p-2">
       <%= yield %>

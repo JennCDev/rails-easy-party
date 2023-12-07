@@ -16,7 +16,7 @@
 }
 
 .event-infos .survey-card {
-  background-color: $main-color-light;
+  background-color: lighten($fourth-color, 15%);
   border-radius: 5px;
   padding: 5px;
   border-radius: 12px;
@@ -32,10 +32,24 @@
   padding: 12px;
 }
 
-.event-infos .todo-card {
+
+.todo-card{
+  background-color: lighten($fifth-color, 13%);
+  border-radius: 5px;
+  padding: 5px;
+}
+
+.chevron-survey{
+ color: $fourth-color;
+}
+
+.todo-chevron{
+  color: $fifth-color;
+ }
+.event-infos {
   margin: 0;
   padding: 10px;
-  background-color: $main-color-light;
+  // background-color: $main-color-light;
   border-radius: 12px;
 }
 
