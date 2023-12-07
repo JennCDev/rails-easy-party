@@ -73,10 +73,10 @@
       <div class="d-flex btn-group w-100">
         <%= f.input :content,
             label: false,
-            placeholder: "Option",
+            placeholder: "Ici pour une idée brillante 🌟",
             as: :string,
-            class: "custom-input-for-option input-spacing" %>
-        <%= f.submit 'Valider', class: "validate-btn-small" %>
+            input_html: { class: "custom-input-for-option input-spacing" } %>
+        <%= f.submit 'Ajouter', class: "validate-btn-small" %>
       </div>
     </div>
 <% end %>
