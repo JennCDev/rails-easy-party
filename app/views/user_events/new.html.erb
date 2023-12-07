@@ -7,7 +7,7 @@
 <%# recherche et résultats de recherche %>
 <div data-controller="user-search" class="container mt-4 justify-content-center">
   <!-- Barre de recherche -->
-  <div class="sizebar d-flex w-100">
+  <div class="sizebar d-flex w-70">
     <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
     <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
 
