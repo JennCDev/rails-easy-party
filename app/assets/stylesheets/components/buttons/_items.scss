@@ -17,7 +17,8 @@
 
 .items{
   background-color: white;
-  width: 12rem;
+  // width: 12rem;
+  width: 300px;
   font-size: 14px;
   border: 1px solid $main-color-light;
   border-radius: 12px;
@@ -26,9 +27,9 @@
   padding: 8px 10px 8px 10px;
   margin-bottom: 10px;
   margin-right: 5px;
-  width: 100%;
+  // width: 100%;
   transition: background-color 0.3s ease;
-  flex-grow: 1;
+  // flex-grow: 1;
 }
 
 a{
@@ -38,7 +39,7 @@ a{
 
 
 .done {
-  background-color: rgb(241, 241, 241)
+  background-color: $main-color-light;
 }
 
 .show-avatar {

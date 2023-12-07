@@ -4,7 +4,7 @@
   <i class="fa-solid fa-circle-chevron-left"></i>
 <% end %>
 
-<div class="container" data-controller="item">
+<div data-controller="item">
 <h2><%= @todo_list.title %></h2><br>
 
 <%# liste des items/todos + logique de sélection avec avatars %>
@@ -58,14 +58,14 @@
 
 
   <%= simple_form_for [@todo_list, @item] do |f| %>
-    <div class="d-flex input-spacing align-items-start add-options">
-      <div class="d-flex btn-group w-100">
+    <div class="d-flex input-spacing align-items-start">
+      <div class="d-flex btn-group">
         <%= f.input :content,
             label: false,
-            placeholder: "Ajouter une option",
+            placeholder: "Ici pour une idée brillante 🌟",
             as: :string,
-            class: "custom-input-for-option input-spacing" %>
-        <%= f.submit 'Valider', class: "validate-btn-small" %>
+            input_html: { class: "custom-input-for-option input-spacing" } %>
+        <%= f.submit 'Ajouter', class: "validate-btn-small btn-submit-option" %>
       </div>
     </div>
 

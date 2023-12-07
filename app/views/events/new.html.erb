@@ -5,7 +5,7 @@
 <h2 class="mt-3 mb-5 text-center">NOUVEL EVENEMENT</h2>
 
 <%= simple_form_for @event, html: { class: 'form' } do |f| %>
-  <%= f.input :title, label: "Nom de l'évènement", as: :string, input_html: { class: 'mb-5 input' } %>
+  <%= f.input :title, label: "Nom de l'évènement", as: :string, input_html: { class: 'input' } %>
   <%= f.input :description, label: 'Description 🎉', as: :string, input_html: { class: 'input' } %>
   <div class="dates" data-controller="dates-pickr">
   <%= f.label :dates, "Dates ✨", class: "form-label" %>
