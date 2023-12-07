@@ -569,13 +569,6 @@ event4.photo_banner.attach(io: photo4, filename: "belote.jpeg", content_type: "i
 
 #adding photos to events
 # lasergame
-photos1 = URI.open("https://files.slack.com/files-pri/T02NE0241-F06839C84Q3/img_20231130_203103.jpg")
-photos2 = URI.open("https://files.slack.com/files-pri/T02NE0241-F067WNWD230/img_20231130_203101.jpg")
-photos3 = URI.open("https://files.slack.com/files-pri/T02NE0241-F068G1G0E2D/img_20231130_193835.jpg")
-
-event1.photo_banner.attach(io: photos1, filename: "laser1.jpg", content_type: "image/jpg")
-event2.photo_banner.attach(io: photos2, filename: "laser2.jpg", content_type: "image/jpg")
-event3.photo_banner.attach(io: photos3, filename: "laser2.jpg", content_type: "image/jpg")
 
 puts "Evenements créés sans problème"
 
