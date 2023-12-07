@@ -15,13 +15,13 @@
 
   <%= f.fields_for :answers do |a| %>
     <div class="d-flex input-spacing align-items-start">
-      <div class="d-flex btn-group w-100">
+      <div class="d-flex btn-group">
         <%= a.input :answer,
           label: false,
           placeholder: "Ici pour une idée brillante 🌟",
           as: :string,
           input_html: { data: {insert_in_answers_target: "input"} ,
-          class: "custom-input-for-option input-spacing" }%>
+          class: "custom-input-for-option input-spacing new-option" }%>
         <%= link_to "Valider", "", class: "validate-btn-small-survey", data: { action: "click->insert-in-answers#insertAnswers" } %>
       </div>
     </div>
