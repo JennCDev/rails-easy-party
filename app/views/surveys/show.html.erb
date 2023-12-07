@@ -74,7 +74,8 @@
         <%= f.input :content,
             label: false,
             placeholder: "Ici pour une idée brillante 🌟",
-            as: :string %>
+            as: :string,
+            input_html: { class: "custom-input-for-option input-spacing" } %>
         <%= f.submit 'Ajouter', class: "validate-btn-small btn-submit-option" %>
       </div>
     </div>
