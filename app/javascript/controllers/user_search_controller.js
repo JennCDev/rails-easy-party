@@ -23,7 +23,6 @@ export default class extends Controller {
     })
       .then(response => response.json())
       .then(users => {
-        console.log(users)
         this.displaySearchResults(users);
       })
       .catch(error => {
@@ -43,6 +42,7 @@ export default class extends Controller {
     searchResultsContainer.innerHTML = '';
 
     users.forEach(user => {
+      console.log(user)
       const userElement = document.createElement('div');
       userElement.dataset.id = user.id
       userElement.dataset.action = "click->user-search#fill"
