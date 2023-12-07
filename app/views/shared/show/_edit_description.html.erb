@@ -3,13 +3,16 @@
 
   <div data-controller = "edit-event">
     <div class="description-title d-flex">
-      <h3 class="mt-5 mb-2">Description </h3>
+      <h3 class="mt-1 mb-2">Description </h3>
       <!-- Bouton pour modifier la description -->
       <a href="" data-action = "click->edit-event#editField"><i class="fa-solid fa-pen edit-description"></i></a>
     </div>
 
     <!-- Formulaire de modification (initialement caché) -->
-    <%= form_for @event, url: event_path(@event), data: { turbo_method: :patch }, data: { remote: true, edit_event_target: "editForm" }, html: { class: "edit-description-form d-none mb-5" } do |f| %>
+    <%= form_for @event, url: event_path(@event),
+      data: { turbo_method: :patch },
+      data: { remote: true, edit_event_target: "editForm" },
+      html: { class: "edit-description-form d-none mb-5" } do |f| %>
       <div class="field">
         <%= f.text_area :description, rows: 4, class: "edit-description-form display:none" %>
       </div>

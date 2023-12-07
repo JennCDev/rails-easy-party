@@ -2,21 +2,21 @@
   <% unless current_user_event.planner %>
     <div class="d-flex justify-content-center mt-4">
         <% if current_user_event.status == "going" %>
-          <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-          <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn-active mx-2" %>
-          <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
+          <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 interested-btn" %>
+          <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn-active mx-2 participate-btn" %>
+          <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 do-not-participate-btn" %>
         <% elsif current_user_event.status == "maybe" %>
-          <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn-active mx-2" %>
-          <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-          <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
+          <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn-active mx-2 interested-btn" %>
+          <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 participate-btn" %>
+          <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 do-not-participate-btn" %>
         <% elsif current_user_event.status == "can't go" %>
-          <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-          <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-          <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn-active mx-2" %>
+          <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 interested-btn" %>
+          <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 participate-btn" %>
+          <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn-active mx-2 do-not-participate-btn " %>
         <% else %>
-          <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-          <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
-          <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2" %>
+          <%= link_to "Intéressé(e)", set_interested_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 interested-btn" %>
+          <%= link_to "Participe", set_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 participate-btn" %>
+          <%= link_to "Ne participe pas", set_not_going_event_path(@event), data: { turbo_method: :patch }, class: "status-btn mx-2 do-not-participate-btn" %>
         <% end %>
     </div>
   <% end %>

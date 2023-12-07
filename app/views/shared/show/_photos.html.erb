@@ -9,23 +9,30 @@
       Sélectionner des photos
     </label>
 
-<button type="submit" class="mt-5 validate-photos-btn d-none" data-add-photos-target="submit">
-  <span class="icon">
-<i class="fa-solid fa-paper-plane"></i>
-  </span>
-</button>
-
-
-
-
-
-
+    <button type="submit" class="mt-5 validate-photos-btn d-none" data-add-photos-target="submit">
+      <span class="icon">
+    <i class="fa-solid fa-paper-plane"></i>
+      </span>
+    </button>
   </form>
 </div>
 
 <div class="display-photos">
   <% @event.photos.each do |photo| %>
-      <%= cl_image_tag photo.key, class: "card-photos img-fluid", crop: :fill %>
+
+    <div class="card-photos" data-controller="expanded-photos">
+      <%= cl_image_tag photo.key,
+        class: "img-fluid photo-thumbnail photo-gallery",
+        data: { target: "gallery", action: "click->expanded-photos#expanded" },
+        crop: :fill %>
+
+      <div data-expanded-photos-target="expandedPhoto" class="expanded-photo-container d-none">
+        <%= cl_image_tag photo.key,
+        class: "expanded-photo img-fluid",
+        crop: :fill %>
+      </div>
+
+    </div>
   <% end %>
 
 </div>
