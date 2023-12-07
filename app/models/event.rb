@@ -1,5 +1,5 @@
 class Event < ApplicationRecord
-  has_one :chatroom
+  has_one :chatroom, dependent: :destroy
   has_many :surveys, dependent: :destroy
   has_many :todo_lists, dependent: :destroy
   has_many :user_events, dependent: :destroy

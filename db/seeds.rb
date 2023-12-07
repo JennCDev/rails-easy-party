@@ -6,6 +6,7 @@ User.destroy_all
 Event.destroy_all
 Survey.destroy_all
 UserEvent.destroy_all
+Answer.destroy_all
 
 nicolas = User.create!(
   first_name: "Nicolas",
@@ -571,8 +572,6 @@ event4.photo_banner.attach(io: photo4, filename: "belote.jpeg", content_type: "i
 
 #adding photos to events
 # lasergame
-<<<<<<< HEAD
-=======
 chemin_photo1 = Rails.root.join('public', 'images', 'laser1.jpg')
 chemin_photo2 = Rails.root.join('public', 'images', 'laser2.jpg')
 chemin_photo3 = Rails.root.join('public', 'images', 'laser3.png')
@@ -586,7 +585,6 @@ file_photo3 = File.open(chemin_photo3)
 event3.photos.attach(io: file_photo1, filename: 'laser1.jpg', content_type: 'image/jpg')
 event3.photos.attach(io: file_photo2, filename: 'laser2.jpg', content_type: 'image/jpg')
 event3.photos.attach(io: file_photo3, filename: 'laser3.png', content_type: 'image/png')
->>>>>>> 0dd2d27053df594b8b84848b609f3324b7d0eb65
 
 puts "Evenements créés sans problème"
 
