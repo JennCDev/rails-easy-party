@@ -1,5 +1,6 @@
 .custom-input-for-option{
   width: 300px;
+  border-radius: 12px 0 0 12px;
 }
 
 #todo_list_options_option{
@@ -93,3 +94,6 @@ input[type="radio"]:checked + label .styled-radio-button {
   align-content: center;
   border: none;
   }
+.btn-submit-option{
+  border-radius: 0 12px 12px 0;
+}
