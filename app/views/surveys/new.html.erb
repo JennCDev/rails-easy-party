@@ -28,7 +28,7 @@
 
 <%# display les avatars d'invités pour pouvoir les mettre en hidden %>
 <div class="d-flex justify-content-center pb-3">Je cache ce sondage à</div>
-  <div class="d-flex flex-row">
+  <div class="d-flex flex-row flex-wrap">
     <% @guests.each do |guest| %>
       <%= f.radio_button :hidden_user_id, guest.user.id, class: "radio" %>
         <% if guest.user.avatar.attached? %>
