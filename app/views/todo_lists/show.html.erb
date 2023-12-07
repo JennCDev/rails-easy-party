@@ -1,5 +1,6 @@
 <%# btn retour %>
-<%= link_to :back do %>
+<% event = @todo_list.event %>
+<%= link_to event_path(event) do %>
   <i class="fa-solid fa-circle-chevron-left"></i>
 <% end %>
 
@@ -68,13 +69,10 @@
       </div>
     </div>
 
+    <div class="d-flex justify-content-center">
+      <%= link_to "Valider", event_path(event), class: "d-flex justify-content-center validate-btn" %>
+    </div>
 
-
-
-<div class="d-flex justify-content-center">
-  <%= f.submit 'Valider', class: "validate-btn" %>
-</div>
-
-<% end %>
+  <% end %>
 
 </div>

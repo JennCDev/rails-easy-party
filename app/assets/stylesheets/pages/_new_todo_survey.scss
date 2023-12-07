@@ -1,5 +1,6 @@
 .custom-input-for-option{
   width: 300px;
+  border-radius: 12px 0 0 12px;
 }
 
 #todo_list_options_option{
@@ -32,4 +33,6 @@ h2{
   font-size: 20px;
 }
 
-
+.btn-submit-option{
+  border-radius: 0 12px 12px 0;
+}

@@ -1,11 +1,6 @@
-<div id="message-<%= message.id %>" data-senderid="<%= message.user.id  %> " >
-  <small>
-    <% if message.user != current_user %>
-      <%= image_tag message.user.avatar, class: "avatar-chatroom" if message.user.avatar.attached? %>
-    <% end %>
-    <div class="top-0 end-0">
-    <i><%= message.created_at.strftime("le %d-%m-%Y à %Hh%m") %></i>
+<div id="message-<%= message.id %>" data-senderid="<%= message.user.id  %>">
+    <p class="message-content"><%= message.content %></p>
+    <div class="date-message text-muted">
+      <i><%= message.created_at.strftime("le %d/%m/%Y à %Hh%m") %></i>
     </div>
-  </small>
-  <p><%= message.content %></p>
 </div>

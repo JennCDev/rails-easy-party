@@ -4,10 +4,10 @@
 
 <h2>Nouveau sondage</h2>
 
-<%= simple_form_for [@event, @survey] do |f| %>
+<%= simple_form_for [@event, @survey], html: { class: "form" } do |f| %>
   <!--<%= f.input :category, label: 'Sujet du sondage', collection: Survey::CATEGORIES %>-->
-  <%= f.input :question, label: 'Question', as: :string %>
-  <%= f.input :deadline, label: 'Date limite de réponse', as: :string, input_html: { data: { controller: "datepicker-simple" } } %>
+  <%= f.input :question, label: 'Question', as: :string, input_html: { class: "input" } %>
+  <%= f.input :deadline, label: 'Date limite de réponse', as: :string, input_html: { data: { controller: "datepicker-simple" }, class: "input" } %>
 
   <div id="answers" data-controller="insert-in-answers">
     <div data-insert-in-answers-target="answers">
@@ -20,9 +20,9 @@
           label: false,
           placeholder: "Option",
           as: :string,
-          input_html: { data: {insert_in_answers_target: "input"} },
-          class: "custom-input-for-option input-spacing" %>
-        <%= link_to "Valider", "", class: "validate-btn-small", data: { action: "click->insert-in-answers#insertAnswers" } %>
+          input_html: { data: {insert_in_answers_target: "input" },
+          class: "custom-input-for-option input-spacing" } %>
+        <%= link_to "Valider", "", class: "validate-btn-small btn-submit-option", data: { action: "click->insert-in-answers#insertAnswers" } %>
       </div>
     </div>
 
@@ -44,7 +44,6 @@
         <% end %>
     <% end %>
   </div>
-
 
     <%# validation %>
     <div class="d-flex justify-content-center">

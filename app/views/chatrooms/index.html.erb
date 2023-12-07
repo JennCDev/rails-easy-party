@@ -7,7 +7,7 @@
     <div class="card-chatroom">
       <%= link_to event_chatroom_path(chatroom_data[:chatroom].event), class: "card-link" do %>
         <% if chatroom_data[:chatroom].event.photo_banner.attached? %>
-          <%= image_tag chatroom_data[:chatroom].event.photo_banner, class: "card-img" %>
+          <%= image_tag url_for(chatroom_data[:chatroom].event.photo_banner), class: "card-img" %>
         <% else %>
           <%= image_tag "default_photo.jpg", class: "card-img" %>
         <% end %>
