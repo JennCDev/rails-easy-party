@@ -3,11 +3,12 @@
   border: 1px solid $main-color-light;
   border-radius: 8px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   flex-direction: row;
   padding: 10px;
   margin-bottom: 15px;
   align-items: center;
+  height: 50px;
 }
 
 .guest-details {
@@ -22,7 +23,6 @@
 
 .fa-crown::before, ::after {
   box-sizing: border-box;
-  margin-right: -50px;
   font-size: 26px;
 
 }
@@ -35,12 +35,12 @@
 }
 
 #search-results{
-  margin-top: -20px !important;
-  margin-bottom: 20px !important;
+  // margin-top: -20px !important;
+  // margin-bottom: 20px !important;
   margin-left: 0px !important;
-  display: flex;
   justify-content: center;
   margin-right: 175px;
+  margin-bottom: 10px;
 
 }
 
@@ -64,4 +64,8 @@ div[data-controller="user-search"] {
   height: 40px;
   border-radius: 50%;
   object-fit: cover;
+}
+
+#user_search {
+  width: 300px;
 }

@@ -4,34 +4,44 @@
 <% end %>
 
 <h2>Invités à "<%= @event.title %>"</h2>
-
 <%# recherche et résultats de recherche %>
-<div data-controller="user-search" class="container mt-4 d-flex justify-content-center">
+<div data-controller="user-search" class="container mt-4 justify-content-center">
   <!-- Barre de recherche -->
-  <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
-  <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
+  <div class="d-flex">
+    <input type="text" id="user_search" name="user_search" placeholder="Inviter un ami" class="form-control" data-target="user-search.searchInput" data-action="input->user-search#search">
+    <%= link_to "Search", search_users_path, remote: true, class: "d-none", data: { user_search_target: "link" } %>
 
-  <!-- Résultats de recherche -->
-  <div id="search-results" data-target="user-search.searchInput"></div>
+
+
+
 
   <!-- Formulaire de résultat -->
-  <%= simple_form_for [@event, @user_event], html: { class: 'form-group' } do |f| %>
-    <%= f.hidden_field :user_id, id: 'selected_user_id', data: { user_search_target: "hidden" }, html: { class: 'no-border' } %>
-    <%= f.hidden_field :event_id %>
-    <!-- Champ caché pour stocker l'état d'organisateur -->
-    <div class="add-guest d-flex">
-      <%= f.hidden_field :planner, class: "organizer-checkbox" %>
-      <%= f.submit 'Ajouter', class: "validate-btn-small" %>
-    </div>
-  <% end %> <!-- Fin du simple_form_for -->
-</div> <!-- Fin du data-controller="user-search" -->
+    <%= simple_form_for [@event, @user_event], html: { class: 'form-group' } do |f| %>
+      <%= f.hidden_field :user_id, id: 'selected_user_id', data: { user_search_target: "hidden" }, html: { class: 'no-border' } %>
+      <%= f.hidden_field :event_id %>
+      <!-- Champ caché pour stocker l'état d'organisateur -->
+      <div class="add-guest d-flex">
+        <%= f.hidden_field :planner, class: "organizer-checkbox" %>
+        <%= f.submit 'Ajouter', class: "validate-btn-small" %>
+      </div>
+    <% end %> <!-- Fin du simple_form_for -->
+  </div> <!-- Fin du data-controller="user-search" -->
+
+   <div id="search-results" data-target="user-search.searchInput" class="mt-5"></div>
+
+ </div>
+
+
 
 <%# Liste des invités %>
-<h2>Invités à "<%= @event.title %>"</h2>
+
 <ul class="list-group mb-4 guests-status">
   <% @guests.order(:id).each do |guest| %>
     <li class="guest">
+    <div>
+     <%= image_tag url_for(guest.user.avatar), class: "avatar-chatroom mt-2 me-2" if guest.user.avatar.attached? %>
       <%= "#{guest.user.first_name} #{guest.user.last_name}" %>
+      </div>
       <div class="icons-container">
         <% crown_class = guest.planner ? 'fa-crown yellow-crown' : 'fa-crown' %>
         <%= link_to user_event_path(guest), data: { turbo_method: "PATCH", action: "click->user-search#planner" } do %>

@@ -4,6 +4,7 @@ class UserEventsController < ApplicationController
   def new
     @user_event = UserEvent.new
     set_guests
+    @users = User.all
   end
 
   def create
