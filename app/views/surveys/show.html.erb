@@ -75,8 +75,8 @@
             label: false,
             placeholder: "Option",
             as: :string,
-            class: "custom-input-for-option input-spacing" %>
-        <%= f.submit 'Valider', class: "validate-btn-small" %>
+            input_html: { class: "custom-input-for-option input-spacing" } %>
+        <%= f.submit 'Valider', class: "validate-btn-small btn-submit-option" %>
       </div>
     </div>
 <% end %>
