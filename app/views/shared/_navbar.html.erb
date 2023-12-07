@@ -1,17 +1,17 @@
 
 <nav class="navbar navbar-light">
   <div class="navbar-brand remove-link d-flex justify-content-around w-100">
-    <%= link_to profiles_path do %>
-      <i class="fa-solid fa-user"></i>
+      <%= link_to root_path do %>
+      <i class="fa-solid fa-house"></i>
     <% end %>
     <%= link_to new_event_path do %>
       <i class="fa-solid fa-circle-plus"></i>
     <% end %>
-    <%= link_to root_path do %>
-      <i class="fa-solid fa-house"></i>
-    <% end %>
     <%= link_to chatrooms_path do %>
       <i class="fa-solid fa-comment"></i>
+    <% end %>
+      <%= link_to profiles_path do %>
+      <i class="fa-solid fa-user"></i>
     <% end %>
   </div>
 </nav>
