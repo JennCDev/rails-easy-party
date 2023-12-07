@@ -22,7 +22,7 @@
           as: :string,
           input_html: { data: {insert_in_answers_target: "input"} },
           class: "custom-input-for-option input-spacing" %>
-        <%= link_to "Valider", "", class: "validate-btn-small", data: { action: "click->insert-in-answers#insertAnswers" } %>
+        <%= link_to "Valider", "", class: "validate-btn-small-survey", data: { action: "click->insert-in-answers#insertAnswers" } %>
       </div>
     </div>
 
@@ -30,13 +30,13 @@
 <div class="d-flex justify-content-center pb-3">Je cache ce sondage à</div>
   <div class="d-flex flex-row">
     <% @guests.each do |guest| %>
-      <%= f.radio_button :hidden_user_id, guest.user.id %>
+      <%= f.radio_button :hidden_user_id, guest.user.id, class: "radio" %>
         <% if guest.user.avatar.attached? %>
           <img src="<%= url_for(guest.user.avatar) %>"
               class="avatar m-1"
               id="avatar_<%= guest.id %>"
               alt="Avatar"
-              onclick="this.classList.toggle('gray-scale'); this.classList.toggle(''); document.getElementById('planner_status_<%= guest.id %>').value = this.classList.contains('yellow-crown');">
+              onclick="this.classList.toggle('rounded-avatar'); this.classList.toggle(''); document.getElementById('planner_status_<%= guest.id %>').value = this.classList.contains('yellow-crown');">
         <% else %>
           <div class="avatar avatar-placeholder">
             <%= "#{guest.user.first_name.first.upcase} #{guest.user.last_name.first.upcase}" %>
@@ -48,7 +48,7 @@
 
     <%# validation %>
     <div class="d-flex justify-content-center">
-      <%= f.submit 'Valider', class: "mt-5 validate-btn w-75" %>
+      <%= f.submit 'Valider', class: "mt-5 validate-btn-survey w-75" %>
     </div>
   <% end %>
 <% end %>
