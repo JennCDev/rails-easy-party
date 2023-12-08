@@ -10,6 +10,8 @@ export default class extends Controller {
       { channel: "ChatroomChannel", id: this.chatroomIdValue },
       {
         received: data => {
+          console.log("coucou");
+          console.log(data);
           this.insertMessageAndScrollDown(data);
         }
       }
@@ -17,7 +19,6 @@ export default class extends Controller {
   }
 
   #buildMessageElement(currentUserIsSender, message, avatarUrl, userId) {
-    console.log("coucou", avatarUrl)
     const avatarImg = avatarUrl ? `<img src="${avatarUrl}" class="avatar-chatroom mt-2 me-2">` :
       `<div class="avatar avatar-placeholder mt-2 me-2">
         ${this.initialsValue}
