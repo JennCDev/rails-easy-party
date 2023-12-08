@@ -344,7 +344,7 @@ user_event_52 = UserEvent.create!(
   user: nicolas,
   event: event2,
   planner: false,
-  status: 'pending'
+  status: 'going'
 )
 
 user_event_6 = UserEvent.create!(
