@@ -602,14 +602,14 @@ survey1 = Survey.create!(
   event: event1
 )
 
-survey2 = Survey.create!(
-  question: 'On ramène les enfants?',
-  deadline: Date.today + 1.week,
-  category: 'Autre',
-  result: 'Pending',
-  user: nicolas,
-  event: event1
-)
+# survey2 = Survey.create!(
+#   question: 'On ramène les enfants?',
+#   deadline: Date.today + 1.week,
+#   category: 'Autre',
+#   result: 'Pending',
+#   user: nicolas,
+#   event: event1
+# )
 
 # Ajouter des réponses aux sondages
 answer1_survey1 = Answer.create!(
@@ -622,15 +622,15 @@ answer2_survey1 = Answer.create!(
   survey_id: survey1.id # Assurez-vous d'utiliser l'ID du sondage
 )
 
-answer1_survey2 = Answer.create!(
-  content: 'Carrément !',
-  survey_id: survey2.id # Assurez-vous d'utiliser l'ID du sondage
-)
+# answer1_survey2 = Answer.create!(
+#   content: 'Carrément !',
+#   survey_id: survey2.id # Assurez-vous d'utiliser l'ID du sondage
+# )
 
-answer2_survey2 = Answer.create!(
-  content: 'Même pas en rêve',
-  survey_id: survey2.id # Assurez-vous d'utiliser l'ID du sondage
-)
+# answer2_survey2 = Answer.create!(
+#   content: 'Même pas en rêve',
+#   survey_id: survey2.id # Assurez-vous d'utiliser l'ID du sondage
+# )
 
 
 # Add more surveys as needed
