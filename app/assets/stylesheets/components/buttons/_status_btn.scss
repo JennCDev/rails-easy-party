@@ -1,9 +1,12 @@
 @import "../variables";
 
 .status-btn{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: $main-color;
   background-color: $main-color-light;
-  font-size: 10px;
+  font-size: 12px;
   padding: 4px 6px;
   border-radius: 8px;
   text-decoration: none;
@@ -19,11 +22,15 @@
 }
 
 .status-btn-active{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   color: white;
   font-weight: bold;
   background-color: lighten($main-color, 10%);
   font-weight: bold;
-  font-size: 10px;
+  font-size: 12px;
   padding: 4px 6px;
   border-radius: 8px;
   text-decoration: none;
