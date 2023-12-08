@@ -1,13 +1,18 @@
 .active-events-btn{
   color: white;
   font-weight: bold;
-  background-color: lighten($main-color, 10%);
+  background-color: $main-color;
   font-size: 12px;
   padding: 6px 8px;
   border-radius: 12px;
   text-decoration: none;
   border: 0;
-
+  &:hover{
+    cursor: default;
+  //   background-color: lighten($main-color, 10%) ;
+  //   transition: 0.3s ease;
+  //   color: white;
+   }
 }
 
 

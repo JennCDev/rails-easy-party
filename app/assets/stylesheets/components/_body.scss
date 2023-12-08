@@ -38,7 +38,6 @@ h3 {
   padding-bottom: 10px;
 }
 
-
 .ban{
   width: 100%;
   object-fit: cover;
@@ -48,8 +47,34 @@ h3 {
 
 .easy-party-title{
   position:relative;
+  letter-spacing: 0.2em;
   // color: white;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5), -1px -1px 2px rgba(0, 0, 0, 0.5);
+  // text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  // text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.5), -1px -1px 2px rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    font-size: 2em;
+    font-weight: bold;
+  .first-letter { color: $first-color; }
+  .second-letter { color: $second-color; }
+  .third-letter { color: $third-color; }
+  .fourth-letter { color: $fourth-color; }
+  .fifth-letter { color: $fifth-color; }
+  .sixth-letter { color: $first-color; }
+  .seventh-letter { color: $second-color; }
+  .eighth-letter { color: $third-color; }
+  .ninth-letter { color: $fourth-color; }
+  .tenth-letter { color: $fifth-color; }
 
+}
+.fa-fire{
+  color: $fifth-color;
+  padding-right: 10px;
+}
+
+
+/* Masquer l'étoile des champs requis */
+form .required::after,
+form .form-required::after {
+  display: none;
 }
