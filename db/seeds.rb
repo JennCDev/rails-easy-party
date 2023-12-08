@@ -584,7 +584,7 @@ file_photo3 = File.open(chemin_photo3)
 # Attacher les fichiers
 event3.photos.attach(io: file_photo1, filename: 'laser1.jpg', content_type: 'image/jpg')
 event3.photos.attach(io: file_photo2, filename: 'laser2.jpg', content_type: 'image/jpg')
-event3.photos.attach(io: file_photo3, filename: 'laser3.png', content_type: 'image/png')
+# event3.photos.attach(io: file_photo3, filename: 'laser3.png', content_type: 'image/png')
 
 puts "Evenements créés sans problème"
 
